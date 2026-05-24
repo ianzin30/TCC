@@ -1,0 +1,36 @@
+[project]
+name = "tcc"
+version = "0.1.0"
+description = "Add your description here"
+readme = "README.md"
+requires-python = ">=3.11,<3.14"
+dependencies = [
+    "accelerate>=1.13.0",
+    "datasets>=4.8.5",
+    "huggingface-hub>=1.15.0",
+    "lightrag>=0.1.0b6",
+    "pillow>=12.2.0",
+    "pymupdf>=1.27.2.3",
+    "pypdfium2>=5.8.0",
+    "python-dotenv>=1.2.2",
+    "qwen-vl-utils>=0.0.14",
+    "raganything[all]>=0.0.1",
+    "torch>=2.12.0",
+    "torchvision>=0.27.0",
+    "tqdm>=4.67.3",
+    "transformers>=5.8.1",
+]
+
+[tool.uv.sources]
+torch = { index = "pytorch-cu130" }
+torchvision = { index = "pytorch-cu130" }
+
+[[tool.uv.index]]
+name = "pytorch-cu130"
+url = "https://download.pytorch.org/whl/cu130"
+explicit = true
+
+[tool.uv.workspace]
+members = [
+    "raganything-hello",
+]

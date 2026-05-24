@@ -1,0 +1,12 @@
+[project]
+name = "raganything-hello"
+version = "0.1.0"
+requires-python = ">=3.11,<3.12"
+dependencies = [
+    "lightrag-hku>=1.4.16",
+    "openai>=2.0.0",
+    "pymupdf>=1.27.2.3",
+    "pypdfium2==4.30.0",
+    "python-dotenv>=1.2.2",
+    "raganything>=1.3.1",
+]

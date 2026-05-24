@@ -1,0 +1,46 @@
+# Python-generated files
+__pycache__/
+*.py[oc]
+.pytest_cache/
+.ruff_cache/
+.mypy_cache/
+.ipynb_checkpoints/
+build/
+dist/
+wheels/
+*.egg-info
+
+# Virtual environments
+.venv/
+venv/
+env/
+
+# Secrets and local configuration
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+*.p12
+*.pfx
+secrets/
+
+# RAGAnything / local generated data
+rag_storage/
+output/
+raganything-demo/rag_storage/
+raganything-demo/output/
+raganything-demo/sample.pdf
+
+# Local datasets and downloaded documents
+MMLongBench-Doc/
+
+# Logs and temporary files
+*.log
+*.tmp
+*.temp
+.cache/
+
+# OS / editor files
+.DS_Store
+Thumbs.db
