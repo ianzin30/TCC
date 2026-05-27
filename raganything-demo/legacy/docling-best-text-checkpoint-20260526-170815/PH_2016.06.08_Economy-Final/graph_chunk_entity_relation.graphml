@@ -1,0 +1,1789 @@
+<?xml version='1.0' encoding='utf-8'?>
+<graphml xmlns="http://graphml.graphdrawing.org/xmlns" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://graphml.graphdrawing.org/xmlns http://graphml.graphdrawing.org/xmlns/1.0/graphml.xsd"><key id="d13" for="edge" attr.name="truncate" attr.type="string"/>
+<key id="d12" for="edge" attr.name="created_at" attr.type="long"/>
+<key id="d11" for="edge" attr.name="file_path" attr.type="string"/>
+<key id="d10" for="edge" attr.name="source_id" attr.type="string"/>
+<key id="d9" for="edge" attr.name="keywords" attr.type="string"/>
+<key id="d8" for="edge" attr.name="description" attr.type="string"/>
+<key id="d7" for="edge" attr.name="weight" attr.type="double"/>
+<key id="d6" for="node" attr.name="truncate" attr.type="string"/>
+<key id="d5" for="node" attr.name="created_at" attr.type="long"/>
+<key id="d4" for="node" attr.name="file_path" attr.type="string"/>
+<key id="d3" for="node" attr.name="source_id" attr.type="string"/>
+<key id="d2" for="node" attr.name="description" attr.type="string"/>
+<key id="d1" for="node" attr.name="entity_type" attr.type="string"/>
+<key id="d0" for="node" attr.name="entity_id" attr.type="string"/>
+<graph edgedefault="undirected"><node id="Hispanics">
+  <data key="d0">Hispanics</data>
+  <data key="d1">group</data>
+  <data key="d2">Hispanics are a demographic group in the United States with specific economic conditions and outlook.&lt;SEP&gt;Hispanics are a demographic group surveyed by PEW RESEARCH CENTER.</data>
+  <data key="d3">chunk-1907f29be90571f9ffcda4b2841c8e7d&lt;SEP&gt;chunk-db196f5cf13b5838df29dfc7a60b3fba</data>
+  <data key="d4">PH_2016.06.08_Economy-Final.pdf</data>
+  <data key="d5">1779825837</data>
+  <data key="d6"></data>
+</node>
+<node id="Great Recession">
+  <data key="d0">Great Recession</data>
+  <data key="d1">event</data>
+  <data key="d2">The Great Recession is a period of economic downturn that lasted from December 2007 to June 2009.&lt;SEP&gt;The Great Recession lasted from December 2007 to June 2009, according to economists at the National Bureau of Economic Research.&lt;SEP&gt;The Great Recession was a period of economic downturn in the United States, affecting various economic indicators.&lt;SEP&gt;The Great Recession is a period of economic downturn that lasted from December 2007 to June 2009, characterized by a significant decline in financial conditions.&lt;SEP&gt;The Great Recession is a period of economic downturn that started in 2007 and ended in 2009.</data>
+  <data key="d3">chunk-1907f29be90571f9ffcda4b2841c8e7d&lt;SEP&gt;chunk-c1cb33819e4bd6c1d057fa6c3509018f&lt;SEP&gt;chunk-6380c2e8f0c4e8f8887468340bc0071d&lt;SEP&gt;chunk-72f7a37181bc78b429ba629dce8fa4a6&lt;SEP&gt;chunk-2f090473fd475b5ea69ebf13b4ebb884</data>
+  <data key="d4">PH_2016.06.08_Economy-Final.pdf</data>
+  <data key="d5">1779825837</data>
+  <data key="d6"></data>
+</node>
+<node id="U.S. Census Bureau">
+  <data key="d0">U.S. Census Bureau</data>
+  <data key="d1">organization</data>
+  <data key="d2">The U.S. Census Bureau is an organization that provides data on household income and poverty rates.&lt;SEP&gt;The U.S. Census Bureau is the government agency responsible for collecting and reporting data on various demographic and economic indicators.&lt;SEP&gt;The U.S. Census Bureau is a government agency that conducts surveys.&lt;SEP&gt;U.S. Census Bureau is the organization that published the report on income and poverty in the United States.</data>
+  <data key="d3">chunk-1907f29be90571f9ffcda4b2841c8e7d&lt;SEP&gt;chunk-c1cb33819e4bd6c1d057fa6c3509018f&lt;SEP&gt;chunk-4cc0783f1b88ff1504f1a79dad5f9bcc&lt;SEP&gt;chunk-1b7d693f1e826e239ac0b4cbf2422f3f</data>
+  <data key="d4">PH_2016.06.08_Economy-Final.pdf</data>
+  <data key="d5">1779825840</data>
+  <data key="d6"></data>
+</node>
+<node id="Pew Research Center">
+  <data key="d0">Pew Research Center</data>
+  <data key="d1">organization</data>
+  <data key="d2">The Pew Research Center is a research organization that conducted surveys and reported findings on Latino economic outlook.&lt;SEP&gt;Pew Research Center is a non-profit organization that conducts surveys and publishes research on various social and economic issues.&lt;SEP&gt;The Pew Research Center is a non-profit organization that conducts public opinion research and demographic studies.&lt;SEP&gt;Pew Research Center is a research organization that conducts surveys and publishes reports.&lt;SEP&gt;Pew Research Center is a research organization that conducted surveys on Latino financial optimism.&lt;SEP&gt;Pew Research Center is a research organization that conducts surveys.&lt;SEP&gt;Pew Research Center is the organization that published multiple reports on various topics.</data>
+  <data key="d3">chunk-1907f29be90571f9ffcda4b2841c8e7d&lt;SEP&gt;chunk-c1cb33819e4bd6c1d057fa6c3509018f&lt;SEP&gt;chunk-4cc0783f1b88ff1504f1a79dad5f9bcc&lt;SEP&gt;chunk-4685a8d7626394b5ed73ecc6b964ecae&lt;SEP&gt;chunk-72f7a37181bc78b429ba629dce8fa4a6&lt;SEP&gt;chunk-1b7d693f1e826e239ac0b4cbf2422f3f&lt;SEP&gt;chunk-2f090473fd475b5ea69ebf13b4ebb884</data>
+  <data key="d4">PH_2016.06.08_Economy-Final.pdf</data>
+  <data key="d5">1779825840</data>
+  <data key="d6"></data>
+</node>
+<node id="Median household income">
+  <data key="d0">Median household income</data>
+  <data key="d1">category</data>
+  <data key="d2">Median household income is a measure of the typical income level of a household in a given area.</data>
+  <data key="d3">chunk-1907f29be90571f9ffcda4b2841c8e7d</data>
+  <data key="d4">PH_2016.06.08_Economy-Final.pdf</data>
+  <data key="d5">1779825840</data>
+  <data key="d6"></data>
+</node>
+<node id="Median net worth">
+  <data key="d0">Median net worth</data>
+  <data key="d1">category</data>
+  <data key="d2">Median net worth is a measure of the typical net worth of a household in a given area.</data>
+  <data key="d3">chunk-1907f29be90571f9ffcda4b2841c8e7d</data>
+  <data key="d4">PH_2016.06.08_Economy-Final.pdf</data>
+  <data key="d5">1779825841</data>
+  <data key="d6"></data>
+</node>
+<node id="Poverty rate">
+  <data key="d0">Poverty rate</data>
+  <data key="d1">category</data>
+  <data key="d2">Poverty rate is the percentage of the population living below the poverty line.</data>
+  <data key="d3">chunk-1907f29be90571f9ffcda4b2841c8e7d</data>
+  <data key="d4">PH_2016.06.08_Economy-Final.pdf</data>
+  <data key="d5">1779825841</data>
+  <data key="d6"></data>
+</node>
+<node id="Unemployment rate">
+  <data key="d0">Unemployment rate</data>
+  <data key="d1">category</data>
+  <data key="d2">Unemployment rate is the percentage of the labor force that is unemployed.</data>
+  <data key="d3">chunk-1907f29be90571f9ffcda4b2841c8e7d</data>
+  <data key="d4">PH_2016.06.08_Economy-Final.pdf</data>
+  <data key="d5">1779825841</data>
+  <data key="d6"></data>
+</node>
+<node id="Personal financial situation">
+  <data key="d0">Personal financial situation</data>
+  <data key="d1">category</data>
+  <data key="d2">Personal financial situation refers to the overall financial standing of an individual or household.</data>
+  <data key="d3">chunk-1907f29be90571f9ffcda4b2841c8e7d</data>
+  <data key="d4">PH_2016.06.08_Economy-Final.pdf</data>
+  <data key="d5">1779825841</data>
+  <data key="d6"></data>
+</node>
+<node id="Education">
+  <data key="d0">Education</data>
+  <data key="d1">category</data>
+  <data key="d2">Education is a measure of the level of formal schooling attained by an individual.</data>
+  <data key="d3">chunk-1907f29be90571f9ffcda4b2841c8e7d</data>
+  <data key="d4">PH_2016.06.08_Economy-Final.pdf</data>
+  <data key="d5">1779825842</data>
+  <data key="d6"></data>
+</node>
+<node id="Health care">
+  <data key="d0">Health care</data>
+  <data key="d1">category</data>
+  <data key="d2">Health care is a measure of the availability and quality of medical services.</data>
+  <data key="d3">chunk-1907f29be90571f9ffcda4b2841c8e7d</data>
+  <data key="d4">PH_2016.06.08_Economy-Final.pdf</data>
+  <data key="d5">1779825842</data>
+  <data key="d6"></data>
+</node>
+<node id="Immigration">
+  <data key="d0">Immigration</data>
+  <data key="d1">category</data>
+  <data key="d2">Immigration is the movement of people from one country to another.</data>
+  <data key="d3">chunk-1907f29be90571f9ffcda4b2841c8e7d</data>
+  <data key="d4">PH_2016.06.08_Economy-Final.pdf</data>
+  <data key="d5">1779825843</data>
+  <data key="d6"></data>
+</node>
+<node id="Minimum wage">
+  <data key="d0">Minimum wage</data>
+  <data key="d1">category</data>
+  <data key="d2">Minimum wage is the lowest amount of money that an employer is legally allowed to pay an employee.</data>
+  <data key="d3">chunk-1907f29be90571f9ffcda4b2841c8e7d</data>
+  <data key="d4">PH_2016.06.08_Economy-Final.pdf</data>
+  <data key="d5">1779825843</data>
+  <data key="d6"></data>
+</node>
+<node id="Family income">
+  <data key="d0">Family income</data>
+  <data key="d1">category</data>
+  <data key="d2">Family income is the total income earned by a family.&lt;SEP&gt;Family income is a measure of financial status.</data>
+  <data key="d3">chunk-1907f29be90571f9ffcda4b2841c8e7d&lt;SEP&gt;chunk-4685a8d7626394b5ed73ecc6b964ecae</data>
+  <data key="d4">PH_2016.06.08_Economy-Final.pdf</data>
+  <data key="d5">1779825844</data>
+  <data key="d6"></data>
+</node>
+<node id="Cost of living">
+  <data key="d0">Cost of living</data>
+  <data key="d1">category</data>
+  <data key="d2">Cost of living is the amount of money needed to maintain a certain standard of living.&lt;SEP&gt;Cost of living is a measure of the average price level of goods and services.</data>
+  <data key="d3">chunk-1907f29be90571f9ffcda4b2841c8e7d&lt;SEP&gt;chunk-4685a8d7626394b5ed73ecc6b964ecae</data>
+  <data key="d4">PH_2016.06.08_Economy-Final.pdf</data>
+  <data key="d5">1779825844</data>
+  <data key="d6"></data>
+</node>
+<node id="Personal finances">
+  <data key="d0">Personal finances</data>
+  <data key="d1">category</data>
+  <data key="d2">Personal finances refers to the financial standing of an individual or household.</data>
+  <data key="d3">chunk-1907f29be90571f9ffcda4b2841c8e7d</data>
+  <data key="d4">PH_2016.06.08_Economy-Final.pdf</data>
+  <data key="d5">1779825845</data>
+  <data key="d6"></data>
+</node>
+<node id="Family finances">
+  <data key="d0">Family finances</data>
+  <data key="d1">category</data>
+  <data key="d2">Family finances refers to the financial standing of a family.</data>
+  <data key="d3">chunk-1907f29be90571f9ffcda4b2841c8e7d</data>
+  <data key="d4">PH_2016.06.08_Economy-Final.pdf</data>
+  <data key="d5">1779825845</data>
+  <data key="d6"></data>
+</node>
+<node id="Personal financial outlook">
+  <data key="d0">Personal financial outlook</data>
+  <data key="d1">category</data>
+  <data key="d2">Personal financial outlook refers to the expectations of an individual or household regarding their financial situation.</data>
+  <data key="d3">chunk-1907f29be90571f9ffcda4b2841c8e7d</data>
+  <data key="d4">PH_2016.06.08_Economy-Final.pdf</data>
+  <data key="d5">1779825845</data>
+  <data key="d6"></data>
+</node>
+<node id="Personal financial improvement">
+  <data key="d0">Personal financial improvement</data>
+  <data key="d1">category</data>
+  <data key="d2">Personal financial improvement refers to the expectation of an improvement in the financial situation of an individual or household.</data>
+  <data key="d3">chunk-1907f29be90571f9ffcda4b2841c8e7d</data>
+  <data key="d4">PH_2016.06.08_Economy-Final.pdf</data>
+  <data key="d5">1779825846</data>
+  <data key="d6"></data>
+</node>
+<node id="U.S.-born adults">
+  <data key="d0">U.S.-born adults</data>
+  <data key="d1">person</data>
+  <data key="d2">U.S.-born adults expect their children will be better off.</data>
+  <data key="d3">chunk-45ab036de78d61714bf47e501a811c19</data>
+  <data key="d4">PH_2016.06.08_Economy-Final.pdf</data>
+  <data key="d5">1779825846</data>
+  <data key="d6"></data>
+</node>
+<node id="Older Latinos">
+  <data key="d0">Older Latinos</data>
+  <data key="d1">person</data>
+  <data key="d2">Older Latinos are more pessimistic about their children's financial futures.</data>
+  <data key="d3">chunk-45ab036de78d61714bf47e501a811c19</data>
+  <data key="d4">PH_2016.06.08_Economy-Final.pdf</data>
+  <data key="d5">1779825847</data>
+  <data key="d6"></data>
+</node>
+<node id="Younger Latinos">
+  <data key="d0">Younger Latinos</data>
+  <data key="d1">person</data>
+  <data key="d2">Younger Latinos are more optimistic about their children's financial futures.</data>
+  <data key="d3">chunk-45ab036de78d61714bf47e501a811c19</data>
+  <data key="d4">PH_2016.06.08_Economy-Final.pdf</data>
+  <data key="d5">1779825847</data>
+  <data key="d6"></data>
+</node>
+<node id="Educational attainment">
+  <data key="d0">Educational attainment</data>
+  <data key="d1">category</data>
+  <data key="d2">Educational attainment varies among Latinos in terms of their expectations for their children's financial futures.</data>
+  <data key="d3">chunk-45ab036de78d61714bf47e501a811c19</data>
+  <data key="d4">PH_2016.06.08_Economy-Final.pdf</data>
+  <data key="d5">1779825848</data>
+  <data key="d6"></data>
+</node>
+<node id="Latinos">
+  <data key="d0">Latinos</data>
+  <data key="d1">group</data>
+  <data key="d2">Latinos are a demographic group in the United States who have seen improvements in their personal financial situation since the Great Recession and are increasingly confident in their personal finances. They are also increasingly optimistic about their personal finances and expect upward mobility for their children. Latinos have specific economic conditions and outlooks, and their views on their children's financial futures vary. This demographic group is part of a broader category of Hispanics, as surveyed by the PEW RESEARCH CENTER.</data>
+  <data key="d3">chunk-1907f29be90571f9ffcda4b2841c8e7d&lt;SEP&gt;chunk-45ab036de78d61714bf47e501a811c19&lt;SEP&gt;chunk-c1cb33819e4bd6c1d057fa6c3509018f&lt;SEP&gt;chunk-4685a8d7626394b5ed73ecc6b964ecae&lt;SEP&gt;chunk-6380c2e8f0c4e8f8887468340bc0071d&lt;SEP&gt;chunk-db196f5cf13b5838df29dfc7a60b3fba&lt;SEP&gt;chunk-72f7a37181bc78b429ba629dce8fa4a6&lt;SEP&gt;chunk-2f090473fd475b5ea69ebf13b4ebb884</data>
+  <data key="d4">PH_2016.06.08_Economy-Final.pdf</data>
+  <data key="d5">1779825848</data>
+  <data key="d6"></data>
+</node>
+<node id="Latinos with at least some college experience">
+  <data key="d0">Latinos with at least some college experience</data>
+  <data key="d1">person</data>
+  <data key="d2">Latinos with at least some college experience are optimistic about their children's financial futures.</data>
+  <data key="d3">chunk-45ab036de78d61714bf47e501a811c19</data>
+  <data key="d4">PH_2016.06.08_Economy-Final.pdf</data>
+  <data key="d5">1779825848</data>
+  <data key="d6"></data>
+</node>
+<node id="Latinos with less than a high school education">
+  <data key="d0">Latinos with less than a high school education</data>
+  <data key="d1">person</data>
+  <data key="d2">Latinos with less than a high school education are a subset of Hispanics surveyed by PEW RESEARCH CENTER.&lt;SEP&gt;Latinos with less than a high school education are optimistic about their children's financial futures.</data>
+  <data key="d3">chunk-45ab036de78d61714bf47e501a811c19&lt;SEP&gt;chunk-db196f5cf13b5838df29dfc7a60b3fba</data>
+  <data key="d4">PH_2016.06.08_Economy-Final.pdf</data>
+  <data key="d5">1779825849</data>
+  <data key="d6"></data>
+</node>
+<node id="Latinos with high school graduates">
+  <data key="d0">Latinos with high school graduates</data>
+  <data key="d1">person</data>
+  <data key="d2">Latinos with high school graduates are more optimistic about their children's financial futures.</data>
+  <data key="d3">chunk-45ab036de78d61714bf47e501a811c19</data>
+  <data key="d4">PH_2016.06.08_Economy-Final.pdf</data>
+  <data key="d5">1779825849</data>
+  <data key="d6"></data>
+</node>
+<node id="Latinos with some college or more">
+  <data key="d0">Latinos with some college or more</data>
+  <data key="d1">person</data>
+  <data key="d2">Latinos with some college or more are optimistic about their children's financial futures.</data>
+  <data key="d3">chunk-45ab036de78d61714bf47e501a811c19</data>
+  <data key="d4">PH_2016.06.08_Economy-Final.pdf</data>
+  <data key="d5">1779825849</data>
+  <data key="d6"></data>
+</node>
+<node id="Latinos ages 18 to 29">
+  <data key="d0">Latinos ages 18 to 29</data>
+  <data key="d1">person</data>
+  <data key="d2">Latinos ages 18 to 29 are a subset of Hispanics surveyed by PEW RESEARCH CENTER.&lt;SEP&gt;Latinos ages 18 to 29 are optimistic about their children's financial futures.</data>
+  <data key="d3">chunk-45ab036de78d61714bf47e501a811c19&lt;SEP&gt;chunk-db196f5cf13b5838df29dfc7a60b3fba</data>
+  <data key="d4">PH_2016.06.08_Economy-Final.pdf</data>
+  <data key="d5">1779825849</data>
+  <data key="d6"></data>
+</node>
+<node id="Latinos ages 30 to 49">
+  <data key="d0">Latinos ages 30 to 49</data>
+  <data key="d1">group</data>
+  <data key="d2">Latinos ages 30 to 49 are a subset of Hispanics surveyed by PEW RESEARCH CENTER.&lt;SEP&gt;Latinos ages 30 to 49 are optimistic about their children's financial futures.</data>
+  <data key="d3">chunk-45ab036de78d61714bf47e501a811c19&lt;SEP&gt;chunk-db196f5cf13b5838df29dfc7a60b3fba</data>
+  <data key="d4">PH_2016.06.08_Economy-Final.pdf</data>
+  <data key="d5">1779825850</data>
+  <data key="d6"></data>
+</node>
+<node id="Latinos ages 50 to 64">
+  <data key="d0">Latinos ages 50 to 64</data>
+  <data key="d1">group</data>
+  <data key="d2">Latinos ages 50 to 64 are a subset of Hispanics surveyed by PEW RESEARCH CENTER.&lt;SEP&gt;Latinos ages 50 to 64 are optimistic about their children's financial futures.</data>
+  <data key="d3">chunk-45ab036de78d61714bf47e501a811c19&lt;SEP&gt;chunk-db196f5cf13b5838df29dfc7a60b3fba</data>
+  <data key="d4">PH_2016.06.08_Economy-Final.pdf</data>
+  <data key="d5">1779825850</data>
+  <data key="d6"></data>
+</node>
+<node id="Latinos ages 65 and older">
+  <data key="d0">Latinos ages 65 and older</data>
+  <data key="d1">person</data>
+  <data key="d2">Latinos ages 65 and older are a subset of Hispanics surveyed by PEW RESEARCH CENTER.&lt;SEP&gt;Latinos ages 65 and older are pessimistic about their children's financial futures.</data>
+  <data key="d3">chunk-45ab036de78d61714bf47e501a811c19&lt;SEP&gt;chunk-db196f5cf13b5838df29dfc7a60b3fba</data>
+  <data key="d4">PH_2016.06.08_Economy-Final.pdf</data>
+  <data key="d5">1779825850</data>
+  <data key="d6"></data>
+</node>
+<node id="All Hispanics">
+  <data key="d0">All Hispanics</data>
+  <data key="d1">person</data>
+  <data key="d2">All Hispanics have varying views on their children's financial futures.</data>
+  <data key="d3">chunk-45ab036de78d61714bf47e501a811c19</data>
+  <data key="d4">PH_2016.06.08_Economy-Final.pdf</data>
+  <data key="d5">1779825850</data>
+  <data key="d6"></data>
+</node>
+<node id="Foreign-born Latinos">
+  <data key="d0">Foreign-born Latinos</data>
+  <data key="d1">person</data>
+  <data key="d2">Foreign-born Latinos have varying views on their children's financial futures.</data>
+  <data key="d3">chunk-45ab036de78d61714bf47e501a811c19</data>
+  <data key="d4">PH_2016.06.08_Economy-Final.pdf</data>
+  <data key="d5">1779825851</data>
+  <data key="d6"></data>
+</node>
+<node id="Second-generation Latinos">
+  <data key="d0">Second-generation Latinos</data>
+  <data key="d1">person</data>
+  <data key="d2">Second-generation Latinos have varying views on their children's financial futures.</data>
+  <data key="d3">chunk-45ab036de78d61714bf47e501a811c19</data>
+  <data key="d4">PH_2016.06.08_Economy-Final.pdf</data>
+  <data key="d5">1779825851</data>
+  <data key="d6"></data>
+</node>
+<node id="Third-generation Latinos">
+  <data key="d0">Third-generation Latinos</data>
+  <data key="d1">person</data>
+  <data key="d2">Third-generation Latinos have varying views on their children's financial futures.</data>
+  <data key="d3">chunk-45ab036de78d61714bf47e501a811c19</data>
+  <data key="d4">PH_2016.06.08_Economy-Final.pdf</data>
+  <data key="d5">1779825851</data>
+  <data key="d6"></data>
+</node>
+<node id="Male Latinos">
+  <data key="d0">Male Latinos</data>
+  <data key="d1">person</data>
+  <data key="d2">Male Latinos have varying views on their children's financial futures.</data>
+  <data key="d3">chunk-45ab036de78d61714bf47e501a811c19</data>
+  <data key="d4">PH_2016.06.08_Economy-Final.pdf</data>
+  <data key="d5">1779825851</data>
+  <data key="d6"></data>
+</node>
+<node id="Female Latinos">
+  <data key="d0">Female Latinos</data>
+  <data key="d1">person</data>
+  <data key="d2">Female Latinos have varying views on their children's financial futures.</data>
+  <data key="d3">chunk-45ab036de78d61714bf47e501a811c19</data>
+  <data key="d4">PH_2016.06.08_Economy-Final.pdf</data>
+  <data key="d5">1779825851</data>
+  <data key="d6"></data>
+</node>
+<node id="Less than high school">
+  <data key="d0">Less than high school</data>
+  <data key="d1">category</data>
+  <data key="d2">Less than high school refers to Latinos who have not completed high school.&lt;SEP&gt;Less than high school education is associated with optimism about children's financial futures.</data>
+  <data key="d3">chunk-45ab036de78d61714bf47e501a811c19&lt;SEP&gt;chunk-72f7a37181bc78b429ba629dce8fa4a6</data>
+  <data key="d4">PH_2016.06.08_Economy-Final.pdf</data>
+  <data key="d5">1779825852</data>
+  <data key="d6"></data>
+</node>
+<node id="High school graduate">
+  <data key="d0">High school graduate</data>
+  <data key="d1">category</data>
+  <data key="d2">High school graduate refers to Latinos who have completed high school.&lt;SEP&gt;High school graduates are more optimistic about their children's financial futures.</data>
+  <data key="d3">chunk-45ab036de78d61714bf47e501a811c19&lt;SEP&gt;chunk-72f7a37181bc78b429ba629dce8fa4a6</data>
+  <data key="d4">PH_2016.06.08_Economy-Final.pdf</data>
+  <data key="d5">1779825852</data>
+  <data key="d6"></data>
+</node>
+<node id="Some college or more">
+  <data key="d0">Some college or more</data>
+  <data key="d1">category</data>
+  <data key="d2">Some college or more refers to Latinos who have completed some college education or more.&lt;SEP&gt;Some college or more education is associated with optimism about children's financial futures.</data>
+  <data key="d3">chunk-45ab036de78d61714bf47e501a811c19&lt;SEP&gt;chunk-72f7a37181bc78b429ba629dce8fa4a6</data>
+  <data key="d4">PH_2016.06.08_Economy-Final.pdf</data>
+  <data key="d5">1779825852</data>
+  <data key="d6"></data>
+</node>
+<node id="Ages 18-29">
+  <data key="d0">Ages 18-29</data>
+  <data key="d1">category</data>
+  <data key="d2">Ages 18-29 refers to Latinos who are between 18 and 29 years old.&lt;SEP&gt;Ages 18 to 29 are optimistic about their children's financial futures.</data>
+  <data key="d3">chunk-45ab036de78d61714bf47e501a811c19&lt;SEP&gt;chunk-72f7a37181bc78b429ba629dce8fa4a6</data>
+  <data key="d4">PH_2016.06.08_Economy-Final.pdf</data>
+  <data key="d5">1779825852</data>
+  <data key="d6"></data>
+</node>
+<node id="Ages 30-49">
+  <data key="d0">Ages 30-49</data>
+  <data key="d1">category</data>
+  <data key="d2">Ages 30-49 refers to Latinos who are between 30 and 49 years old.&lt;SEP&gt;Ages 30 to 49 are optimistic about their children's financial futures.</data>
+  <data key="d3">chunk-45ab036de78d61714bf47e501a811c19&lt;SEP&gt;chunk-72f7a37181bc78b429ba629dce8fa4a6</data>
+  <data key="d4">PH_2016.06.08_Economy-Final.pdf</data>
+  <data key="d5">1779825853</data>
+  <data key="d6"></data>
+</node>
+<node id="Ages 50-64">
+  <data key="d0">Ages 50-64</data>
+  <data key="d1">category</data>
+  <data key="d2">Ages 50-64 refers to Latinos who are between 50 and 64 years old.&lt;SEP&gt;Ages 50 to 64 are optimistic about their children's financial futures.</data>
+  <data key="d3">chunk-45ab036de78d61714bf47e501a811c19&lt;SEP&gt;chunk-72f7a37181bc78b429ba629dce8fa4a6</data>
+  <data key="d4">PH_2016.06.08_Economy-Final.pdf</data>
+  <data key="d5">1779825853</data>
+  <data key="d6"></data>
+</node>
+<node id="Ages 65 and older">
+  <data key="d0">Ages 65 and older</data>
+  <data key="d1">category</data>
+  <data key="d2">Ages 65 and older refers to Latinos who are 65 years old or older.&lt;SEP&gt;Ages 65 and older are pessimistic about their children's financial futures.</data>
+  <data key="d3">chunk-45ab036de78d61714bf47e501a811c19&lt;SEP&gt;chunk-72f7a37181bc78b429ba629dce8fa4a6</data>
+  <data key="d4">PH_2016.06.08_Economy-Final.pdf</data>
+  <data key="d5">1779825853</data>
+  <data key="d6"></data>
+</node>
+<node id="Don't have children">
+  <data key="d0">Don't have children</data>
+  <data key="d1">category</data>
+  <data key="d2">Don't have children is a response category in the survey.</data>
+  <data key="d3">chunk-45ab036de78d61714bf47e501a811c19</data>
+  <data key="d4">PH_2016.06.08_Economy-Final.pdf</data>
+  <data key="d5">1779825853</data>
+  <data key="d6"></data>
+</node>
+<node id="Don't plan to have children">
+  <data key="d0">Don't plan to have children</data>
+  <data key="d1">category</data>
+  <data key="d2">Don't plan to have children is a response category in the survey.</data>
+  <data key="d3">chunk-45ab036de78d61714bf47e501a811c19</data>
+  <data key="d4">PH_2016.06.08_Economy-Final.pdf</data>
+  <data key="d5">1779825853</data>
+  <data key="d6"></data>
+</node>
+<node id="Don't know">
+  <data key="d0">Don't know</data>
+  <data key="d1">category</data>
+  <data key="d2">Don't know is a response category in the survey.</data>
+  <data key="d3">chunk-45ab036de78d61714bf47e501a811c19</data>
+  <data key="d4">PH_2016.06.08_Economy-Final.pdf</data>
+  <data key="d5">1779825854</data>
+  <data key="d6"></data>
+</node>
+<node id="Refused">
+  <data key="d0">Refused</data>
+  <data key="d1">category</data>
+  <data key="d2">Refused is a response category in the survey.</data>
+  <data key="d3">chunk-45ab036de78d61714bf47e501a811c19</data>
+  <data key="d4">PH_2016.06.08_Economy-Final.pdf</data>
+  <data key="d5">1779825854</data>
+  <data key="d6"></data>
+</node>
+<node id="U.S. Latino">
+  <data key="d0">U.S. Latino</data>
+  <data key="d1">group</data>
+  <data key="d2">The U.S. Latino population is the largest minority group in the U.S., numbering 55.3 million in 2014 and growing rapidly.</data>
+  <data key="d3">chunk-c1cb33819e4bd6c1d057fa6c3509018f</data>
+  <data key="d4">PH_2016.06.08_Economy-Final.pdf</data>
+  <data key="d5">1779825854</data>
+  <data key="d6"></data>
+</node>
+<node id="National Bureau of Economic Research">
+  <data key="d0">National Bureau of Economic Research</data>
+  <data key="d1">organization</data>
+  <data key="d2">The National Bureau of Economic Research is an organization that defines economic recessions.&lt;SEP&gt;National Bureau of Economic Research is the organization that published a report on US business cycle expansions and contractions.</data>
+  <data key="d3">chunk-c1cb33819e4bd6c1d057fa6c3509018f&lt;SEP&gt;chunk-4cc0783f1b88ff1504f1a79dad5f9bcc</data>
+  <data key="d4">PH_2016.06.08_Economy-Final.pdf</data>
+  <data key="d5">1779825854</data>
+  <data key="d6"></data>
+</node>
+<node id="Median Household Income">
+  <data key="d0">Median Household Income</data>
+  <data key="d1">category</data>
+  <data key="d2">Median household income for Hispanics has stagnated since the Great Recession, reaching $42,491 in 2014.</data>
+  <data key="d3">chunk-c1cb33819e4bd6c1d057fa6c3509018f</data>
+  <data key="d4">PH_2016.06.08_Economy-Final.pdf</data>
+  <data key="d5">1779825855</data>
+  <data key="d6"></data>
+</node>
+<node id="Hispanic">
+  <data key="d0">Hispanic</data>
+  <data key="d1">group</data>
+  <data key="d2">Hispanic is a term used to refer to a demographic group in the United States.&lt;SEP&gt;Hispanic is a term used to describe people of Latin American descent living in the U.S.&lt;SEP&gt;Hispanic is a demographic group in the United States.</data>
+  <data key="d3">chunk-c1cb33819e4bd6c1d057fa6c3509018f&lt;SEP&gt;chunk-4685a8d7626394b5ed73ecc6b964ecae&lt;SEP&gt;chunk-6380c2e8f0c4e8f8887468340bc0071d</data>
+  <data key="d4">PH_2016.06.08_Economy-Final.pdf</data>
+  <data key="d5">1779825855</data>
+  <data key="d6"></data>
+</node>
+<node id="Hispanic Unemployment Rate">
+  <data key="d0">Hispanic Unemployment Rate</data>
+  <data key="d1">category</data>
+  <data key="d2">The Hispanic unemployment rate has improved since the Great Recession, falling from 12.8% in the first quarter of 2010 to 6.4% in the last quarter of 2015.</data>
+  <data key="d3">chunk-c1cb33819e4bd6c1d057fa6c3509018f</data>
+  <data key="d4">PH_2016.06.08_Economy-Final.pdf</data>
+  <data key="d5">1779825855</data>
+  <data key="d6"></data>
+</node>
+<node id="Hispanic Poverty Rate">
+  <data key="d0">Hispanic Poverty Rate</data>
+  <data key="d1">category</data>
+  <data key="d2">The Hispanic poverty rate in 2014 was 23.6%, which is less than a peak of 26.5% in 2010 but remains above pre-recession levels.</data>
+  <data key="d3">chunk-c1cb33819e4bd6c1d057fa6c3509018f</data>
+  <data key="d4">PH_2016.06.08_Economy-Final.pdf</data>
+  <data key="d5">1779825855</data>
+  <data key="d6"></data>
+</node>
+<node id="Health Statistics">
+  <data key="d0">Health Statistics</data>
+  <data key="d1">category</data>
+  <data key="d2">Health Statistics is a report detailing various health-related data.</data>
+  <data key="d3">chunk-4cc0783f1b88ff1504f1a79dad5f9bcc</data>
+  <data key="d4">PH_2016.06.08_Economy-Final.pdf</data>
+  <data key="d5">1779825855</data>
+  <data key="d6"></data>
+</node>
+<node id="DeNavas-Walt">
+  <data key="d0">DeNavas-Walt</data>
+  <data key="d1">person</data>
+  <data key="d2">DeNavas-Walt is an author of a report on income and poverty in the United States.</data>
+  <data key="d3">chunk-4cc0783f1b88ff1504f1a79dad5f9bcc</data>
+  <data key="d4">PH_2016.06.08_Economy-Final.pdf</data>
+  <data key="d5">1779825856</data>
+  <data key="d6"></data>
+</node>
+<node id="Bernadette D. Proctor">
+  <data key="d0">Bernadette D. Proctor</data>
+  <data key="d1">person</data>
+  <data key="d2">Bernadette D. Proctor is an author of a report on income and poverty in the United States.</data>
+  <data key="d3">chunk-4cc0783f1b88ff1504f1a79dad5f9bcc</data>
+  <data key="d4">PH_2016.06.08_Economy-Final.pdf</data>
+  <data key="d5">1779825856</data>
+  <data key="d6"></data>
+</node>
+<node id="Kochhar">
+  <data key="d0">Kochhar</data>
+  <data key="d1">person</data>
+  <data key="d2">Kochhar is an author of a report on Latino jobs growth.</data>
+  <data key="d3">chunk-4cc0783f1b88ff1504f1a79dad5f9bcc</data>
+  <data key="d4">PH_2016.06.08_Economy-Final.pdf</data>
+  <data key="d5">1779825856</data>
+  <data key="d6"></data>
+</node>
+<node id="Richard Fry">
+  <data key="d0">Richard Fry</data>
+  <data key="d1">person</data>
+  <data key="d2">Richard Fry is an author of a report on Latino jobs growth.</data>
+  <data key="d3">chunk-4cc0783f1b88ff1504f1a79dad5f9bcc</data>
+  <data key="d4">PH_2016.06.08_Economy-Final.pdf</data>
+  <data key="d5">1779825856</data>
+  <data key="d6"></data>
+</node>
+<node id="Mark Hugo Lopez">
+  <data key="d0">Mark Hugo Lopez</data>
+  <data key="d1">person</data>
+  <data key="d2">Mark Hugo Lopez is the Director of Hispanic Research at Pew Research Center.&lt;SEP&gt;Mark Hugo Lopez is an author of a report on Latino support for Democrats.</data>
+  <data key="d3">chunk-4cc0783f1b88ff1504f1a79dad5f9bcc&lt;SEP&gt;chunk-6380c2e8f0c4e8f8887468340bc0071d</data>
+  <data key="d4">PH_2016.06.08_Economy-Final.pdf</data>
+  <data key="d5">1779825857</data>
+  <data key="d6"></data>
+</node>
+<node id="Ana Gonzalez-Barrera">
+  <data key="d0">Ana Gonzalez-Barrera</data>
+  <data key="d1">person</data>
+  <data key="d2">Ana Gonzalez-Barrera is an author of a report on Latino support for Democrats.</data>
+  <data key="d3">chunk-4cc0783f1b88ff1504f1a79dad5f9bcc</data>
+  <data key="d4">PH_2016.06.08_Economy-Final.pdf</data>
+  <data key="d5">1779825857</data>
+  <data key="d6"></data>
+</node>
+<node id="Jens Manuel Krogstad">
+  <data key="d0">Jens Manuel Krogstad</data>
+  <data key="d1">person</data>
+  <data key="d2">Jens Manuel Krogstad is a contributor to the report at Pew Research Center.&lt;SEP&gt;Jens Manuel Krogstad is an author of a report on Latino support for Democrats.</data>
+  <data key="d3">chunk-4cc0783f1b88ff1504f1a79dad5f9bcc&lt;SEP&gt;chunk-6380c2e8f0c4e8f8887468340bc0071d</data>
+  <data key="d4">PH_2016.06.08_Economy-Final.pdf</data>
+  <data key="d5">1779825857</data>
+  <data key="d6"></data>
+</node>
+<node id="Renee Stepler">
+  <data key="d0">Renee Stepler</data>
+  <data key="d1">person</data>
+  <data key="d2">Renee Stepler is an author of a report on the statistical portrait of Hispanics in the United States.</data>
+  <data key="d3">chunk-4cc0783f1b88ff1504f1a79dad5f9bcc</data>
+  <data key="d4">PH_2016.06.08_Economy-Final.pdf</data>
+  <data key="d5">1779825857</data>
+  <data key="d6"></data>
+</node>
+<node id="Anna Brown">
+  <data key="d0">Anna Brown</data>
+  <data key="d1">person</data>
+  <data key="d2">Anna Brown is an author of a report on the statistical portrait of Hispanics in the United States.</data>
+  <data key="d3">chunk-4cc0783f1b88ff1504f1a79dad5f9bcc</data>
+  <data key="d4">PH_2016.06.08_Economy-Final.pdf</data>
+  <data key="d5">1779825857</data>
+  <data key="d6"></data>
+</node>
+<node id="Matt Weeks">
+  <data key="d0">Matt Weeks</data>
+  <data key="d1">person</data>
+  <data key="d2">Matt Weeks is an author of a report on minorities energizing the U.S. consumer market.</data>
+  <data key="d3">chunk-4cc0783f1b88ff1504f1a79dad5f9bcc</data>
+  <data key="d4">PH_2016.06.08_Economy-Final.pdf</data>
+  <data key="d5">1779825858</data>
+  <data key="d6"></data>
+</node>
+<node id="Selig Center for Economic Growth">
+  <data key="d0">Selig Center for Economic Growth</data>
+  <data key="d1">organization</data>
+  <data key="d2">Selig Center for Economic Growth is the organization that published a report on minorities energizing the U.S. consumer market.</data>
+  <data key="d3">chunk-4cc0783f1b88ff1504f1a79dad5f9bcc</data>
+  <data key="d4">PH_2016.06.08_Economy-Final.pdf</data>
+  <data key="d5">1779825858</data>
+  <data key="d6"></data>
+</node>
+<node id="2008">
+  <data key="d0">2008</data>
+  <data key="d1">year</data>
+  <data key="d2">2008 is a year when the financial condition of the General Public was rated as 'excellent' or 'good' by 43% of the respondents.&lt;SEP&gt;2008 is a year when the financial condition of Latinos was rated as 'excellent' or 'good' by 41% of the respondents.&lt;SEP&gt;2008 is a year when data was collected.&lt;SEP&gt;2008 is the year when the Pew Research Center conducted a survey on Latino financial optimism.</data>
+  <data key="d3">chunk-4685a8d7626394b5ed73ecc6b964ecae&lt;SEP&gt;chunk-72f7a37181bc78b429ba629dce8fa4a6&lt;SEP&gt;chunk-2f090473fd475b5ea69ebf13b4ebb884</data>
+  <data key="d4">PH_2016.06.08_Economy-Final.pdf</data>
+  <data key="d5">1779825858</data>
+  <data key="d6"></data>
+</node>
+<node id="2014">
+  <data key="d0">2014</data>
+  <data key="d1">year</data>
+  <data key="d2">2014 is a year when the financial condition of the General Public was rated as 'excellent' or 'good' by 23% of the respondents.&lt;SEP&gt;2014 is a year when the financial condition of Latinos was rated as 'excellent' or 'good' by 31% of the respondents.&lt;SEP&gt;2014 is a year when data was collected.</data>
+  <data key="d3">chunk-4685a8d7626394b5ed73ecc6b964ecae&lt;SEP&gt;chunk-2f090473fd475b5ea69ebf13b4ebb884</data>
+  <data key="d4">PH_2016.06.08_Economy-Final.pdf</data>
+  <data key="d5">1779825858</data>
+  <data key="d6"></data>
+</node>
+<node id="2015">
+  <data key="d0">2015</data>
+  <data key="d1">year</data>
+  <data key="d2">2015 is a year when the financial condition of the General Public was rated as 'excellent' or 'good' by 24% of the respondents.&lt;SEP&gt;2015 is a year when the financial condition of Latinos was rated as 'excellent' or 'good' by 40% of the respondents.&lt;SEP&gt;2015 is a year when data was collected.&lt;SEP&gt;2015 is the year when the Pew Research Center conducted a survey on Latino financial optimism.</data>
+  <data key="d3">chunk-4685a8d7626394b5ed73ecc6b964ecae&lt;SEP&gt;chunk-72f7a37181bc78b429ba629dce8fa4a6&lt;SEP&gt;chunk-2f090473fd475b5ea69ebf13b4ebb884</data>
+  <data key="d4">PH_2016.06.08_Economy-Final.pdf</data>
+  <data key="d5">1779825859</data>
+  <data key="d6"></data>
+</node>
+<node id="National Survey of Latinos">
+  <data key="d0">National Survey of Latinos</data>
+  <data key="d1">data</data>
+  <data key="d2">The National Survey of Latinos is a survey conducted by the Pew Research Center to gather data on the financial conditions of Latinos in the United States.&lt;SEP&gt;National Survey of Latinos is a survey conducted by Pew Research Center.&lt;SEP&gt;The National Survey of Latinos is a survey conducted by the Pew Research Center.</data>
+  <data key="d3">chunk-4685a8d7626394b5ed73ecc6b964ecae&lt;SEP&gt;chunk-72f7a37181bc78b429ba629dce8fa4a6&lt;SEP&gt;chunk-2f090473fd475b5ea69ebf13b4ebb884</data>
+  <data key="d4">PH_2016.06.08_Economy-Final.pdf</data>
+  <data key="d5">1779825859</data>
+  <data key="d6"></data>
+</node>
+<node id="Financial expectations">
+  <data key="d0">Financial expectations</data>
+  <data key="d1">data</data>
+  <data key="d2">Financial expectations are the views about future financial situations.</data>
+  <data key="d3">chunk-4685a8d7626394b5ed73ecc6b964ecae</data>
+  <data key="d4">PH_2016.06.08_Economy-Final.pdf</data>
+  <data key="d5">1779825859</data>
+  <data key="d6"></data>
+</node>
+<node id="Financial situation">
+  <data key="d0">Financial situation</data>
+  <data key="d1">data</data>
+  <data key="d2">Financial situation refers to the current state of one's finances.</data>
+  <data key="d3">chunk-4685a8d7626394b5ed73ecc6b964ecae</data>
+  <data key="d4">PH_2016.06.08_Economy-Final.pdf</data>
+  <data key="d5">1779825859</data>
+  <data key="d6"></data>
+</node>
+<node id="Economic well-being">
+  <data key="d0">Economic well-being</data>
+  <data key="d1">data</data>
+  <data key="d2">Economic well-being is the overall state of one's economic situation.</data>
+  <data key="d3">chunk-4685a8d7626394b5ed73ecc6b964ecae</data>
+  <data key="d4">PH_2016.06.08_Economy-Final.pdf</data>
+  <data key="d5">1779825860</data>
+  <data key="d6"></data>
+</node>
+<node id="Hispanic adults">
+  <data key="d0">Hispanic adults</data>
+  <data key="d1">person</data>
+  <data key="d2">Hispanic adults' financial expectations are their views about future financial situations.&lt;SEP&gt;Hispanic adults' economic well-being is the overall state of their economic situation.&lt;SEP&gt;Hispanic adults' financial situation is a measure of their current financial status.&lt;SEP&gt;Hispanic adults are adults who identify as Hispanic.</data>
+  <data key="d3">chunk-4685a8d7626394b5ed73ecc6b964ecae</data>
+  <data key="d4">PH_2016.06.08_Economy-Final.pdf</data>
+  <data key="d5">1779825860</data>
+  <data key="d6"></data>
+</node>
+<node id="White">
+  <data key="d0">White</data>
+  <data key="d1">person</data>
+  <data key="d2">White is a racial group in the United States.</data>
+  <data key="d3">chunk-4685a8d7626394b5ed73ecc6b964ecae</data>
+  <data key="d4">PH_2016.06.08_Economy-Final.pdf</data>
+  <data key="d5">1779825860</data>
+  <data key="d6"></data>
+</node>
+<node id="Black">
+  <data key="d0">Black</data>
+  <data key="d1">person</data>
+  <data key="d2">Black is a racial group in the United States.</data>
+  <data key="d3">chunk-4685a8d7626394b5ed73ecc6b964ecae</data>
+  <data key="d4">PH_2016.06.08_Economy-Final.pdf</data>
+  <data key="d5">1779825860</data>
+  <data key="d6"></data>
+</node>
+<node id="White adults">
+  <data key="d0">White adults</data>
+  <data key="d1">financialsituation</data>
+  <data key="d2">White adults' financial expectations are their views about future financial situations.&lt;SEP&gt;White adults' economic well-being is the overall state of their economic situation.&lt;SEP&gt;White adults' financial situation is a measure of their current financial status.</data>
+  <data key="d3">chunk-4685a8d7626394b5ed73ecc6b964ecae</data>
+  <data key="d4">PH_2016.06.08_Economy-Final.pdf</data>
+  <data key="d5">1779825860</data>
+  <data key="d6"></data>
+</node>
+<node id="Black adults">
+  <data key="d0">Black adults</data>
+  <data key="d1">financialsituation</data>
+  <data key="d2">Black adults' financial expectations are their views about future financial situations.&lt;SEP&gt;Black adults' economic well-being is the overall state of their economic situation.&lt;SEP&gt;Black adults' financial situation is a measure of their current financial status.</data>
+  <data key="d3">chunk-4685a8d7626394b5ed73ecc6b964ecae</data>
+  <data key="d4">PH_2016.06.08_Economy-Final.pdf</data>
+  <data key="d5">1779825861</data>
+  <data key="d6"></data>
+</node>
+<node id="PewResearchCenter">
+  <data key="d0">PewResearchCenter</data>
+  <data key="d1">organization</data>
+  <data key="d2">Pew Research Center is a nonpartisan fact tank that studies various social and demographic trends.</data>
+  <data key="d3">chunk-6380c2e8f0c4e8f8887468340bc0071d</data>
+  <data key="d4">PH_2016.06.08_Economy-Final.pdf</data>
+  <data key="d5">1779825861</data>
+  <data key="d6"></data>
+</node>
+<node id="Personal Finances">
+  <data key="d0">Personal Finances</data>
+  <data key="d1">category</data>
+  <data key="d2">Personal Finances refers to the financial situation of individuals and their families.</data>
+  <data key="d3">chunk-6380c2e8f0c4e8f8887468340bc0071d&lt;SEP&gt;chunk-72f7a37181bc78b429ba629dce8fa4a6</data>
+  <data key="d4">PH_2016.06.08_Economy-Final.pdf</data>
+  <data key="d5">1779825861</data>
+  <data key="d6"></data>
+</node>
+<node id="Economic Times">
+  <data key="d0">Economic Times</data>
+  <data key="d1">category</data>
+  <data key="d2">Economic Times refers to the current state of the economy and its future prospects.</data>
+  <data key="d3">chunk-6380c2e8f0c4e8f8887468340bc0071d</data>
+  <data key="d4">PH_2016.06.08_Economy-Final.pdf</data>
+  <data key="d5">1779825861</data>
+  <data key="d6"></data>
+</node>
+<node id="Rich Morin">
+  <data key="d0">Rich Morin</data>
+  <data key="d1">person</data>
+  <data key="d2">Rich Morin is a contributor to the report at Pew Research Center.</data>
+  <data key="d3">chunk-6380c2e8f0c4e8f8887468340bc0071d</data>
+  <data key="d4">PH_2016.06.08_Economy-Final.pdf</data>
+  <data key="d5">1779825862</data>
+  <data key="d6"></data>
+</node>
+<node id="Brian Mahl">
+  <data key="d0">Brian Mahl</data>
+  <data key="d1">person</data>
+  <data key="d2">Brian Mahl is a Communications Assistant at Pew Research Center.</data>
+  <data key="d3">chunk-6380c2e8f0c4e8f8887468340bc0071d</data>
+  <data key="d4">PH_2016.06.08_Economy-Final.pdf</data>
+  <data key="d5">1779825862</data>
+  <data key="d6"></data>
+</node>
+<node id="U.S. born">
+  <data key="d0">U.S. born</data>
+  <data key="d1">category</data>
+  <data key="d2">U.S. born refers to persons who were born in the United States, Puerto Rico or other U.S. territories.&lt;SEP&gt;U.S. born refers to Latinos who were born in the United States.</data>
+  <data key="d3">chunk-6380c2e8f0c4e8f8887468340bc0071d&lt;SEP&gt;chunk-72f7a37181bc78b429ba629dce8fa4a6</data>
+  <data key="d4">PH_2016.06.08_Economy-Final.pdf</data>
+  <data key="d5">1779825862</data>
+  <data key="d6"></data>
+</node>
+<node id="Foreign born">
+  <data key="d0">Foreign born</data>
+  <data key="d1">category</data>
+  <data key="d2">Foreign born refers to persons who were born outside of the United States, Puerto Rico or other U.S. territories.&lt;SEP&gt;Foreign born refers to Latinos who were born outside the United States.</data>
+  <data key="d3">chunk-6380c2e8f0c4e8f8887468340bc0071d&lt;SEP&gt;chunk-72f7a37181bc78b429ba629dce8fa4a6</data>
+  <data key="d4">PH_2016.06.08_Economy-Final.pdf</data>
+  <data key="d5">1779825862</data>
+  <data key="d6"></data>
+</node>
+<node id="Hispanic trends">
+  <data key="d0">Hispanic trends</data>
+  <data key="d1">category</data>
+  <data key="d2">Hispanic trends refer to the demographic and social changes within the Hispanic population.</data>
+  <data key="d3">chunk-6380c2e8f0c4e8f8887468340bc0071d</data>
+  <data key="d4">PH_2016.06.08_Economy-Final.pdf</data>
+  <data key="d5">1779825863</data>
+  <data key="d6"></data>
+</node>
+<node id="U.S. social and demographic trends">
+  <data key="d0">U.S. social and demographic trends</data>
+  <data key="d1">category</data>
+  <data key="d2">U.S. social and demographic trends refer to the demographic and social changes within the United States.</data>
+  <data key="d3">chunk-6380c2e8f0c4e8f8887468340bc0071d</data>
+  <data key="d4">PH_2016.06.08_Economy-Final.pdf</data>
+  <data key="d5">1779825863</data>
+  <data key="d6"></data>
+</node>
+<node id="PEW RESEARCH CENTER">
+  <data key="d0">PEW RESEARCH CENTER</data>
+  <data key="d1">organization</data>
+  <data key="d2">PEW RESEARCH CENTER is a research organization that conducted surveys on Hispanic economic outlook.</data>
+  <data key="d3">chunk-db196f5cf13b5838df29dfc7a60b3fba</data>
+  <data key="d4">PH_2016.06.08_Economy-Final.pdf</data>
+  <data key="d5">1779825863</data>
+  <data key="d6"></data>
+</node>
+<node id="Latinos under the age of 30">
+  <data key="d0">Latinos under the age of 30</data>
+  <data key="d1">group</data>
+  <data key="d2">Latinos under the age of 30 are a subset of Hispanics surveyed by PEW RESEARCH CENTER.</data>
+  <data key="d3">chunk-db196f5cf13b5838df29dfc7a60b3fba</data>
+  <data key="d4">PH_2016.06.08_Economy-Final.pdf</data>
+  <data key="d5">1779825863</data>
+  <data key="d6"></data>
+</node>
+<node id="Latinos who had completed some college">
+  <data key="d0">Latinos who had completed some college</data>
+  <data key="d1">group</data>
+  <data key="d2">Latinos who had completed some college are a subset of Hispanics surveyed by PEW RESEARCH CENTER.</data>
+  <data key="d3">chunk-db196f5cf13b5838df29dfc7a60b3fba</data>
+  <data key="d4">PH_2016.06.08_Economy-Final.pdf</data>
+  <data key="d5">1779825863</data>
+  <data key="d6"></data>
+</node>
+<node id="Latinos who say they are in excellent or good shape financially">
+  <data key="d0">Latinos who say they are in excellent or good shape financially</data>
+  <data key="d1">group</data>
+  <data key="d2">Latinos who say they are in excellent or good shape financially are a subset of Hispanics surveyed by PEW RESEARCH CENTER.</data>
+  <data key="d3">chunk-db196f5cf13b5838df29dfc7a60b3fba</data>
+  <data key="d4">PH_2016.06.08_Economy-Final.pdf</data>
+  <data key="d5">1779825864</data>
+  <data key="d6"></data>
+</node>
+<node id="Latinos who say their current finances are in only fair shape">
+  <data key="d0">Latinos who say their current finances are in only fair shape</data>
+  <data key="d1">group</data>
+  <data key="d2">Latinos who say their current finances are in only fair shape are a subset of Hispanics surveyed by PEW RESEARCH CENTER.</data>
+  <data key="d3">chunk-db196f5cf13b5838df29dfc7a60b3fba</data>
+  <data key="d4">PH_2016.06.08_Economy-Final.pdf</data>
+  <data key="d5">1779825864</data>
+  <data key="d6"></data>
+</node>
+<node id="Latinos who say their finances are in poor shape">
+  <data key="d0">Latinos who say their finances are in poor shape</data>
+  <data key="d1">group</data>
+  <data key="d2">Latinos who say their finances are in poor shape are a subset of Hispanics surveyed by PEW RESEARCH CENTER.</data>
+  <data key="d3">chunk-db196f5cf13b5838df29dfc7a60b3fba</data>
+  <data key="d4">PH_2016.06.08_Economy-Final.pdf</data>
+  <data key="d5">1779825864</data>
+  <data key="d6"></data>
+</node>
+<node id="Latinos who expect their family's finances to improve">
+  <data key="d0">Latinos who expect their family's finances to improve</data>
+  <data key="d1">group</data>
+  <data key="d2">Latinos who expect their family's finances to improve are a subset of Hispanics surveyed by PEW RESEARCH CENTER.</data>
+  <data key="d3">chunk-db196f5cf13b5838df29dfc7a60b3fba</data>
+  <data key="d4">PH_2016.06.08_Economy-Final.pdf</data>
+  <data key="d5">1779825864</data>
+  <data key="d6"></data>
+</node>
+<node id="Latinos who expect their family's finances to get a little worse">
+  <data key="d0">Latinos who expect their family's finances to get a little worse</data>
+  <data key="d1">group</data>
+  <data key="d2">Latinos who expect their family's finances to get a little worse are a subset of Hispanics surveyed by PEW RESEARCH CENTER.</data>
+  <data key="d3">chunk-db196f5cf13b5838df29dfc7a60b3fba</data>
+  <data key="d4">PH_2016.06.08_Economy-Final.pdf</data>
+  <data key="d5">1779825865</data>
+  <data key="d6"></data>
+</node>
+<node id="Latinos who expect their family's finances to get a lot worse">
+  <data key="d0">Latinos who expect their family's finances to get a lot worse</data>
+  <data key="d1">group</data>
+  <data key="d2">Latinos who expect their family's finances to get a lot worse are a subset of Hispanics surveyed by PEW RESEARCH CENTER.</data>
+  <data key="d3">chunk-db196f5cf13b5838df29dfc7a60b3fba</data>
+  <data key="d4">PH_2016.06.08_Economy-Final.pdf</data>
+  <data key="d5">1779825865</data>
+  <data key="d6"></data>
+</node>
+<node id="Latinos who expect their children to be better off financially">
+  <data key="d0">Latinos who expect their children to be better off financially</data>
+  <data key="d1">group</data>
+  <data key="d2">Latinos who expect their children to be better off financially are a subset of Hispanics surveyed by PEW RESEARCH CENTER.</data>
+  <data key="d3">chunk-db196f5cf13b5838df29dfc7a60b3fba</data>
+  <data key="d4">PH_2016.06.08_Economy-Final.pdf</data>
+  <data key="d5">1779825865</data>
+  <data key="d6"></data>
+</node>
+<node id="Latinos who expect their children's financial situation to be about the same">
+  <data key="d0">Latinos who expect their children's financial situation to be about the same</data>
+  <data key="d1">group</data>
+  <data key="d2">Latinos who expect their children's financial situation to be about the same are a subset of Hispanics surveyed by PEW RESEARCH CENTER.</data>
+  <data key="d3">chunk-db196f5cf13b5838df29dfc7a60b3fba</data>
+  <data key="d4">PH_2016.06.08_Economy-Final.pdf</data>
+  <data key="d5">1779825865</data>
+  <data key="d6"></data>
+</node>
+<node id="Latinos who expect their children to be worse off financially">
+  <data key="d0">Latinos who expect their children to be worse off financially</data>
+  <data key="d1">group</data>
+  <data key="d2">Latinos who expect their children to be worse off financially are a subset of Hispanics surveyed by PEW RESEARCH CENTER.</data>
+  <data key="d3">chunk-db196f5cf13b5838df29dfc7a60b3fba</data>
+  <data key="d4">PH_2016.06.08_Economy-Final.pdf</data>
+  <data key="d5">1779825865</data>
+  <data key="d6"></data>
+</node>
+<node id="2012">
+  <data key="d0">2012</data>
+  <data key="d1">year</data>
+  <data key="d2">2012 is a year when the financial condition of the General Public was rated as 'excellent' or 'good' by 40% of the respondents.&lt;SEP&gt;2012 is a year when the financial condition of Latinos was rated as 'excellent' or 'good' by 40% of the respondents.&lt;SEP&gt;2012 is the year when the Pew Research Center conducted a survey on Latino financial optimism.</data>
+  <data key="d3">chunk-72f7a37181bc78b429ba629dce8fa4a6&lt;SEP&gt;chunk-2f090473fd475b5ea69ebf13b4ebb884</data>
+  <data key="d4">PH_2016.06.08_Economy-Final.pdf</data>
+  <data key="d5">1779825866</data>
+  <data key="d6"></data>
+</node>
+<node id="2011">
+  <data key="d0">2011</data>
+  <data key="d1">year</data>
+  <data key="d2">2011 is the year when the Pew Research Center conducted a survey on Latino financial optimism.</data>
+  <data key="d3">chunk-72f7a37181bc78b429ba629dce8fa4a6</data>
+  <data key="d4">PH_2016.06.08_Economy-Final.pdf</data>
+  <data key="d5">1779825866</data>
+  <data key="d6"></data>
+</node>
+<node id="2004">
+  <data key="d0">2004</data>
+  <data key="d1">year</data>
+  <data key="d2">2004 is a year when the financial condition of the General Public was rated as 'excellent' or 'good' by 51% of the respondents.&lt;SEP&gt;2004 is a year when the financial condition of Latinos was rated as 'excellent' or 'good' by 31% of the respondents.&lt;SEP&gt;2004 is the year when the Pew Research Center conducted a survey on Latino financial optimism.</data>
+  <data key="d3">chunk-72f7a37181bc78b429ba629dce8fa4a6&lt;SEP&gt;chunk-2f090473fd475b5ea69ebf13b4ebb884</data>
+  <data key="d4">PH_2016.06.08_Economy-Final.pdf</data>
+  <data key="d5">1779825866</data>
+  <data key="d6"></data>
+</node>
+<node id="2nd generation">
+  <data key="d0">2nd generation</data>
+  <data key="d1">group</data>
+  <data key="d2">2nd generation refers to Latinos who were born in the United States but have at least one parent who was born outside the United States.</data>
+  <data key="d3">chunk-72f7a37181bc78b429ba629dce8fa4a6</data>
+  <data key="d4">PH_2016.06.08_Economy-Final.pdf</data>
+  <data key="d5">1779825866</data>
+  <data key="d6"></data>
+</node>
+<node id="3rd generation or higher">
+  <data key="d0">3rd generation or higher</data>
+  <data key="d1">group</data>
+  <data key="d2">3rd generation or higher refers to Latinos who were born in the United States and have at least two parents who were born outside the United States.</data>
+  <data key="d3">chunk-72f7a37181bc78b429ba629dce8fa4a6</data>
+  <data key="d4">PH_2016.06.08_Economy-Final.pdf</data>
+  <data key="d5">1779825867</data>
+  <data key="d6"></data>
+</node>
+<node id="Male">
+  <data key="d0">Male</data>
+  <data key="d1">group</data>
+  <data key="d2">Male refers to males in the Latino demographic.</data>
+  <data key="d3">chunk-72f7a37181bc78b429ba629dce8fa4a6</data>
+  <data key="d4">PH_2016.06.08_Economy-Final.pdf</data>
+  <data key="d5">1779825867</data>
+  <data key="d6"></data>
+</node>
+<node id="Female">
+  <data key="d0">Female</data>
+  <data key="d1">group</data>
+  <data key="d2">Female refers to females in the Latino demographic.</data>
+  <data key="d3">chunk-72f7a37181bc78b429ba629dce8fa4a6</data>
+  <data key="d4">PH_2016.06.08_Economy-Final.pdf</data>
+  <data key="d5">1779825867</data>
+  <data key="d6"></data>
+</node>
+<node id="Landline">
+  <data key="d0">Landline</data>
+  <data key="d1">artifact</data>
+  <data key="d2">Landline is a type of telephone that is connected to a fixed line and is used for communication.</data>
+  <data key="d3">chunk-1b7d693f1e826e239ac0b4cbf2422f3f</data>
+  <data key="d4">PH_2016.06.08_Economy-Final.pdf</data>
+  <data key="d5">1779825867</data>
+  <data key="d6"></data>
+</node>
+<node id="Cellphone">
+  <data key="d0">Cellphone</data>
+  <data key="d1">artifact</data>
+  <data key="d2">Cellphone is a mobile telephone that uses cellular networks for communication.</data>
+  <data key="d3">chunk-1b7d693f1e826e239ac0b4cbf2422f3f</data>
+  <data key="d4">PH_2016.06.08_Economy-Final.pdf</data>
+  <data key="d5">1779825868</data>
+  <data key="d6"></data>
+</node>
+<node id="Marketing Systems Group">
+  <data key="d0">Marketing Systems Group</data>
+  <data key="d1">organization</data>
+  <data key="d2">Marketing Systems Group (MSG) is a company that provided samples for the study.</data>
+  <data key="d3">chunk-1b7d693f1e826e239ac0b4cbf2422f3f</data>
+  <data key="d4">PH_2016.06.08_Economy-Final.pdf</data>
+  <data key="d5">1779825868</data>
+  <data key="d6"></data>
+</node>
+<node id="InfoUSA">
+  <data key="d0">InfoUSA</data>
+  <data key="d1">organization</data>
+  <data key="d2">InfoUSA is a company that provides landline household databases.</data>
+  <data key="d3">chunk-1b7d693f1e826e239ac0b4cbf2422f3f</data>
+  <data key="d4">PH_2016.06.08_Economy-Final.pdf</data>
+  <data key="d5">1779825868</data>
+  <data key="d6"></data>
+</node>
+<node id="Experian">
+  <data key="d0">Experian</data>
+  <data key="d1">organization</data>
+  <data key="d2">Experian is a company that provides landline household databases.</data>
+  <data key="d3">chunk-1b7d693f1e826e239ac0b4cbf2422f3f</data>
+  <data key="d4">PH_2016.06.08_Economy-Final.pdf</data>
+  <data key="d5">1779825868</data>
+  <data key="d6"></data>
+</node>
+<node id="National Center for Health Statistics">
+  <data key="d0">National Center for Health Statistics</data>
+  <data key="d1">organization</data>
+  <data key="d2">The National Center for Health Statistics is a government agency that conducts surveys.</data>
+  <data key="d3">chunk-1b7d693f1e826e239ac0b4cbf2422f3f</data>
+  <data key="d4">PH_2016.06.08_Economy-Final.pdf</data>
+  <data key="d5">1779825869</data>
+  <data key="d6"></data>
+</node>
+<node id="National Health Interview Survey">
+  <data key="d0">National Health Interview Survey</data>
+  <data key="d1">event</data>
+  <data key="d2">The National Health Interview Survey is a survey conducted by the National Center for Health Statistics.</data>
+  <data key="d3">chunk-1b7d693f1e826e239ac0b4cbf2422f3f</data>
+  <data key="d4">PH_2016.06.08_Economy-Final.pdf</data>
+  <data key="d5">1779825869</data>
+  <data key="d6"></data>
+</node>
+<node id="American Community Survey">
+  <data key="d0">American Community Survey</data>
+  <data key="d1">event</data>
+  <data key="d2">The American Community Survey is a survey conducted by the U.S. Census Bureau.</data>
+  <data key="d3">chunk-1b7d693f1e826e239ac0b4cbf2422f3f</data>
+  <data key="d4">PH_2016.06.08_Economy-Final.pdf</data>
+  <data key="d5">1779825869</data>
+  <data key="d6"></data>
+</node>
+<node id="SSRS">
+  <data key="d0">SSRS</data>
+  <data key="d1">organization</data>
+  <data key="d2">SSRS is a company that provides a weekly dual-frame Excel omnibus survey.</data>
+  <data key="d3">chunk-1b7d693f1e826e239ac0b4cbf2422f3f</data>
+  <data key="d4">PH_2016.06.08_Economy-Final.pdf</data>
+  <data key="d5">1779825869</data>
+  <data key="d6"></data>
+</node>
+<node id="Dual-Frame">
+  <data key="d0">Dual-Frame</data>
+  <data key="d1">method</data>
+  <data key="d2">Dual-Frame is a sampling method used in surveys to include both landline and cellphone respondents.</data>
+  <data key="d3">chunk-1b7d693f1e826e239ac0b4cbf2422f3f</data>
+  <data key="d4">PH_2016.06.08_Economy-Final.pdf</data>
+  <data key="d5">1779825869</data>
+  <data key="d6"></data>
+</node>
+<node id="Random-Digit-Dial">
+  <data key="d0">Random-Digit-Dial</data>
+  <data key="d1">method</data>
+  <data key="d2">Random-Digit-Dial (RDD) is a sampling method used in surveys to randomly select telephone numbers.</data>
+  <data key="d3">chunk-1b7d693f1e826e239ac0b4cbf2422f3f</data>
+  <data key="d4">PH_2016.06.08_Economy-Final.pdf</data>
+  <data key="d5">1779825870</data>
+  <data key="d6"></data>
+</node>
+<node id="Stratified Sampling">
+  <data key="d0">Stratified Sampling</data>
+  <data key="d1">method</data>
+  <data key="d2">Stratified Sampling is a sampling method used in surveys to divide the population into strata based on certain characteristics.</data>
+  <data key="d3">chunk-1b7d693f1e826e239ac0b4cbf2422f3f</data>
+  <data key="d4">PH_2016.06.08_Economy-Final.pdf</data>
+  <data key="d5">1779825870</data>
+  <data key="d6"></data>
+</node>
+<node id="Post-Stratification">
+  <data key="d0">Post-Stratification</data>
+  <data key="d1">method</data>
+  <data key="d2">Post-Stratification is a weighting method used in surveys to adjust for potential biases.</data>
+  <data key="d3">chunk-1b7d693f1e826e239ac0b4cbf2422f3f</data>
+  <data key="d4">PH_2016.06.08_Economy-Final.pdf</data>
+  <data key="d5">1779825870</data>
+  <data key="d6"></data>
+</node>
+<node id="General Public">
+  <data key="d0">General Public</data>
+  <data key="d1">group</data>
+  <data key="d2">The General Public is a demographic group in the United States who have seen improvements in their personal financial situation since the Great Recession.</data>
+  <data key="d3">chunk-2f090473fd475b5ea69ebf13b4ebb884</data>
+  <data key="d4">PH_2016.06.08_Economy-Final.pdf</data>
+  <data key="d5">1779825870</data>
+  <data key="d6"></data>
+</node>
+<node id="2010">
+  <data key="d0">2010</data>
+  <data key="d1">year</data>
+  <data key="d2">2010 is a year when the financial condition of the General Public was rated as 'excellent' or 'good' by 31% of the respondents.&lt;SEP&gt;2010 is a year when the financial condition of Latinos was rated as 'excellent' or 'good' by 43% of the respondents.</data>
+  <data key="d3">chunk-2f090473fd475b5ea69ebf13b4ebb884</data>
+  <data key="d4">PH_2016.06.08_Economy-Final.pdf</data>
+  <data key="d5">1779825870</data>
+  <data key="d6"></data>
+</node>
+<node id="2006">
+  <data key="d0">2006</data>
+  <data key="d1">year</data>
+  <data key="d2">2006 is a year when the financial condition of the General Public was rated as 'excellent' or 'good' by 41% of the respondents.</data>
+  <data key="d3">chunk-2f090473fd475b5ea69ebf13b4ebb884</data>
+  <data key="d4">PH_2016.06.08_Economy-Final.pdf</data>
+  <data key="d5">1779825871</data>
+  <data key="d6"></data>
+</node>
+<node id="Income and Poverty in the United States">
+  <data key="d0">Income and Poverty in the United States</data>
+  <data key="d3">chunk-4cc0783f1b88ff1504f1a79dad5f9bcc</data>
+  <data key="d2">DeNavas-Walt and Bernadette D. Proctor authored the report on income and poverty in the United States.</data>
+  <data key="d1">UNKNOWN</data>
+  <data key="d4">PH_2016.06.08_Economy-Final.pdf</data>
+  <data key="d5">1779825878</data>
+  <data key="d6"></data>
+</node>
+<node id="Latino Jobs Growth">
+  <data key="d0">Latino Jobs Growth</data>
+  <data key="d3">chunk-4cc0783f1b88ff1504f1a79dad5f9bcc</data>
+  <data key="d2">Kochhar and Richard Fry authored the report on Latino jobs growth.</data>
+  <data key="d1">UNKNOWN</data>
+  <data key="d4">PH_2016.06.08_Economy-Final.pdf</data>
+  <data key="d5">1779825879</data>
+  <data key="d6"></data>
+</node>
+<node id="US Business Cycle Expansions and Contractions">
+  <data key="d0">US Business Cycle Expansions and Contractions</data>
+  <data key="d3">chunk-4cc0783f1b88ff1504f1a79dad5f9bcc</data>
+  <data key="d2">The National Bureau of Economic Research authored the report on US business cycle expansions and contractions.</data>
+  <data key="d1">UNKNOWN</data>
+  <data key="d4">PH_2016.06.08_Economy-Final.pdf</data>
+  <data key="d5">1779825880</data>
+  <data key="d6"></data>
+</node>
+<node id="Latino Support for Democrats">
+  <data key="d0">Latino Support for Democrats</data>
+  <data key="d3">chunk-4cc0783f1b88ff1504f1a79dad5f9bcc</data>
+  <data key="d2">Mark Hugo Lopez, Ana Gonzalez-Barrera, and Jens Manuel Krogstad authored the report on Latino support for Democrats.</data>
+  <data key="d1">UNKNOWN</data>
+  <data key="d4">PH_2016.06.08_Economy-Final.pdf</data>
+  <data key="d5">1779825881</data>
+  <data key="d6"></data>
+</node>
+<node id="Weekly Dual-Frame">
+  <data key="d0">Weekly Dual-Frame</data>
+  <data key="d3">chunk-1b7d693f1e826e239ac0b4cbf2422f3f</data>
+  <data key="d2">SSRS provides a weekly dual-frame Excel omnibus survey.</data>
+  <data key="d1">UNKNOWN</data>
+  <data key="d4">PH_2016.06.08_Economy-Final.pdf</data>
+  <data key="d5">1779825894</data>
+  <data key="d6"></data>
+</node>
+<edge source="Hispanics" target="Median household income">
+  <data key="d7">1.0</data>
+  <data key="d8">Median household income for Hispanics has stagnated since the Great Recession.</data>
+  <data key="d9">economic indicator</data>
+  <data key="d10">chunk-1907f29be90571f9ffcda4b2841c8e7d</data>
+  <data key="d11">PH_2016.06.08_Economy-Final.pdf</data>
+  <data key="d12">1779825871</data>
+  <data key="d13"></data>
+</edge>
+<edge source="Hispanics" target="Median net worth">
+  <data key="d7">1.0</data>
+  <data key="d8">Hispanic households had the largest percentage decline in their net worth through 2009.</data>
+  <data key="d9">economic indicator</data>
+  <data key="d10">chunk-1907f29be90571f9ffcda4b2841c8e7d</data>
+  <data key="d11">PH_2016.06.08_Economy-Final.pdf</data>
+  <data key="d12">1779825872</data>
+  <data key="d13"></data>
+</edge>
+<edge source="Hispanics" target="Poverty rate">
+  <data key="d7">1.0</data>
+  <data key="d8">The Hispanic poverty rate is less than a peak of 26.5% in 2010 but remains above pre-recession levels.</data>
+  <data key="d9">economic indicator</data>
+  <data key="d10">chunk-1907f29be90571f9ffcda4b2841c8e7d</data>
+  <data key="d11">PH_2016.06.08_Economy-Final.pdf</data>
+  <data key="d12">1779825872</data>
+  <data key="d13"></data>
+</edge>
+<edge source="Hispanics" target="Unemployment rate">
+  <data key="d7">1.0</data>
+  <data key="d8">The unemployment rate for Hispanics was 5.6% in May 2016.</data>
+  <data key="d9">economic indicator</data>
+  <data key="d10">chunk-1907f29be90571f9ffcda4b2841c8e7d</data>
+  <data key="d11">PH_2016.06.08_Economy-Final.pdf</data>
+  <data key="d12">1779825873</data>
+  <data key="d13"></data>
+</edge>
+<edge source="Hispanics" target="Personal financial situation">
+  <data key="d7">1.0</data>
+  <data key="d8">Hispanics remain upbeat about national economic conditions.</data>
+  <data key="d9">economic indicator</data>
+  <data key="d10">chunk-1907f29be90571f9ffcda4b2841c8e7d</data>
+  <data key="d11">PH_2016.06.08_Economy-Final.pdf</data>
+  <data key="d12">1779825873</data>
+  <data key="d13"></data>
+</edge>
+<edge source="Hispanics" target="Personal financial outlook">
+  <data key="d7">1.0</data>
+  <data key="d8">Hispanics are increasingly positive about current finances.</data>
+  <data key="d9">economic indicator</data>
+  <data key="d10">chunk-1907f29be90571f9ffcda4b2841c8e7d</data>
+  <data key="d11">PH_2016.06.08_Economy-Final.pdf</data>
+  <data key="d12">1779825873</data>
+  <data key="d13"></data>
+</edge>
+<edge source="Hispanics" target="Personal financial improvement">
+  <data key="d7">1.0</data>
+  <data key="d8">Half of Latinos say their family income is not keeping up with the cost of living.</data>
+  <data key="d9">economic indicator</data>
+  <data key="d10">chunk-1907f29be90571f9ffcda4b2841c8e7d</data>
+  <data key="d11">PH_2016.06.08_Economy-Final.pdf</data>
+  <data key="d12">1779825874</data>
+  <data key="d13"></data>
+</edge>
+<edge source="Hispanics" target="Education">
+  <data key="d7">1.0</data>
+  <data key="d8">Latinos with some college experience or more were</data>
+  <data key="d9">economic indicator</data>
+  <data key="d10">chunk-1907f29be90571f9ffcda4b2841c8e7d</data>
+  <data key="d11">PH_2016.06.08_Economy-Final.pdf</data>
+  <data key="d12">1779825874</data>
+  <data key="d13"></data>
+</edge>
+<edge source="Great Recession" target="Latinos">
+  <data key="d7">2.0</data>
+  <data key="d8">Latinos are increasingly confident despite the economic challenges of the Great Recession.&lt;SEP&gt;Latinos' financial conditions improved significantly since the Great Recession.</data>
+  <data key="d9">economic impact</data>
+  <data key="d10">chunk-c1cb33819e4bd6c1d057fa6c3509018f&lt;SEP&gt;chunk-2f090473fd475b5ea69ebf13b4ebb884</data>
+  <data key="d11">PH_2016.06.08_Economy-Final.pdf</data>
+  <data key="d12">1779825874</data>
+  <data key="d13"></data>
+</edge>
+<edge source="Great Recession" target="U.S. Latino">
+  <data key="d7">1.0</data>
+  <data key="d8">The U.S. Latino population has seen improvements in unemployment and poverty rates since the Great Recession.</data>
+  <data key="d9">economic impact</data>
+  <data key="d10">chunk-c1cb33819e4bd6c1d057fa6c3509018f</data>
+  <data key="d11">PH_2016.06.08_Economy-Final.pdf</data>
+  <data key="d12">1779825875</data>
+  <data key="d13"></data>
+</edge>
+<edge source="Great Recession" target="U.S. Census Bureau">
+  <data key="d7">1.0</data>
+  <data key="d8">The U.S. Census Bureau provided data on unemployment rates during the Great Recession.</data>
+  <data key="d9">data</data>
+  <data key="d10">chunk-c1cb33819e4bd6c1d057fa6c3509018f</data>
+  <data key="d11">PH_2016.06.08_Economy-Final.pdf</data>
+  <data key="d12">1779825877</data>
+  <data key="d13"></data>
+</edge>
+<edge source="Great Recession" target="Pew Research Center">
+  <data key="d7">1.0</data>
+  <data key="d8">The Pew Research Center reported findings on the economic outlook of Latinos during the Great Recession.</data>
+  <data key="d9">data</data>
+  <data key="d10">chunk-c1cb33819e4bd6c1d057fa6c3509018f</data>
+  <data key="d11">PH_2016.06.08_Economy-Final.pdf</data>
+  <data key="d12">1779825878</data>
+  <data key="d13"></data>
+</edge>
+<edge source="Great Recession" target="PewResearchCenter">
+  <data key="d7">1.0</data>
+  <data key="d8">Pew Research Center studies the Great Recession and its impact.</data>
+  <data key="d9">organization focus</data>
+  <data key="d10">chunk-6380c2e8f0c4e8f8887468340bc0071d</data>
+  <data key="d11">PH_2016.06.08_Economy-Final.pdf</data>
+  <data key="d12">1779825886</data>
+  <data key="d13"></data>
+</edge>
+<edge source="Great Recession" target="General Public">
+  <data key="d7">1.0</data>
+  <data key="d8">The General Public's financial conditions also improved since the Great Recession.</data>
+  <data key="d9">economic impact</data>
+  <data key="d10">chunk-2f090473fd475b5ea69ebf13b4ebb884</data>
+  <data key="d11">PH_2016.06.08_Economy-Final.pdf</data>
+  <data key="d12">1779825896</data>
+  <data key="d13"></data>
+</edge>
+<edge source="U.S. Census Bureau" target="U.S. Latino">
+  <data key="d7">1.0</data>
+  <data key="d8">The U.S. Census Bureau provided data on household income and poverty rates for Hispanics.</data>
+  <data key="d9">data</data>
+  <data key="d10">chunk-c1cb33819e4bd6c1d057fa6c3509018f</data>
+  <data key="d11">PH_2016.06.08_Economy-Final.pdf</data>
+  <data key="d12">1779825877</data>
+  <data key="d13"></data>
+</edge>
+<edge source="U.S. Census Bureau" target="Income and Poverty in the United States">
+  <data key="d7">1.0</data>
+  <data key="d8">The U.S. Census Bureau published the report on income and poverty in the United States.</data>
+  <data key="d9">publisher</data>
+  <data key="d10">chunk-4cc0783f1b88ff1504f1a79dad5f9bcc</data>
+  <data key="d11">PH_2016.06.08_Economy-Final.pdf</data>
+  <data key="d12">1779825879</data>
+  <data key="d13"></data>
+</edge>
+<edge source="U.S. Census Bureau" target="American Community Survey">
+  <data key="d7">1.0</data>
+  <data key="d8">The American Community Survey is conducted by the U.S. Census Bureau.</data>
+  <data key="d9">data source,survey</data>
+  <data key="d10">chunk-1b7d693f1e826e239ac0b4cbf2422f3f</data>
+  <data key="d11">PH_2016.06.08_Economy-Final.pdf</data>
+  <data key="d12">1779825894</data>
+  <data key="d13"></data>
+</edge>
+<edge source="Pew Research Center" target="U.S. Latino">
+  <data key="d7">1.0</data>
+  <data key="d8">The Pew Research Center conducted a survey on the economic outlook of Latinos.</data>
+  <data key="d9">survey</data>
+  <data key="d10">chunk-c1cb33819e4bd6c1d057fa6c3509018f</data>
+  <data key="d11">PH_2016.06.08_Economy-Final.pdf</data>
+  <data key="d12">1779825876</data>
+  <data key="d13"></data>
+</edge>
+<edge source="Pew Research Center" target="Latino Jobs Growth">
+  <data key="d7">1.0</data>
+  <data key="d8">The Pew Research Center published the report on Latino jobs growth.</data>
+  <data key="d9">publisher</data>
+  <data key="d10">chunk-4cc0783f1b88ff1504f1a79dad5f9bcc</data>
+  <data key="d11">PH_2016.06.08_Economy-Final.pdf</data>
+  <data key="d12">1779825880</data>
+  <data key="d13"></data>
+</edge>
+<edge source="Pew Research Center" target="National Survey of Latinos">
+  <data key="d7">1.0</data>
+  <data key="d8">Pew Research Center conducted the National Survey of Latinos.</data>
+  <data key="d9">survey</data>
+  <data key="d10">chunk-4685a8d7626394b5ed73ecc6b964ecae</data>
+  <data key="d11">PH_2016.06.08_Economy-Final.pdf</data>
+  <data key="d12">1779825883</data>
+  <data key="d13"></data>
+</edge>
+<edge source="Pew Research Center" target="Latinos">
+  <data key="d7">1.0</data>
+  <data key="d8">The Pew Research Center conducted surveys on Latino financial optimism.</data>
+  <data key="d9">research</data>
+  <data key="d10">chunk-72f7a37181bc78b429ba629dce8fa4a6</data>
+  <data key="d11">PH_2016.06.08_Economy-Final.pdf</data>
+  <data key="d12">1779825891</data>
+  <data key="d13"></data>
+</edge>
+<edge source="Pew Research Center" target="Personal Finances">
+  <data key="d7">1.0</data>
+  <data key="d8">The Pew Research Center conducted surveys on Latino financial optimism.</data>
+  <data key="d9">survey</data>
+  <data key="d10">chunk-72f7a37181bc78b429ba629dce8fa4a6</data>
+  <data key="d11">PH_2016.06.08_Economy-Final.pdf</data>
+  <data key="d12">1779825892</data>
+  <data key="d13"></data>
+</edge>
+<edge source="Pew Research Center" target="2015">
+  <data key="d7">1.0</data>
+  <data key="d8">The Pew Research Center conducted a survey in 2015.</data>
+  <data key="d9">survey</data>
+  <data key="d10">chunk-72f7a37181bc78b429ba629dce8fa4a6</data>
+  <data key="d11">PH_2016.06.08_Economy-Final.pdf</data>
+  <data key="d12">1779825892</data>
+  <data key="d13"></data>
+</edge>
+<edge source="Pew Research Center" target="2012">
+  <data key="d7">1.0</data>
+  <data key="d8">The Pew Research Center conducted a survey in 2012.</data>
+  <data key="d9">survey</data>
+  <data key="d10">chunk-72f7a37181bc78b429ba629dce8fa4a6</data>
+  <data key="d11">PH_2016.06.08_Economy-Final.pdf</data>
+  <data key="d12">1779825892</data>
+  <data key="d13"></data>
+</edge>
+<edge source="Pew Research Center" target="Dual-Frame">
+  <data key="d7">1.0</data>
+  <data key="d8">Pew Research Center uses a dual-frame sampling method.</data>
+  <data key="d9">method</data>
+  <data key="d10">chunk-1b7d693f1e826e239ac0b4cbf2422f3f</data>
+  <data key="d11">PH_2016.06.08_Economy-Final.pdf</data>
+  <data key="d12">1779825895</data>
+  <data key="d13"></data>
+</edge>
+<edge source="Pew Research Center" target="Random-Digit-Dial">
+  <data key="d7">1.0</data>
+  <data key="d8">Pew Research Center uses a random-digit-dial sampling method.</data>
+  <data key="d9">method</data>
+  <data key="d10">chunk-1b7d693f1e826e239ac0b4cbf2422f3f</data>
+  <data key="d11">PH_2016.06.08_Economy-Final.pdf</data>
+  <data key="d12">1779825895</data>
+  <data key="d13"></data>
+</edge>
+<edge source="Pew Research Center" target="Stratified Sampling">
+  <data key="d7">1.0</data>
+  <data key="d8">Pew Research Center uses a stratified sampling method.</data>
+  <data key="d9">method</data>
+  <data key="d10">chunk-1b7d693f1e826e239ac0b4cbf2422f3f</data>
+  <data key="d11">PH_2016.06.08_Economy-Final.pdf</data>
+  <data key="d12">1779825896</data>
+  <data key="d13"></data>
+</edge>
+<edge source="Pew Research Center" target="Post-Stratification">
+  <data key="d7">1.0</data>
+  <data key="d8">Pew Research Center uses a post-stratification method.</data>
+  <data key="d9">method</data>
+  <data key="d10">chunk-1b7d693f1e826e239ac0b4cbf2422f3f</data>
+  <data key="d11">PH_2016.06.08_Economy-Final.pdf</data>
+  <data key="d12">1779825896</data>
+  <data key="d13"></data>
+</edge>
+<edge source="Family income" target="Hispanic">
+  <data key="d7">1.0</data>
+  <data key="d8">Hispanic views on family income are related to financial status.</data>
+  <data key="d9">financial</data>
+  <data key="d10">chunk-4685a8d7626394b5ed73ecc6b964ecae</data>
+  <data key="d11">PH_2016.06.08_Economy-Final.pdf</data>
+  <data key="d12">1779825884</data>
+  <data key="d13"></data>
+</edge>
+<edge source="Cost of living" target="Hispanic">
+  <data key="d7">1.0</data>
+  <data key="d8">Hispanic views on family income are related to the cost of living.</data>
+  <data key="d9">financial</data>
+  <data key="d10">chunk-4685a8d7626394b5ed73ecc6b964ecae</data>
+  <data key="d11">PH_2016.06.08_Economy-Final.pdf</data>
+  <data key="d12">1779825885</data>
+  <data key="d13"></data>
+</edge>
+<edge source="Latinos" target="Hispanic">
+  <data key="d7">1.0</data>
+  <data key="d8">Latinos are a subgroup of Hispanics.</data>
+  <data key="d9">group</data>
+  <data key="d10">chunk-4685a8d7626394b5ed73ecc6b964ecae</data>
+  <data key="d11">PH_2016.06.08_Economy-Final.pdf</data>
+  <data key="d12">1779825883</data>
+  <data key="d13"></data>
+</edge>
+<edge source="Latinos" target="PewResearchCenter">
+  <data key="d7">1.0</data>
+  <data key="d8">Pew Research Center conducts research on Latinos.</data>
+  <data key="d9">organization affiliation</data>
+  <data key="d10">chunk-6380c2e8f0c4e8f8887468340bc0071d</data>
+  <data key="d11">PH_2016.06.08_Economy-Final.pdf</data>
+  <data key="d12">1779825885</data>
+  <data key="d13"></data>
+</edge>
+<edge source="Latinos" target="PEW RESEARCH CENTER">
+  <data key="d7">1.0</data>
+  <data key="d8">PEW RESEARCH CENTER conducted surveys on Hispanic economic outlook.</data>
+  <data key="d9">survey</data>
+  <data key="d10">chunk-db196f5cf13b5838df29dfc7a60b3fba</data>
+  <data key="d11">PH_2016.06.08_Economy-Final.pdf</data>
+  <data key="d12">1779825890</data>
+  <data key="d13"></data>
+</edge>
+<edge source="Latinos" target="Personal Finances">
+  <data key="d7">1.0</data>
+  <data key="d8">Latinos are increasingly optimistic about their personal finances.</data>
+  <data key="d9">optimism</data>
+  <data key="d10">chunk-72f7a37181bc78b429ba629dce8fa4a6</data>
+  <data key="d11">PH_2016.06.08_Economy-Final.pdf</data>
+  <data key="d12">1779825891</data>
+  <data key="d13"></data>
+</edge>
+<edge source="Latinos" target="National Survey of Latinos">
+  <data key="d7">1.0</data>
+  <data key="d8">The National Survey of Latinos conducted by the Pew Research Center shows improvements in Latinos' financial conditions.</data>
+  <data key="d9">survey</data>
+  <data key="d10">chunk-2f090473fd475b5ea69ebf13b4ebb884</data>
+  <data key="d11">PH_2016.06.08_Economy-Final.pdf</data>
+  <data key="d12">1779825896</data>
+  <data key="d13"></data>
+</edge>
+<edge source="U.S. Latino" target="Median Household Income">
+  <data key="d7">1.0</data>
+  <data key="d8">Median household income for Hispanics has stagnated since the Great Recession.</data>
+  <data key="d9">economic indicator</data>
+  <data key="d10">chunk-c1cb33819e4bd6c1d057fa6c3509018f</data>
+  <data key="d11">PH_2016.06.08_Economy-Final.pdf</data>
+  <data key="d12">1779825875</data>
+  <data key="d13"></data>
+</edge>
+<edge source="U.S. Latino" target="Hispanic Unemployment Rate">
+  <data key="d7">1.0</data>
+  <data key="d8">The Hispanic unemployment rate has improved since the Great Recession.</data>
+  <data key="d9">economic indicator</data>
+  <data key="d10">chunk-c1cb33819e4bd6c1d057fa6c3509018f</data>
+  <data key="d11">PH_2016.06.08_Economy-Final.pdf</data>
+  <data key="d12">1779825876</data>
+  <data key="d13"></data>
+</edge>
+<edge source="U.S. Latino" target="Hispanic Poverty Rate">
+  <data key="d7">1.0</data>
+  <data key="d8">The Hispanic poverty rate has decreased since the Great Recession.</data>
+  <data key="d9">economic indicator</data>
+  <data key="d10">chunk-c1cb33819e4bd6c1d057fa6c3509018f</data>
+  <data key="d11">PH_2016.06.08_Economy-Final.pdf</data>
+  <data key="d12">1779825876</data>
+  <data key="d13"></data>
+</edge>
+<edge source="National Bureau of Economic Research" target="US Business Cycle Expansions and Contractions">
+  <data key="d7">1.0</data>
+  <data key="d8">The National Bureau of Economic Research authored the report on US business cycle expansions and contractions.</data>
+  <data key="d9">authorship</data>
+  <data key="d10">chunk-4cc0783f1b88ff1504f1a79dad5f9bcc</data>
+  <data key="d11">PH_2016.06.08_Economy-Final.pdf</data>
+  <data key="d12">1779825881</data>
+  <data key="d13"></data>
+</edge>
+<edge source="Hispanic" target="Hispanic adults">
+  <data key="d7">1.0</data>
+  <data key="d8">Hispanic adults are a subgroup of Hispanics.</data>
+  <data key="d9">group</data>
+  <data key="d10">chunk-4685a8d7626394b5ed73ecc6b964ecae</data>
+  <data key="d11">PH_2016.06.08_Economy-Final.pdf</data>
+  <data key="d12">1779825882</data>
+  <data key="d13"></data>
+</edge>
+<edge source="Hispanic" target="2008">
+  <data key="d7">1.0</data>
+  <data key="d8">Hispanic data was collected in 2008.</data>
+  <data key="d9">data</data>
+  <data key="d10">chunk-4685a8d7626394b5ed73ecc6b964ecae</data>
+  <data key="d11">PH_2016.06.08_Economy-Final.pdf</data>
+  <data key="d12">1779825883</data>
+  <data key="d13"></data>
+</edge>
+<edge source="Hispanic" target="2014">
+  <data key="d7">1.0</data>
+  <data key="d8">Hispanic data was collected in 2014.</data>
+  <data key="d9">data</data>
+  <data key="d10">chunk-4685a8d7626394b5ed73ecc6b964ecae</data>
+  <data key="d11">PH_2016.06.08_Economy-Final.pdf</data>
+  <data key="d12">1779825884</data>
+  <data key="d13"></data>
+</edge>
+<edge source="Hispanic" target="2015">
+  <data key="d7">1.0</data>
+  <data key="d8">Hispanic data was collected in 2015.</data>
+  <data key="d9">data</data>
+  <data key="d10">chunk-4685a8d7626394b5ed73ecc6b964ecae</data>
+  <data key="d11">PH_2016.06.08_Economy-Final.pdf</data>
+  <data key="d12">1779825884</data>
+  <data key="d13"></data>
+</edge>
+<edge source="Hispanic" target="Financial expectations">
+  <data key="d7">1.0</data>
+  <data key="d8">Hispanic views on financial expectations are</data>
+  <data key="d9">financial</data>
+  <data key="d10">chunk-4685a8d7626394b5ed73ecc6b964ecae</data>
+  <data key="d11">PH_2016.06.08_Economy-Final.pdf</data>
+  <data key="d12">1779825885</data>
+  <data key="d13"></data>
+</edge>
+<edge source="Hispanic" target="PewResearchCenter">
+  <data key="d7">1.0</data>
+  <data key="d8">Pew Research Center studies Hispanic trends.</data>
+  <data key="d9">organization focus</data>
+  <data key="d10">chunk-6380c2e8f0c4e8f8887468340bc0071d</data>
+  <data key="d11">PH_2016.06.08_Economy-Final.pdf</data>
+  <data key="d12">1779825889</data>
+  <data key="d13"></data>
+</edge>
+<edge source="DeNavas-Walt" target="Income and Poverty in the United States">
+  <data key="d7">1.0</data>
+  <data key="d8">DeNavas-Walt and Bernadette D. Proctor authored the report on income and poverty in the United States.</data>
+  <data key="d9">authorship</data>
+  <data key="d10">chunk-4cc0783f1b88ff1504f1a79dad5f9bcc</data>
+  <data key="d11">PH_2016.06.08_Economy-Final.pdf</data>
+  <data key="d12">1779825878</data>
+  <data key="d13"></data>
+</edge>
+<edge source="Bernadette D. Proctor" target="Income and Poverty in the United States">
+  <data key="d7">1.0</data>
+  <data key="d8">DeNavas-Walt and Bernadette D. Proctor authored the report on income and poverty in the United States.</data>
+  <data key="d9">authorship</data>
+  <data key="d10">chunk-4cc0783f1b88ff1504f1a79dad5f9bcc</data>
+  <data key="d11">PH_2016.06.08_Economy-Final.pdf</data>
+  <data key="d12">1779825879</data>
+  <data key="d13"></data>
+</edge>
+<edge source="Kochhar" target="Latino Jobs Growth">
+  <data key="d7">1.0</data>
+  <data key="d8">Kochhar and Richard Fry authored the report on Latino jobs growth.</data>
+  <data key="d9">authorship</data>
+  <data key="d10">chunk-4cc0783f1b88ff1504f1a79dad5f9bcc</data>
+  <data key="d11">PH_2016.06.08_Economy-Final.pdf</data>
+  <data key="d12">1779825880</data>
+  <data key="d13"></data>
+</edge>
+<edge source="Richard Fry" target="Latino Jobs Growth">
+  <data key="d7">1.0</data>
+  <data key="d8">Kochhar and Richard Fry authored the report on Latino jobs growth.</data>
+  <data key="d9">authorship</data>
+  <data key="d10">chunk-4cc0783f1b88ff1504f1a79dad5f9bcc</data>
+  <data key="d11">PH_2016.06.08_Economy-Final.pdf</data>
+  <data key="d12">1779825880</data>
+  <data key="d13"></data>
+</edge>
+<edge source="Mark Hugo Lopez" target="Latino Support for Democrats">
+  <data key="d7">1.0</data>
+  <data key="d8">Mark Hugo Lopez, Ana Gonzalez-Barrera, and Jens Manuel Krogstad authored the report on Latino support for Democrats.</data>
+  <data key="d9">authorship</data>
+  <data key="d10">chunk-4cc0783f1b88ff1504f1a79dad5f9bcc</data>
+  <data key="d11">PH_2016.06.08_Economy-Final.pdf</data>
+  <data key="d12">1779825881</data>
+  <data key="d13"></data>
+</edge>
+<edge source="Mark Hugo Lopez" target="PewResearchCenter">
+  <data key="d7">1.0</data>
+  <data key="d8">Mark Hugo Lopez is a contributor to the report at Pew Research Center.</data>
+  <data key="d9">person affiliation</data>
+  <data key="d10">chunk-6380c2e8f0c4e8f8887468340bc0071d</data>
+  <data key="d11">PH_2016.06.08_Economy-Final.pdf</data>
+  <data key="d12">1779825887</data>
+  <data key="d13"></data>
+</edge>
+<edge source="Ana Gonzalez-Barrera" target="Latino Support for Democrats">
+  <data key="d7">1.0</data>
+  <data key="d8">Mark Hugo Lopez, Ana Gonzalez-Barrera, and Jens Manuel Krogstad authored the report on Latino support for Democrats.</data>
+  <data key="d9">authorship</data>
+  <data key="d10">chunk-4cc0783f1b88ff1504f1a79dad5f9bcc</data>
+  <data key="d11">PH_2016.06.08_Economy-Final.pdf</data>
+  <data key="d12">1779825882</data>
+  <data key="d13"></data>
+</edge>
+<edge source="Jens Manuel Krogstad" target="Latino Support for Democrats">
+  <data key="d7">1.0</data>
+  <data key="d8">Mark Hugo Lopez, Ana Gonzalez-Barrera, and Jens Manuel Krogstad authored the report on Latino</data>
+  <data key="d9">authorship</data>
+  <data key="d10">chunk-4cc0783f1b88ff1504f1a79dad5f9bcc</data>
+  <data key="d11">PH_2016.06.08_Economy-Final.pdf</data>
+  <data key="d12">1779825882</data>
+  <data key="d13"></data>
+</edge>
+<edge source="Jens Manuel Krogstad" target="PewResearchCenter">
+  <data key="d7">1.0</data>
+  <data key="d8">Jens Manuel Krogstad is a contributor to the report at Pew Research Center.</data>
+  <data key="d9">person affiliation</data>
+  <data key="d10">chunk-6380c2e8f0c4e8f8887468340bc0071d</data>
+  <data key="d11">PH_2016.06.08_Economy-Final.pdf</data>
+  <data key="d12">1779825888</data>
+  <data key="d13"></data>
+</edge>
+<edge source="PewResearchCenter" target="Personal Finances">
+  <data key="d7">1.0</data>
+  <data key="d8">Pew Research Center studies personal finances and economic trends.</data>
+  <data key="d9">organization focus</data>
+  <data key="d10">chunk-6380c2e8f0c4e8f8887468340bc0071d</data>
+  <data key="d11">PH_2016.06.08_Economy-Final.pdf</data>
+  <data key="d12">1779825886</data>
+  <data key="d13"></data>
+</edge>
+<edge source="PewResearchCenter" target="Economic Times">
+  <data key="d7">1.0</data>
+  <data key="d8">Pew Research Center studies economic times and trends.</data>
+  <data key="d9">organization focus</data>
+  <data key="d10">chunk-6380c2e8f0c4e8f8887468340bc0071d</data>
+  <data key="d11">PH_2016.06.08_Economy-Final.pdf</data>
+  <data key="d12">1779825886</data>
+  <data key="d13"></data>
+</edge>
+<edge source="PewResearchCenter" target="Rich Morin">
+  <data key="d7">1.0</data>
+  <data key="d8">Rich Morin is a contributor to the report at Pew Research Center.</data>
+  <data key="d9">person affiliation</data>
+  <data key="d10">chunk-6380c2e8f0c4e8f8887468340bc0071d</data>
+  <data key="d11">PH_2016.06.08_Economy-Final.pdf</data>
+  <data key="d12">1779825887</data>
+  <data key="d13"></data>
+</edge>
+<edge source="PewResearchCenter" target="Brian Mahl">
+  <data key="d7">1.0</data>
+  <data key="d8">Brian Mahl is a Communications Assistant at Pew Research Center.</data>
+  <data key="d9">person affiliation</data>
+  <data key="d10">chunk-6380c2e8f0c4e8f8887468340bc0071d</data>
+  <data key="d11">PH_2016.06.08_Economy-Final.pdf</data>
+  <data key="d12">1779825888</data>
+  <data key="d13"></data>
+</edge>
+<edge source="PewResearchCenter" target="U.S. born">
+  <data key="d7">1.0</data>
+  <data key="d8">Pew Research Center studies U.S. born demographics.</data>
+  <data key="d9">organization focus</data>
+  <data key="d10">chunk-6380c2e8f0c4e8f8887468340bc0071d</data>
+  <data key="d11">PH_2016.06.08_Economy-Final.pdf</data>
+  <data key="d12">1779825889</data>
+  <data key="d13"></data>
+</edge>
+<edge source="PewResearchCenter" target="Foreign born">
+  <data key="d7">1.0</data>
+  <data key="d8">Pew Research Center studies foreign born demographics.</data>
+  <data key="d9">organization focus</data>
+  <data key="d10">chunk-6380c2e8f0c4e8f8887468340bc0071d</data>
+  <data key="d11">PH_2016.06.08_Economy-Final.pdf</data>
+  <data key="d12">1779825889</data>
+  <data key="d13"></data>
+</edge>
+<edge source="PewResearchCenter" target="Hispanic trends">
+  <data key="d7">1.0</data>
+  <data key="d8">Pew Research Center studies Hispanic trends.</data>
+  <data key="d9">organization focus</data>
+  <data key="d10">chunk-6380c2e8f0c4e8f8887468340bc0071d</data>
+  <data key="d11">PH_2016.06.08_Economy-Final.pdf</data>
+  <data key="d12">1779825890</data>
+  <data key="d13"></data>
+</edge>
+<edge source="PewResearchCenter" target="U.S. social and demographic trends">
+  <data key="d7">1.0</data>
+  <data key="d8">Pew Research Center studies U.S. social and demographic trends.</data>
+  <data key="d9">organization focus</data>
+  <data key="d10">chunk-6380c2e8f0c4e8f8887468340bc0071d</data>
+  <data key="d11">PH_2016.06.08_Economy-Final.pdf</data>
+  <data key="d12">1779825890</data>
+  <data key="d13"></data>
+</edge>
+<edge source="Landline" target="Cellphone">
+  <data key="d7">2.0</data>
+  <data key="d8">Landlines and cellphones are both used as sampling frames in the study.&lt;SEP&gt;Landlines and cellphones are both used for communication.</data>
+  <data key="d9">communication device,sampling frame,technology</data>
+  <data key="d10">chunk-1b7d693f1e826e239ac0b4cbf2422f3f</data>
+  <data key="d11">PH_2016.06.08_Economy-Final.pdf</data>
+  <data key="d12">1779825892</data>
+  <data key="d13"></data>
+</edge>
+<edge source="Landline" target="Marketing Systems Group">
+  <data key="d7">2.0</data>
+  <data key="d8">Marketing Systems Group provided landline samples.&lt;SEP&gt;Marketing Systems Group provided landline samples</data>
+  <data key="d9">data provider,sample</data>
+  <data key="d10">chunk-1b7d693f1e826e239ac0b4cbf2422f3f</data>
+  <data key="d11">PH_2016.06.08_Economy-Final.pdf</data>
+  <data key="d12">1779825893</data>
+  <data key="d13"></data>
+</edge>
+<edge source="Landline" target="InfoUSA">
+  <data key="d7">1.0</data>
+  <data key="d8">InfoUSA provided landline household databases.</data>
+  <data key="d9">data provider,sample</data>
+  <data key="d10">chunk-1b7d693f1e826e239ac0b4cbf2422f3f</data>
+  <data key="d11">PH_2016.06.08_Economy-Final.pdf</data>
+  <data key="d12">1779825893</data>
+  <data key="d13"></data>
+</edge>
+<edge source="Landline" target="Experian">
+  <data key="d7">1.0</data>
+  <data key="d8">Experian provided landline household databases.</data>
+  <data key="d9">data provider,sample</data>
+  <data key="d10">chunk-1b7d693f1e826e239ac0b4cbf2422f3f</data>
+  <data key="d11">PH_2016.06.08_Economy-Final.pdf</data>
+  <data key="d12">1779825894</data>
+  <data key="d13"></data>
+</edge>
+<edge source="Cellphone" target="Marketing Systems Group">
+  <data key="d7">1.0</data>
+  <data key="d8">Marketing Systems Group provided cellphone samples.</data>
+  <data key="d9">data provider,sample</data>
+  <data key="d10">chunk-1b7d693f1e826e239ac0b4cbf2422f3f</data>
+  <data key="d11">PH_2016.06.08_Economy-Final.pdf</data>
+  <data key="d12">1779825893</data>
+  <data key="d13"></data>
+</edge>
+<edge source="National Center for Health Statistics" target="National Health Interview Survey">
+  <data key="d7">1.0</data>
+  <data key="d8">The National Health Interview Survey is conducted by the National Center for Health Statistics.</data>
+  <data key="d9">data source,survey</data>
+  <data key="d10">chunk-1b7d693f1e826e239ac0b4cbf2422f3f</data>
+  <data key="d11">PH_2016.06.08_Economy-Final.pdf</data>
+  <data key="d12">1779825894</data>
+  <data key="d13"></data>
+</edge>
+<edge source="SSRS" target="Weekly Dual-Frame">
+  <data key="d7">1.0</data>
+  <data key="d8">SSRS provides a weekly dual-frame Excel omnibus survey.</data>
+  <data key="d9">data source,survey</data>
+  <data key="d10">chunk-1b7d693f1e826e239ac0b4cbf2422f3f</data>
+  <data key="d11">PH_2016.06.08_Economy-Final.pdf</data>
+  <data key="d12">1779825895</data>
+  <data key="d13"></data>
+</edge>
+</graph></graphml>

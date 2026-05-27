@@ -5,9 +5,8 @@ RAG-Anything runner with two modes:
      question. Same flow as the original demo.
 
   2. Smoke-test mode (SMOKE_TEST=1 or --smoke): loads the MMLongBench-Doc
-     parquet, selects the inclusive PDF_INDEX_RANGE configured in
-     local_config.py, drops "Not answerable" rows, then indexes + queries
-     each PDF and dumps results to JSONL.
+     parquet, filters to a configurable PDF_GRID, drops "Not answerable"
+     rows, then indexes + queries each PDF and dumps results to JSONL.
 
 Pick mode via env var or CLI flag:
     uv run python hello_raganything.py             # demo
@@ -31,12 +30,9 @@ from raganything import RAGAnything
 from local_config import (
     LLM,
     OLLAMA_HOST,
-    PDF_INDEX_RANGE,
-    PARSER_OUTPUT_DIR,
     build_embedding_func,
     build_lightrag_kwargs,
     build_llm_func,
-    build_parser_kwargs,
     build_rag_config,
     build_vision_func,
 )
@@ -57,6 +53,12 @@ PROJECT_ROOT = Path(__file__).resolve().parent.parent
 MMLONGBENCH_PARQUET = PROJECT_ROOT / "MMLongBench-Doc" / "data" / "train-00000-of-00001.parquet"
 MMLONGBENCH_PDFS_DIR = PROJECT_ROOT / "MMLongBench-Doc" / "documents"
 
+# Empty list -> default to the first doc_id in the parquet. Extend this list
+# (e.g. ["PH_2016.06.08_Economy-Final.pdf", "BESTBUY_2023_10K.pdf"]) to grow
+# the grid; the smoke test loops over each entry, indexing once per PDF and
+# then answering every answerable question for it.
+PDF_GRID: list[str] = []
+
 # Tag used to scope rag_storage + smoke_results so different architectures
 # (RAG-Anything local Qwen+BGE, RAG-Anything OpenAI, ColQwen) don't collide.
 ARCH_NAME = "ollama-qwen-bge"
@@ -72,43 +74,27 @@ QUERY_HEARTBEAT_SECONDS = 10.0
 # Dataset helpers (standalone so the ColQwen runner can copy them verbatim)
 # ---------------------------------------------------------------------------
 
-def _load_questions(pdf_index_range: tuple[int, int]) -> pd.DataFrame:
-    """Load answerable QA pairs for a one-based inclusive PDF index range."""
+def _load_questions(pdf_grid: list[str]) -> pd.DataFrame:
+    """Load MMLongBench QA pairs filtered to `pdf_grid` and answerable only.
+
+    If `pdf_grid` is empty, defaults to the first doc_id in the parquet so
+    the smoke test is runnable with zero configuration.
+    """
     df = pd.read_parquet(MMLONGBENCH_PARQUET)
-    document_ids = df["doc_id"].drop_duplicates().reset_index(drop=True)
 
-    if len(pdf_index_range) != 2:
-        raise ValueError("PDF_INDEX_RANGE must contain exactly (start_index, end_index).")
-    start_index, end_index = pdf_index_range
-    if (
-        not isinstance(start_index, int)
-        or not isinstance(end_index, int)
-        or start_index < 1
-        or end_index < start_index
-        or end_index > len(document_ids)
-    ):
-        raise ValueError(
-            "PDF_INDEX_RANGE must be a valid one-based inclusive range; "
-            f"received {pdf_index_range} for {len(document_ids)} PDF(s)."
-        )
+    if not pdf_grid:
+        first = df.iloc[0]["doc_id"]
+        print(f"[grid] PDF_GRID empty -> defaulting to first parquet row: {first}")
+        pdf_grid = [first]
 
-    selected_documents = document_ids.iloc[start_index - 1 : end_index].tolist()
-    print(
-        f"[grid] PDF_INDEX_RANGE={pdf_index_range} -> "
-        f"{len(selected_documents)} PDF(s)",
-        flush=True,
-    )
-    for index, doc_id in enumerate(selected_documents, start=start_index):
-        print(f"[grid]   {index}: {doc_id}", flush=True)
-
-    mask = df["doc_id"].isin(selected_documents) & (df["answer"] != UNANSWERABLE_MARKER)
+    mask = df["doc_id"].isin(pdf_grid) & (df["answer"] != UNANSWERABLE_MARKER)
     filtered = df.loc[mask].reset_index(drop=True)
 
     if filtered.empty:
         raise ValueError(
-            f"No answerable questions found for PDF_INDEX_RANGE={pdf_index_range}, "
-            f"documents={selected_documents}. All selected questions may be "
-            f"marked '{UNANSWERABLE_MARKER}'."
+            f"No answerable questions found for PDF_GRID={pdf_grid}. "
+            f"Either the doc_ids don't exist in the parquet or all their "
+            f"questions are marked '{UNANSWERABLE_MARKER}'."
         )
 
     return filtered
@@ -229,9 +215,8 @@ async def demo() -> None:
     print("Processando documento...")
     await rag.process_document_complete(
         file_path=PDF_PATH,
-        output_dir=PARSER_OUTPUT_DIR,
+        output_dir="./output",
         parse_method="auto",
-        **build_parser_kwargs(),
     )
 
     print("Documento processado.")
@@ -253,7 +238,7 @@ async def demo() -> None:
 # ---------------------------------------------------------------------------
 
 async def smoke_test() -> None:
-    df = _load_questions(PDF_INDEX_RANGE)
+    df = _load_questions(PDF_GRID)
     print(f"[grid] {df['doc_id'].nunique()} PDF(s), {len(df)} answerable questions")
 
     results: list[dict] = []
@@ -287,9 +272,8 @@ async def smoke_test() -> None:
         print(f"[index] {doc_id}  ({len(group)} questions)")
         await rag.process_document_complete(
             file_path=str(pdf_path),
-            output_dir=PARSER_OUTPUT_DIR,
+            output_dir="./output",
             parse_method="auto",
-            **build_parser_kwargs(),
         )
 
         for _, row in group.iterrows():

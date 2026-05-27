@@ -1,0 +1,1206 @@
+{
+  "Hispanics": {
+    "chunk_ids": [
+      "chunk-1907f29be90571f9ffcda4b2841c8e7d",
+      "chunk-db196f5cf13b5838df29dfc7a60b3fba"
+    ],
+    "count": 2,
+    "create_time": 1779825837,
+    "update_time": 1779825837,
+    "_id": "Hispanics"
+  },
+  "Great Recession": {
+    "chunk_ids": [
+      "chunk-1907f29be90571f9ffcda4b2841c8e7d",
+      "chunk-c1cb33819e4bd6c1d057fa6c3509018f",
+      "chunk-6380c2e8f0c4e8f8887468340bc0071d",
+      "chunk-72f7a37181bc78b429ba629dce8fa4a6",
+      "chunk-2f090473fd475b5ea69ebf13b4ebb884"
+    ],
+    "count": 5,
+    "create_time": 1779825837,
+    "update_time": 1779825837,
+    "_id": "Great Recession"
+  },
+  "U.S. Census Bureau": {
+    "chunk_ids": [
+      "chunk-1907f29be90571f9ffcda4b2841c8e7d",
+      "chunk-c1cb33819e4bd6c1d057fa6c3509018f",
+      "chunk-4cc0783f1b88ff1504f1a79dad5f9bcc",
+      "chunk-1b7d693f1e826e239ac0b4cbf2422f3f"
+    ],
+    "count": 4,
+    "create_time": 1779825840,
+    "update_time": 1779825840,
+    "_id": "U.S. Census Bureau"
+  },
+  "Pew Research Center": {
+    "chunk_ids": [
+      "chunk-1907f29be90571f9ffcda4b2841c8e7d",
+      "chunk-c1cb33819e4bd6c1d057fa6c3509018f",
+      "chunk-4cc0783f1b88ff1504f1a79dad5f9bcc",
+      "chunk-4685a8d7626394b5ed73ecc6b964ecae",
+      "chunk-72f7a37181bc78b429ba629dce8fa4a6",
+      "chunk-1b7d693f1e826e239ac0b4cbf2422f3f",
+      "chunk-2f090473fd475b5ea69ebf13b4ebb884"
+    ],
+    "count": 7,
+    "create_time": 1779825840,
+    "update_time": 1779825840,
+    "_id": "Pew Research Center"
+  },
+  "Median household income": {
+    "chunk_ids": [
+      "chunk-1907f29be90571f9ffcda4b2841c8e7d"
+    ],
+    "count": 1,
+    "create_time": 1779825840,
+    "update_time": 1779825840,
+    "_id": "Median household income"
+  },
+  "Median net worth": {
+    "chunk_ids": [
+      "chunk-1907f29be90571f9ffcda4b2841c8e7d"
+    ],
+    "count": 1,
+    "create_time": 1779825841,
+    "update_time": 1779825841,
+    "_id": "Median net worth"
+  },
+  "Poverty rate": {
+    "chunk_ids": [
+      "chunk-1907f29be90571f9ffcda4b2841c8e7d"
+    ],
+    "count": 1,
+    "create_time": 1779825841,
+    "update_time": 1779825841,
+    "_id": "Poverty rate"
+  },
+  "Unemployment rate": {
+    "chunk_ids": [
+      "chunk-1907f29be90571f9ffcda4b2841c8e7d"
+    ],
+    "count": 1,
+    "create_time": 1779825841,
+    "update_time": 1779825841,
+    "_id": "Unemployment rate"
+  },
+  "Personal financial situation": {
+    "chunk_ids": [
+      "chunk-1907f29be90571f9ffcda4b2841c8e7d"
+    ],
+    "count": 1,
+    "create_time": 1779825841,
+    "update_time": 1779825841,
+    "_id": "Personal financial situation"
+  },
+  "Latinos": {
+    "chunk_ids": [
+      "chunk-1907f29be90571f9ffcda4b2841c8e7d",
+      "chunk-45ab036de78d61714bf47e501a811c19",
+      "chunk-c1cb33819e4bd6c1d057fa6c3509018f",
+      "chunk-4685a8d7626394b5ed73ecc6b964ecae",
+      "chunk-6380c2e8f0c4e8f8887468340bc0071d",
+      "chunk-db196f5cf13b5838df29dfc7a60b3fba",
+      "chunk-72f7a37181bc78b429ba629dce8fa4a6",
+      "chunk-2f090473fd475b5ea69ebf13b4ebb884"
+    ],
+    "count": 8,
+    "create_time": 1779825842,
+    "update_time": 1779825842,
+    "_id": "Latinos"
+  },
+  "Education": {
+    "chunk_ids": [
+      "chunk-1907f29be90571f9ffcda4b2841c8e7d"
+    ],
+    "count": 1,
+    "create_time": 1779825842,
+    "update_time": 1779825842,
+    "_id": "Education"
+  },
+  "Health care": {
+    "chunk_ids": [
+      "chunk-1907f29be90571f9ffcda4b2841c8e7d"
+    ],
+    "count": 1,
+    "create_time": 1779825842,
+    "update_time": 1779825842,
+    "_id": "Health care"
+  },
+  "Immigration": {
+    "chunk_ids": [
+      "chunk-1907f29be90571f9ffcda4b2841c8e7d"
+    ],
+    "count": 1,
+    "create_time": 1779825843,
+    "update_time": 1779825843,
+    "_id": "Immigration"
+  },
+  "Minimum wage": {
+    "chunk_ids": [
+      "chunk-1907f29be90571f9ffcda4b2841c8e7d"
+    ],
+    "count": 1,
+    "create_time": 1779825843,
+    "update_time": 1779825843,
+    "_id": "Minimum wage"
+  },
+  "Family income": {
+    "chunk_ids": [
+      "chunk-1907f29be90571f9ffcda4b2841c8e7d",
+      "chunk-4685a8d7626394b5ed73ecc6b964ecae"
+    ],
+    "count": 2,
+    "create_time": 1779825844,
+    "update_time": 1779825844,
+    "_id": "Family income"
+  },
+  "Cost of living": {
+    "chunk_ids": [
+      "chunk-1907f29be90571f9ffcda4b2841c8e7d",
+      "chunk-4685a8d7626394b5ed73ecc6b964ecae"
+    ],
+    "count": 2,
+    "create_time": 1779825844,
+    "update_time": 1779825844,
+    "_id": "Cost of living"
+  },
+  "Personal finances": {
+    "chunk_ids": [
+      "chunk-1907f29be90571f9ffcda4b2841c8e7d"
+    ],
+    "count": 1,
+    "create_time": 1779825845,
+    "update_time": 1779825845,
+    "_id": "Personal finances"
+  },
+  "Family finances": {
+    "chunk_ids": [
+      "chunk-1907f29be90571f9ffcda4b2841c8e7d"
+    ],
+    "count": 1,
+    "create_time": 1779825845,
+    "update_time": 1779825845,
+    "_id": "Family finances"
+  },
+  "Personal financial outlook": {
+    "chunk_ids": [
+      "chunk-1907f29be90571f9ffcda4b2841c8e7d"
+    ],
+    "count": 1,
+    "create_time": 1779825845,
+    "update_time": 1779825845,
+    "_id": "Personal financial outlook"
+  },
+  "Personal financial improvement": {
+    "chunk_ids": [
+      "chunk-1907f29be90571f9ffcda4b2841c8e7d"
+    ],
+    "count": 1,
+    "create_time": 1779825846,
+    "update_time": 1779825846,
+    "_id": "Personal financial improvement"
+  },
+  "U.S.-born adults": {
+    "chunk_ids": [
+      "chunk-45ab036de78d61714bf47e501a811c19"
+    ],
+    "count": 1,
+    "create_time": 1779825846,
+    "update_time": 1779825846,
+    "_id": "U.S.-born adults"
+  },
+  "Older Latinos": {
+    "chunk_ids": [
+      "chunk-45ab036de78d61714bf47e501a811c19"
+    ],
+    "count": 1,
+    "create_time": 1779825847,
+    "update_time": 1779825847,
+    "_id": "Older Latinos"
+  },
+  "Younger Latinos": {
+    "chunk_ids": [
+      "chunk-45ab036de78d61714bf47e501a811c19"
+    ],
+    "count": 1,
+    "create_time": 1779825847,
+    "update_time": 1779825847,
+    "_id": "Younger Latinos"
+  },
+  "Educational attainment": {
+    "chunk_ids": [
+      "chunk-45ab036de78d61714bf47e501a811c19"
+    ],
+    "count": 1,
+    "create_time": 1779825848,
+    "update_time": 1779825848,
+    "_id": "Educational attainment"
+  },
+  "Latinos with at least some college experience": {
+    "chunk_ids": [
+      "chunk-45ab036de78d61714bf47e501a811c19"
+    ],
+    "count": 1,
+    "create_time": 1779825848,
+    "update_time": 1779825848,
+    "_id": "Latinos with at least some college experience"
+  },
+  "Latinos with less than a high school education": {
+    "chunk_ids": [
+      "chunk-45ab036de78d61714bf47e501a811c19",
+      "chunk-db196f5cf13b5838df29dfc7a60b3fba"
+    ],
+    "count": 2,
+    "create_time": 1779825849,
+    "update_time": 1779825849,
+    "_id": "Latinos with less than a high school education"
+  },
+  "Latinos with high school graduates": {
+    "chunk_ids": [
+      "chunk-45ab036de78d61714bf47e501a811c19"
+    ],
+    "count": 1,
+    "create_time": 1779825849,
+    "update_time": 1779825849,
+    "_id": "Latinos with high school graduates"
+  },
+  "Latinos with some college or more": {
+    "chunk_ids": [
+      "chunk-45ab036de78d61714bf47e501a811c19"
+    ],
+    "count": 1,
+    "create_time": 1779825849,
+    "update_time": 1779825849,
+    "_id": "Latinos with some college or more"
+  },
+  "Latinos ages 18 to 29": {
+    "chunk_ids": [
+      "chunk-45ab036de78d61714bf47e501a811c19",
+      "chunk-db196f5cf13b5838df29dfc7a60b3fba"
+    ],
+    "count": 2,
+    "create_time": 1779825849,
+    "update_time": 1779825849,
+    "_id": "Latinos ages 18 to 29"
+  },
+  "Latinos ages 30 to 49": {
+    "chunk_ids": [
+      "chunk-45ab036de78d61714bf47e501a811c19",
+      "chunk-db196f5cf13b5838df29dfc7a60b3fba"
+    ],
+    "count": 2,
+    "create_time": 1779825850,
+    "update_time": 1779825850,
+    "_id": "Latinos ages 30 to 49"
+  },
+  "Latinos ages 50 to 64": {
+    "chunk_ids": [
+      "chunk-45ab036de78d61714bf47e501a811c19",
+      "chunk-db196f5cf13b5838df29dfc7a60b3fba"
+    ],
+    "count": 2,
+    "create_time": 1779825850,
+    "update_time": 1779825850,
+    "_id": "Latinos ages 50 to 64"
+  },
+  "Latinos ages 65 and older": {
+    "chunk_ids": [
+      "chunk-45ab036de78d61714bf47e501a811c19",
+      "chunk-db196f5cf13b5838df29dfc7a60b3fba"
+    ],
+    "count": 2,
+    "create_time": 1779825850,
+    "update_time": 1779825850,
+    "_id": "Latinos ages 65 and older"
+  },
+  "All Hispanics": {
+    "chunk_ids": [
+      "chunk-45ab036de78d61714bf47e501a811c19"
+    ],
+    "count": 1,
+    "create_time": 1779825850,
+    "update_time": 1779825850,
+    "_id": "All Hispanics"
+  },
+  "Foreign-born Latinos": {
+    "chunk_ids": [
+      "chunk-45ab036de78d61714bf47e501a811c19"
+    ],
+    "count": 1,
+    "create_time": 1779825851,
+    "update_time": 1779825851,
+    "_id": "Foreign-born Latinos"
+  },
+  "Second-generation Latinos": {
+    "chunk_ids": [
+      "chunk-45ab036de78d61714bf47e501a811c19"
+    ],
+    "count": 1,
+    "create_time": 1779825851,
+    "update_time": 1779825851,
+    "_id": "Second-generation Latinos"
+  },
+  "Third-generation Latinos": {
+    "chunk_ids": [
+      "chunk-45ab036de78d61714bf47e501a811c19"
+    ],
+    "count": 1,
+    "create_time": 1779825851,
+    "update_time": 1779825851,
+    "_id": "Third-generation Latinos"
+  },
+  "Male Latinos": {
+    "chunk_ids": [
+      "chunk-45ab036de78d61714bf47e501a811c19"
+    ],
+    "count": 1,
+    "create_time": 1779825851,
+    "update_time": 1779825851,
+    "_id": "Male Latinos"
+  },
+  "Female Latinos": {
+    "chunk_ids": [
+      "chunk-45ab036de78d61714bf47e501a811c19"
+    ],
+    "count": 1,
+    "create_time": 1779825851,
+    "update_time": 1779825851,
+    "_id": "Female Latinos"
+  },
+  "Less than high school": {
+    "chunk_ids": [
+      "chunk-45ab036de78d61714bf47e501a811c19",
+      "chunk-72f7a37181bc78b429ba629dce8fa4a6"
+    ],
+    "count": 2,
+    "create_time": 1779825852,
+    "update_time": 1779825852,
+    "_id": "Less than high school"
+  },
+  "High school graduate": {
+    "chunk_ids": [
+      "chunk-45ab036de78d61714bf47e501a811c19",
+      "chunk-72f7a37181bc78b429ba629dce8fa4a6"
+    ],
+    "count": 2,
+    "create_time": 1779825852,
+    "update_time": 1779825852,
+    "_id": "High school graduate"
+  },
+  "Some college or more": {
+    "chunk_ids": [
+      "chunk-45ab036de78d61714bf47e501a811c19",
+      "chunk-72f7a37181bc78b429ba629dce8fa4a6"
+    ],
+    "count": 2,
+    "create_time": 1779825852,
+    "update_time": 1779825852,
+    "_id": "Some college or more"
+  },
+  "Ages 18-29": {
+    "chunk_ids": [
+      "chunk-45ab036de78d61714bf47e501a811c19",
+      "chunk-72f7a37181bc78b429ba629dce8fa4a6"
+    ],
+    "count": 2,
+    "create_time": 1779825852,
+    "update_time": 1779825852,
+    "_id": "Ages 18-29"
+  },
+  "Ages 30-49": {
+    "chunk_ids": [
+      "chunk-45ab036de78d61714bf47e501a811c19",
+      "chunk-72f7a37181bc78b429ba629dce8fa4a6"
+    ],
+    "count": 2,
+    "create_time": 1779825853,
+    "update_time": 1779825853,
+    "_id": "Ages 30-49"
+  },
+  "Ages 50-64": {
+    "chunk_ids": [
+      "chunk-45ab036de78d61714bf47e501a811c19",
+      "chunk-72f7a37181bc78b429ba629dce8fa4a6"
+    ],
+    "count": 2,
+    "create_time": 1779825853,
+    "update_time": 1779825853,
+    "_id": "Ages 50-64"
+  },
+  "Ages 65 and older": {
+    "chunk_ids": [
+      "chunk-45ab036de78d61714bf47e501a811c19",
+      "chunk-72f7a37181bc78b429ba629dce8fa4a6"
+    ],
+    "count": 2,
+    "create_time": 1779825853,
+    "update_time": 1779825853,
+    "_id": "Ages 65 and older"
+  },
+  "Don't have children": {
+    "chunk_ids": [
+      "chunk-45ab036de78d61714bf47e501a811c19"
+    ],
+    "count": 1,
+    "create_time": 1779825853,
+    "update_time": 1779825853,
+    "_id": "Don't have children"
+  },
+  "Don't plan to have children": {
+    "chunk_ids": [
+      "chunk-45ab036de78d61714bf47e501a811c19"
+    ],
+    "count": 1,
+    "create_time": 1779825853,
+    "update_time": 1779825853,
+    "_id": "Don't plan to have children"
+  },
+  "Don't know": {
+    "chunk_ids": [
+      "chunk-45ab036de78d61714bf47e501a811c19"
+    ],
+    "count": 1,
+    "create_time": 1779825854,
+    "update_time": 1779825854,
+    "_id": "Don't know"
+  },
+  "Refused": {
+    "chunk_ids": [
+      "chunk-45ab036de78d61714bf47e501a811c19"
+    ],
+    "count": 1,
+    "create_time": 1779825854,
+    "update_time": 1779825854,
+    "_id": "Refused"
+  },
+  "U.S. Latino": {
+    "chunk_ids": [
+      "chunk-c1cb33819e4bd6c1d057fa6c3509018f"
+    ],
+    "count": 1,
+    "create_time": 1779825854,
+    "update_time": 1779825854,
+    "_id": "U.S. Latino"
+  },
+  "National Bureau of Economic Research": {
+    "chunk_ids": [
+      "chunk-c1cb33819e4bd6c1d057fa6c3509018f",
+      "chunk-4cc0783f1b88ff1504f1a79dad5f9bcc"
+    ],
+    "count": 2,
+    "create_time": 1779825854,
+    "update_time": 1779825854,
+    "_id": "National Bureau of Economic Research"
+  },
+  "Median Household Income": {
+    "chunk_ids": [
+      "chunk-c1cb33819e4bd6c1d057fa6c3509018f"
+    ],
+    "count": 1,
+    "create_time": 1779825855,
+    "update_time": 1779825855,
+    "_id": "Median Household Income"
+  },
+  "Hispanic": {
+    "chunk_ids": [
+      "chunk-c1cb33819e4bd6c1d057fa6c3509018f",
+      "chunk-4685a8d7626394b5ed73ecc6b964ecae",
+      "chunk-6380c2e8f0c4e8f8887468340bc0071d"
+    ],
+    "count": 3,
+    "create_time": 1779825855,
+    "update_time": 1779825855,
+    "_id": "Hispanic"
+  },
+  "Hispanic Unemployment Rate": {
+    "chunk_ids": [
+      "chunk-c1cb33819e4bd6c1d057fa6c3509018f"
+    ],
+    "count": 1,
+    "create_time": 1779825855,
+    "update_time": 1779825855,
+    "_id": "Hispanic Unemployment Rate"
+  },
+  "Hispanic Poverty Rate": {
+    "chunk_ids": [
+      "chunk-c1cb33819e4bd6c1d057fa6c3509018f"
+    ],
+    "count": 1,
+    "create_time": 1779825855,
+    "update_time": 1779825855,
+    "_id": "Hispanic Poverty Rate"
+  },
+  "Health Statistics": {
+    "chunk_ids": [
+      "chunk-4cc0783f1b88ff1504f1a79dad5f9bcc"
+    ],
+    "count": 1,
+    "create_time": 1779825855,
+    "update_time": 1779825855,
+    "_id": "Health Statistics"
+  },
+  "DeNavas-Walt": {
+    "chunk_ids": [
+      "chunk-4cc0783f1b88ff1504f1a79dad5f9bcc"
+    ],
+    "count": 1,
+    "create_time": 1779825856,
+    "update_time": 1779825856,
+    "_id": "DeNavas-Walt"
+  },
+  "Bernadette D. Proctor": {
+    "chunk_ids": [
+      "chunk-4cc0783f1b88ff1504f1a79dad5f9bcc"
+    ],
+    "count": 1,
+    "create_time": 1779825856,
+    "update_time": 1779825856,
+    "_id": "Bernadette D. Proctor"
+  },
+  "Kochhar": {
+    "chunk_ids": [
+      "chunk-4cc0783f1b88ff1504f1a79dad5f9bcc"
+    ],
+    "count": 1,
+    "create_time": 1779825856,
+    "update_time": 1779825856,
+    "_id": "Kochhar"
+  },
+  "Richard Fry": {
+    "chunk_ids": [
+      "chunk-4cc0783f1b88ff1504f1a79dad5f9bcc"
+    ],
+    "count": 1,
+    "create_time": 1779825856,
+    "update_time": 1779825856,
+    "_id": "Richard Fry"
+  },
+  "Mark Hugo Lopez": {
+    "chunk_ids": [
+      "chunk-4cc0783f1b88ff1504f1a79dad5f9bcc",
+      "chunk-6380c2e8f0c4e8f8887468340bc0071d"
+    ],
+    "count": 2,
+    "create_time": 1779825857,
+    "update_time": 1779825857,
+    "_id": "Mark Hugo Lopez"
+  },
+  "Ana Gonzalez-Barrera": {
+    "chunk_ids": [
+      "chunk-4cc0783f1b88ff1504f1a79dad5f9bcc"
+    ],
+    "count": 1,
+    "create_time": 1779825857,
+    "update_time": 1779825857,
+    "_id": "Ana Gonzalez-Barrera"
+  },
+  "Jens Manuel Krogstad": {
+    "chunk_ids": [
+      "chunk-4cc0783f1b88ff1504f1a79dad5f9bcc",
+      "chunk-6380c2e8f0c4e8f8887468340bc0071d"
+    ],
+    "count": 2,
+    "create_time": 1779825857,
+    "update_time": 1779825857,
+    "_id": "Jens Manuel Krogstad"
+  },
+  "Renee Stepler": {
+    "chunk_ids": [
+      "chunk-4cc0783f1b88ff1504f1a79dad5f9bcc"
+    ],
+    "count": 1,
+    "create_time": 1779825857,
+    "update_time": 1779825857,
+    "_id": "Renee Stepler"
+  },
+  "Anna Brown": {
+    "chunk_ids": [
+      "chunk-4cc0783f1b88ff1504f1a79dad5f9bcc"
+    ],
+    "count": 1,
+    "create_time": 1779825857,
+    "update_time": 1779825857,
+    "_id": "Anna Brown"
+  },
+  "Matt Weeks": {
+    "chunk_ids": [
+      "chunk-4cc0783f1b88ff1504f1a79dad5f9bcc"
+    ],
+    "count": 1,
+    "create_time": 1779825858,
+    "update_time": 1779825858,
+    "_id": "Matt Weeks"
+  },
+  "Selig Center for Economic Growth": {
+    "chunk_ids": [
+      "chunk-4cc0783f1b88ff1504f1a79dad5f9bcc"
+    ],
+    "count": 1,
+    "create_time": 1779825858,
+    "update_time": 1779825858,
+    "_id": "Selig Center for Economic Growth"
+  },
+  "2008": {
+    "chunk_ids": [
+      "chunk-4685a8d7626394b5ed73ecc6b964ecae",
+      "chunk-72f7a37181bc78b429ba629dce8fa4a6",
+      "chunk-2f090473fd475b5ea69ebf13b4ebb884"
+    ],
+    "count": 3,
+    "create_time": 1779825858,
+    "update_time": 1779825858,
+    "_id": "2008"
+  },
+  "2014": {
+    "chunk_ids": [
+      "chunk-4685a8d7626394b5ed73ecc6b964ecae",
+      "chunk-2f090473fd475b5ea69ebf13b4ebb884"
+    ],
+    "count": 2,
+    "create_time": 1779825858,
+    "update_time": 1779825858,
+    "_id": "2014"
+  },
+  "2015": {
+    "chunk_ids": [
+      "chunk-4685a8d7626394b5ed73ecc6b964ecae",
+      "chunk-72f7a37181bc78b429ba629dce8fa4a6",
+      "chunk-2f090473fd475b5ea69ebf13b4ebb884"
+    ],
+    "count": 3,
+    "create_time": 1779825859,
+    "update_time": 1779825859,
+    "_id": "2015"
+  },
+  "National Survey of Latinos": {
+    "chunk_ids": [
+      "chunk-4685a8d7626394b5ed73ecc6b964ecae",
+      "chunk-72f7a37181bc78b429ba629dce8fa4a6",
+      "chunk-2f090473fd475b5ea69ebf13b4ebb884"
+    ],
+    "count": 3,
+    "create_time": 1779825859,
+    "update_time": 1779825859,
+    "_id": "National Survey of Latinos"
+  },
+  "Financial expectations": {
+    "chunk_ids": [
+      "chunk-4685a8d7626394b5ed73ecc6b964ecae"
+    ],
+    "count": 1,
+    "create_time": 1779825859,
+    "update_time": 1779825859,
+    "_id": "Financial expectations"
+  },
+  "Financial situation": {
+    "chunk_ids": [
+      "chunk-4685a8d7626394b5ed73ecc6b964ecae"
+    ],
+    "count": 1,
+    "create_time": 1779825859,
+    "update_time": 1779825859,
+    "_id": "Financial situation"
+  },
+  "Economic well-being": {
+    "chunk_ids": [
+      "chunk-4685a8d7626394b5ed73ecc6b964ecae"
+    ],
+    "count": 1,
+    "create_time": 1779825860,
+    "update_time": 1779825860,
+    "_id": "Economic well-being"
+  },
+  "Hispanic adults": {
+    "chunk_ids": [
+      "chunk-4685a8d7626394b5ed73ecc6b964ecae"
+    ],
+    "count": 1,
+    "create_time": 1779825860,
+    "update_time": 1779825860,
+    "_id": "Hispanic adults"
+  },
+  "White": {
+    "chunk_ids": [
+      "chunk-4685a8d7626394b5ed73ecc6b964ecae"
+    ],
+    "count": 1,
+    "create_time": 1779825860,
+    "update_time": 1779825860,
+    "_id": "White"
+  },
+  "Black": {
+    "chunk_ids": [
+      "chunk-4685a8d7626394b5ed73ecc6b964ecae"
+    ],
+    "count": 1,
+    "create_time": 1779825860,
+    "update_time": 1779825860,
+    "_id": "Black"
+  },
+  "White adults": {
+    "chunk_ids": [
+      "chunk-4685a8d7626394b5ed73ecc6b964ecae"
+    ],
+    "count": 1,
+    "create_time": 1779825860,
+    "update_time": 1779825860,
+    "_id": "White adults"
+  },
+  "Black adults": {
+    "chunk_ids": [
+      "chunk-4685a8d7626394b5ed73ecc6b964ecae"
+    ],
+    "count": 1,
+    "create_time": 1779825861,
+    "update_time": 1779825861,
+    "_id": "Black adults"
+  },
+  "PewResearchCenter": {
+    "chunk_ids": [
+      "chunk-6380c2e8f0c4e8f8887468340bc0071d"
+    ],
+    "count": 1,
+    "create_time": 1779825861,
+    "update_time": 1779825861,
+    "_id": "PewResearchCenter"
+  },
+  "Personal Finances": {
+    "chunk_ids": [
+      "chunk-6380c2e8f0c4e8f8887468340bc0071d",
+      "chunk-72f7a37181bc78b429ba629dce8fa4a6"
+    ],
+    "count": 2,
+    "create_time": 1779825861,
+    "update_time": 1779825861,
+    "_id": "Personal Finances"
+  },
+  "Economic Times": {
+    "chunk_ids": [
+      "chunk-6380c2e8f0c4e8f8887468340bc0071d"
+    ],
+    "count": 1,
+    "create_time": 1779825861,
+    "update_time": 1779825861,
+    "_id": "Economic Times"
+  },
+  "Rich Morin": {
+    "chunk_ids": [
+      "chunk-6380c2e8f0c4e8f8887468340bc0071d"
+    ],
+    "count": 1,
+    "create_time": 1779825862,
+    "update_time": 1779825862,
+    "_id": "Rich Morin"
+  },
+  "Brian Mahl": {
+    "chunk_ids": [
+      "chunk-6380c2e8f0c4e8f8887468340bc0071d"
+    ],
+    "count": 1,
+    "create_time": 1779825862,
+    "update_time": 1779825862,
+    "_id": "Brian Mahl"
+  },
+  "U.S. born": {
+    "chunk_ids": [
+      "chunk-6380c2e8f0c4e8f8887468340bc0071d",
+      "chunk-72f7a37181bc78b429ba629dce8fa4a6"
+    ],
+    "count": 2,
+    "create_time": 1779825862,
+    "update_time": 1779825862,
+    "_id": "U.S. born"
+  },
+  "Foreign born": {
+    "chunk_ids": [
+      "chunk-6380c2e8f0c4e8f8887468340bc0071d",
+      "chunk-72f7a37181bc78b429ba629dce8fa4a6"
+    ],
+    "count": 2,
+    "create_time": 1779825862,
+    "update_time": 1779825862,
+    "_id": "Foreign born"
+  },
+  "Hispanic trends": {
+    "chunk_ids": [
+      "chunk-6380c2e8f0c4e8f8887468340bc0071d"
+    ],
+    "count": 1,
+    "create_time": 1779825863,
+    "update_time": 1779825863,
+    "_id": "Hispanic trends"
+  },
+  "U.S. social and demographic trends": {
+    "chunk_ids": [
+      "chunk-6380c2e8f0c4e8f8887468340bc0071d"
+    ],
+    "count": 1,
+    "create_time": 1779825863,
+    "update_time": 1779825863,
+    "_id": "U.S. social and demographic trends"
+  },
+  "PEW RESEARCH CENTER": {
+    "chunk_ids": [
+      "chunk-db196f5cf13b5838df29dfc7a60b3fba"
+    ],
+    "count": 1,
+    "create_time": 1779825863,
+    "update_time": 1779825863,
+    "_id": "PEW RESEARCH CENTER"
+  },
+  "Latinos under the age of 30": {
+    "chunk_ids": [
+      "chunk-db196f5cf13b5838df29dfc7a60b3fba"
+    ],
+    "count": 1,
+    "create_time": 1779825863,
+    "update_time": 1779825863,
+    "_id": "Latinos under the age of 30"
+  },
+  "Latinos who had completed some college": {
+    "chunk_ids": [
+      "chunk-db196f5cf13b5838df29dfc7a60b3fba"
+    ],
+    "count": 1,
+    "create_time": 1779825863,
+    "update_time": 1779825863,
+    "_id": "Latinos who had completed some college"
+  },
+  "Latinos who say they are in excellent or good shape financially": {
+    "chunk_ids": [
+      "chunk-db196f5cf13b5838df29dfc7a60b3fba"
+    ],
+    "count": 1,
+    "create_time": 1779825864,
+    "update_time": 1779825864,
+    "_id": "Latinos who say they are in excellent or good shape financially"
+  },
+  "Latinos who say their current finances are in only fair shape": {
+    "chunk_ids": [
+      "chunk-db196f5cf13b5838df29dfc7a60b3fba"
+    ],
+    "count": 1,
+    "create_time": 1779825864,
+    "update_time": 1779825864,
+    "_id": "Latinos who say their current finances are in only fair shape"
+  },
+  "Latinos who say their finances are in poor shape": {
+    "chunk_ids": [
+      "chunk-db196f5cf13b5838df29dfc7a60b3fba"
+    ],
+    "count": 1,
+    "create_time": 1779825864,
+    "update_time": 1779825864,
+    "_id": "Latinos who say their finances are in poor shape"
+  },
+  "Latinos who expect their family's finances to improve": {
+    "chunk_ids": [
+      "chunk-db196f5cf13b5838df29dfc7a60b3fba"
+    ],
+    "count": 1,
+    "create_time": 1779825864,
+    "update_time": 1779825864,
+    "_id": "Latinos who expect their family's finances to improve"
+  },
+  "Latinos who expect their family's finances to get a little worse": {
+    "chunk_ids": [
+      "chunk-db196f5cf13b5838df29dfc7a60b3fba"
+    ],
+    "count": 1,
+    "create_time": 1779825865,
+    "update_time": 1779825865,
+    "_id": "Latinos who expect their family's finances to get a little worse"
+  },
+  "Latinos who expect their family's finances to get a lot worse": {
+    "chunk_ids": [
+      "chunk-db196f5cf13b5838df29dfc7a60b3fba"
+    ],
+    "count": 1,
+    "create_time": 1779825865,
+    "update_time": 1779825865,
+    "_id": "Latinos who expect their family's finances to get a lot worse"
+  },
+  "Latinos who expect their children to be better off financially": {
+    "chunk_ids": [
+      "chunk-db196f5cf13b5838df29dfc7a60b3fba"
+    ],
+    "count": 1,
+    "create_time": 1779825865,
+    "update_time": 1779825865,
+    "_id": "Latinos who expect their children to be better off financially"
+  },
+  "Latinos who expect their children's financial situation to be about the same": {
+    "chunk_ids": [
+      "chunk-db196f5cf13b5838df29dfc7a60b3fba"
+    ],
+    "count": 1,
+    "create_time": 1779825865,
+    "update_time": 1779825865,
+    "_id": "Latinos who expect their children's financial situation to be about the same"
+  },
+  "Latinos who expect their children to be worse off financially": {
+    "chunk_ids": [
+      "chunk-db196f5cf13b5838df29dfc7a60b3fba"
+    ],
+    "count": 1,
+    "create_time": 1779825865,
+    "update_time": 1779825865,
+    "_id": "Latinos who expect their children to be worse off financially"
+  },
+  "2012": {
+    "chunk_ids": [
+      "chunk-72f7a37181bc78b429ba629dce8fa4a6",
+      "chunk-2f090473fd475b5ea69ebf13b4ebb884"
+    ],
+    "count": 2,
+    "create_time": 1779825866,
+    "update_time": 1779825866,
+    "_id": "2012"
+  },
+  "2011": {
+    "chunk_ids": [
+      "chunk-72f7a37181bc78b429ba629dce8fa4a6"
+    ],
+    "count": 1,
+    "create_time": 1779825866,
+    "update_time": 1779825866,
+    "_id": "2011"
+  },
+  "2004": {
+    "chunk_ids": [
+      "chunk-72f7a37181bc78b429ba629dce8fa4a6",
+      "chunk-2f090473fd475b5ea69ebf13b4ebb884"
+    ],
+    "count": 2,
+    "create_time": 1779825866,
+    "update_time": 1779825866,
+    "_id": "2004"
+  },
+  "2nd generation": {
+    "chunk_ids": [
+      "chunk-72f7a37181bc78b429ba629dce8fa4a6"
+    ],
+    "count": 1,
+    "create_time": 1779825866,
+    "update_time": 1779825866,
+    "_id": "2nd generation"
+  },
+  "3rd generation or higher": {
+    "chunk_ids": [
+      "chunk-72f7a37181bc78b429ba629dce8fa4a6"
+    ],
+    "count": 1,
+    "create_time": 1779825867,
+    "update_time": 1779825867,
+    "_id": "3rd generation or higher"
+  },
+  "Male": {
+    "chunk_ids": [
+      "chunk-72f7a37181bc78b429ba629dce8fa4a6"
+    ],
+    "count": 1,
+    "create_time": 1779825867,
+    "update_time": 1779825867,
+    "_id": "Male"
+  },
+  "Female": {
+    "chunk_ids": [
+      "chunk-72f7a37181bc78b429ba629dce8fa4a6"
+    ],
+    "count": 1,
+    "create_time": 1779825867,
+    "update_time": 1779825867,
+    "_id": "Female"
+  },
+  "Landline": {
+    "chunk_ids": [
+      "chunk-1b7d693f1e826e239ac0b4cbf2422f3f"
+    ],
+    "count": 1,
+    "create_time": 1779825867,
+    "update_time": 1779825867,
+    "_id": "Landline"
+  },
+  "Cellphone": {
+    "chunk_ids": [
+      "chunk-1b7d693f1e826e239ac0b4cbf2422f3f"
+    ],
+    "count": 1,
+    "create_time": 1779825868,
+    "update_time": 1779825868,
+    "_id": "Cellphone"
+  },
+  "Marketing Systems Group": {
+    "chunk_ids": [
+      "chunk-1b7d693f1e826e239ac0b4cbf2422f3f"
+    ],
+    "count": 1,
+    "create_time": 1779825868,
+    "update_time": 1779825868,
+    "_id": "Marketing Systems Group"
+  },
+  "InfoUSA": {
+    "chunk_ids": [
+      "chunk-1b7d693f1e826e239ac0b4cbf2422f3f"
+    ],
+    "count": 1,
+    "create_time": 1779825868,
+    "update_time": 1779825868,
+    "_id": "InfoUSA"
+  },
+  "Experian": {
+    "chunk_ids": [
+      "chunk-1b7d693f1e826e239ac0b4cbf2422f3f"
+    ],
+    "count": 1,
+    "create_time": 1779825868,
+    "update_time": 1779825868,
+    "_id": "Experian"
+  },
+  "National Center for Health Statistics": {
+    "chunk_ids": [
+      "chunk-1b7d693f1e826e239ac0b4cbf2422f3f"
+    ],
+    "count": 1,
+    "create_time": 1779825869,
+    "update_time": 1779825869,
+    "_id": "National Center for Health Statistics"
+  },
+  "National Health Interview Survey": {
+    "chunk_ids": [
+      "chunk-1b7d693f1e826e239ac0b4cbf2422f3f"
+    ],
+    "count": 1,
+    "create_time": 1779825869,
+    "update_time": 1779825869,
+    "_id": "National Health Interview Survey"
+  },
+  "American Community Survey": {
+    "chunk_ids": [
+      "chunk-1b7d693f1e826e239ac0b4cbf2422f3f"
+    ],
+    "count": 1,
+    "create_time": 1779825869,
+    "update_time": 1779825869,
+    "_id": "American Community Survey"
+  },
+  "SSRS": {
+    "chunk_ids": [
+      "chunk-1b7d693f1e826e239ac0b4cbf2422f3f"
+    ],
+    "count": 1,
+    "create_time": 1779825869,
+    "update_time": 1779825869,
+    "_id": "SSRS"
+  },
+  "Dual-Frame": {
+    "chunk_ids": [
+      "chunk-1b7d693f1e826e239ac0b4cbf2422f3f"
+    ],
+    "count": 1,
+    "create_time": 1779825869,
+    "update_time": 1779825869,
+    "_id": "Dual-Frame"
+  },
+  "Random-Digit-Dial": {
+    "chunk_ids": [
+      "chunk-1b7d693f1e826e239ac0b4cbf2422f3f"
+    ],
+    "count": 1,
+    "create_time": 1779825870,
+    "update_time": 1779825870,
+    "_id": "Random-Digit-Dial"
+  },
+  "Stratified Sampling": {
+    "chunk_ids": [
+      "chunk-1b7d693f1e826e239ac0b4cbf2422f3f"
+    ],
+    "count": 1,
+    "create_time": 1779825870,
+    "update_time": 1779825870,
+    "_id": "Stratified Sampling"
+  },
+  "Post-Stratification": {
+    "chunk_ids": [
+      "chunk-1b7d693f1e826e239ac0b4cbf2422f3f"
+    ],
+    "count": 1,
+    "create_time": 1779825870,
+    "update_time": 1779825870,
+    "_id": "Post-Stratification"
+  },
+  "General Public": {
+    "chunk_ids": [
+      "chunk-2f090473fd475b5ea69ebf13b4ebb884"
+    ],
+    "count": 1,
+    "create_time": 1779825870,
+    "update_time": 1779825870,
+    "_id": "General Public"
+  },
+  "2010": {
+    "chunk_ids": [
+      "chunk-2f090473fd475b5ea69ebf13b4ebb884"
+    ],
+    "count": 1,
+    "create_time": 1779825870,
+    "update_time": 1779825870,
+    "_id": "2010"
+  },
+  "2006": {
+    "chunk_ids": [
+      "chunk-2f090473fd475b5ea69ebf13b4ebb884"
+    ],
+    "count": 1,
+    "create_time": 1779825871,
+    "update_time": 1779825871,
+    "_id": "2006"
+  },
+  "Income and Poverty in the United States": {
+    "chunk_ids": [
+      "chunk-4cc0783f1b88ff1504f1a79dad5f9bcc"
+    ],
+    "count": 1,
+    "create_time": 1779825878,
+    "update_time": 1779825878,
+    "_id": "Income and Poverty in the United States"
+  },
+  "Latino Jobs Growth": {
+    "chunk_ids": [
+      "chunk-4cc0783f1b88ff1504f1a79dad5f9bcc"
+    ],
+    "count": 1,
+    "create_time": 1779825879,
+    "update_time": 1779825879,
+    "_id": "Latino Jobs Growth"
+  },
+  "US Business Cycle Expansions and Contractions": {
+    "chunk_ids": [
+      "chunk-4cc0783f1b88ff1504f1a79dad5f9bcc"
+    ],
+    "count": 1,
+    "create_time": 1779825880,
+    "update_time": 1779825880,
+    "_id": "US Business Cycle Expansions and Contractions"
+  },
+  "Latino Support for Democrats": {
+    "chunk_ids": [
+      "chunk-4cc0783f1b88ff1504f1a79dad5f9bcc"
+    ],
+    "count": 1,
+    "create_time": 1779825881,
+    "update_time": 1779825881,
+    "_id": "Latino Support for Democrats"
+  },
+  "Weekly Dual-Frame": {
+    "chunk_ids": [
+      "chunk-1b7d693f1e826e239ac0b4cbf2422f3f"
+    ],
+    "count": 1,
+    "create_time": 1779825894,
+    "update_time": 1779825894,
+    "_id": "Weekly Dual-Frame"
+  }
+}

@@ -1,0 +1,29 @@
+{
+  "doc-701ca9043e08dac15f0327ab0ed444a7": {
+    "status": "handling",
+    "chunks_count": 10,
+    "chunks_list": [
+      "chunk-6380c2e8f0c4e8f8887468340bc0071d",
+      "chunk-c1cb33819e4bd6c1d057fa6c3509018f",
+      "chunk-1907f29be90571f9ffcda4b2841c8e7d",
+      "chunk-2f090473fd475b5ea69ebf13b4ebb884",
+      "chunk-4685a8d7626394b5ed73ecc6b964ecae",
+      "chunk-72f7a37181bc78b429ba629dce8fa4a6",
+      "chunk-db196f5cf13b5838df29dfc7a60b3fba",
+      "chunk-45ab036de78d61714bf47e501a811c19",
+      "chunk-1b7d693f1e826e239ac0b4cbf2422f3f",
+      "chunk-4cc0783f1b88ff1504f1a79dad5f9bcc"
+    ],
+    "content_summary": "PewResearchCenter\n\nNUMBERS, FACTS AND TRENDS SHAPING THE WORLD\n\nFOR RELEASE JUNE 8, 2016\n\nLatinos Increasingly Confident in Personal Finances, See Better Economic Times Ahead\n\nYet many economic indicators show few gains for the community\n\nBY Mark Hug...",
+    "content_length": 37555,
+    "created_at": "2026-05-26T19:48:36.611409+00:00",
+    "updated_at": "2026-05-26T20:04:57+00:00",
+    "file_path": "PH_2016.06.08_Economy-Final.pdf",
+    "track_id": "insert_20260526_164836_94b0536c",
+    "metadata": {
+      "processing_start_time": 1779824916,
+      "processing_end_time": 1779825897
+    },
+    "error_msg": ""
+  }
+}

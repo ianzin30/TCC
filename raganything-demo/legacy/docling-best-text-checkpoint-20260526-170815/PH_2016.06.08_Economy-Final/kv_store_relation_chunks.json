@@ -1,0 +1,624 @@
+{
+  "Hispanics<SEP>Median household income": {
+    "chunk_ids": [
+      "chunk-1907f29be90571f9ffcda4b2841c8e7d"
+    ],
+    "count": 1,
+    "create_time": 1779825871,
+    "update_time": 1779825871,
+    "_id": "Hispanics<SEP>Median household income"
+  },
+  "Hispanics<SEP>Median net worth": {
+    "chunk_ids": [
+      "chunk-1907f29be90571f9ffcda4b2841c8e7d"
+    ],
+    "count": 1,
+    "create_time": 1779825872,
+    "update_time": 1779825872,
+    "_id": "Hispanics<SEP>Median net worth"
+  },
+  "Hispanics<SEP>Poverty rate": {
+    "chunk_ids": [
+      "chunk-1907f29be90571f9ffcda4b2841c8e7d"
+    ],
+    "count": 1,
+    "create_time": 1779825872,
+    "update_time": 1779825872,
+    "_id": "Hispanics<SEP>Poverty rate"
+  },
+  "Hispanics<SEP>Unemployment rate": {
+    "chunk_ids": [
+      "chunk-1907f29be90571f9ffcda4b2841c8e7d"
+    ],
+    "count": 1,
+    "create_time": 1779825873,
+    "update_time": 1779825873,
+    "_id": "Hispanics<SEP>Unemployment rate"
+  },
+  "Hispanics<SEP>Personal financial situation": {
+    "chunk_ids": [
+      "chunk-1907f29be90571f9ffcda4b2841c8e7d"
+    ],
+    "count": 1,
+    "create_time": 1779825873,
+    "update_time": 1779825873,
+    "_id": "Hispanics<SEP>Personal financial situation"
+  },
+  "Hispanics<SEP>Personal financial outlook": {
+    "chunk_ids": [
+      "chunk-1907f29be90571f9ffcda4b2841c8e7d"
+    ],
+    "count": 1,
+    "create_time": 1779825873,
+    "update_time": 1779825873,
+    "_id": "Hispanics<SEP>Personal financial outlook"
+  },
+  "Hispanics<SEP>Personal financial improvement": {
+    "chunk_ids": [
+      "chunk-1907f29be90571f9ffcda4b2841c8e7d"
+    ],
+    "count": 1,
+    "create_time": 1779825874,
+    "update_time": 1779825874,
+    "_id": "Hispanics<SEP>Personal financial improvement"
+  },
+  "Education<SEP>Hispanics": {
+    "chunk_ids": [
+      "chunk-1907f29be90571f9ffcda4b2841c8e7d"
+    ],
+    "count": 1,
+    "create_time": 1779825874,
+    "update_time": 1779825874,
+    "_id": "Education<SEP>Hispanics"
+  },
+  "Great Recession<SEP>Latinos": {
+    "chunk_ids": [
+      "chunk-c1cb33819e4bd6c1d057fa6c3509018f",
+      "chunk-2f090473fd475b5ea69ebf13b4ebb884"
+    ],
+    "count": 2,
+    "create_time": 1779825874,
+    "update_time": 1779825874,
+    "_id": "Great Recession<SEP>Latinos"
+  },
+  "Great Recession<SEP>U.S. Latino": {
+    "chunk_ids": [
+      "chunk-c1cb33819e4bd6c1d057fa6c3509018f"
+    ],
+    "count": 1,
+    "create_time": 1779825875,
+    "update_time": 1779825875,
+    "_id": "Great Recession<SEP>U.S. Latino"
+  },
+  "Median Household Income<SEP>U.S. Latino": {
+    "chunk_ids": [
+      "chunk-c1cb33819e4bd6c1d057fa6c3509018f"
+    ],
+    "count": 1,
+    "create_time": 1779825875,
+    "update_time": 1779825875,
+    "_id": "Median Household Income<SEP>U.S. Latino"
+  },
+  "Hispanic Unemployment Rate<SEP>U.S. Latino": {
+    "chunk_ids": [
+      "chunk-c1cb33819e4bd6c1d057fa6c3509018f"
+    ],
+    "count": 1,
+    "create_time": 1779825876,
+    "update_time": 1779825876,
+    "_id": "Hispanic Unemployment Rate<SEP>U.S. Latino"
+  },
+  "Hispanic Poverty Rate<SEP>U.S. Latino": {
+    "chunk_ids": [
+      "chunk-c1cb33819e4bd6c1d057fa6c3509018f"
+    ],
+    "count": 1,
+    "create_time": 1779825876,
+    "update_time": 1779825876,
+    "_id": "Hispanic Poverty Rate<SEP>U.S. Latino"
+  },
+  "Pew Research Center<SEP>U.S. Latino": {
+    "chunk_ids": [
+      "chunk-c1cb33819e4bd6c1d057fa6c3509018f"
+    ],
+    "count": 1,
+    "create_time": 1779825876,
+    "update_time": 1779825876,
+    "_id": "Pew Research Center<SEP>U.S. Latino"
+  },
+  "U.S. Census Bureau<SEP>U.S. Latino": {
+    "chunk_ids": [
+      "chunk-c1cb33819e4bd6c1d057fa6c3509018f"
+    ],
+    "count": 1,
+    "create_time": 1779825877,
+    "update_time": 1779825877,
+    "_id": "U.S. Census Bureau<SEP>U.S. Latino"
+  },
+  "Great Recession<SEP>U.S. Census Bureau": {
+    "chunk_ids": [
+      "chunk-c1cb33819e4bd6c1d057fa6c3509018f"
+    ],
+    "count": 1,
+    "create_time": 1779825877,
+    "update_time": 1779825877,
+    "_id": "Great Recession<SEP>U.S. Census Bureau"
+  },
+  "Great Recession<SEP>Pew Research Center": {
+    "chunk_ids": [
+      "chunk-c1cb33819e4bd6c1d057fa6c3509018f"
+    ],
+    "count": 1,
+    "create_time": 1779825878,
+    "update_time": 1779825878,
+    "_id": "Great Recession<SEP>Pew Research Center"
+  },
+  "DeNavas-Walt<SEP>Income and Poverty in the United States": {
+    "chunk_ids": [
+      "chunk-4cc0783f1b88ff1504f1a79dad5f9bcc"
+    ],
+    "count": 1,
+    "create_time": 1779825878,
+    "update_time": 1779825878,
+    "_id": "DeNavas-Walt<SEP>Income and Poverty in the United States"
+  },
+  "Bernadette D. Proctor<SEP>Income and Poverty in the United States": {
+    "chunk_ids": [
+      "chunk-4cc0783f1b88ff1504f1a79dad5f9bcc"
+    ],
+    "count": 1,
+    "create_time": 1779825879,
+    "update_time": 1779825879,
+    "_id": "Bernadette D. Proctor<SEP>Income and Poverty in the United States"
+  },
+  "Income and Poverty in the United States<SEP>U.S. Census Bureau": {
+    "chunk_ids": [
+      "chunk-4cc0783f1b88ff1504f1a79dad5f9bcc"
+    ],
+    "count": 1,
+    "create_time": 1779825879,
+    "update_time": 1779825879,
+    "_id": "Income and Poverty in the United States<SEP>U.S. Census Bureau"
+  },
+  "Kochhar<SEP>Latino Jobs Growth": {
+    "chunk_ids": [
+      "chunk-4cc0783f1b88ff1504f1a79dad5f9bcc"
+    ],
+    "count": 1,
+    "create_time": 1779825879,
+    "update_time": 1779825879,
+    "_id": "Kochhar<SEP>Latino Jobs Growth"
+  },
+  "Latino Jobs Growth<SEP>Richard Fry": {
+    "chunk_ids": [
+      "chunk-4cc0783f1b88ff1504f1a79dad5f9bcc"
+    ],
+    "count": 1,
+    "create_time": 1779825880,
+    "update_time": 1779825880,
+    "_id": "Latino Jobs Growth<SEP>Richard Fry"
+  },
+  "Latino Jobs Growth<SEP>Pew Research Center": {
+    "chunk_ids": [
+      "chunk-4cc0783f1b88ff1504f1a79dad5f9bcc"
+    ],
+    "count": 1,
+    "create_time": 1779825880,
+    "update_time": 1779825880,
+    "_id": "Latino Jobs Growth<SEP>Pew Research Center"
+  },
+  "National Bureau of Economic Research<SEP>US Business Cycle Expansions and Contractions": {
+    "chunk_ids": [
+      "chunk-4cc0783f1b88ff1504f1a79dad5f9bcc"
+    ],
+    "count": 1,
+    "create_time": 1779825880,
+    "update_time": 1779825880,
+    "_id": "National Bureau of Economic Research<SEP>US Business Cycle Expansions and Contractions"
+  },
+  "Latino Support for Democrats<SEP>Mark Hugo Lopez": {
+    "chunk_ids": [
+      "chunk-4cc0783f1b88ff1504f1a79dad5f9bcc"
+    ],
+    "count": 1,
+    "create_time": 1779825881,
+    "update_time": 1779825881,
+    "_id": "Latino Support for Democrats<SEP>Mark Hugo Lopez"
+  },
+  "Ana Gonzalez-Barrera<SEP>Latino Support for Democrats": {
+    "chunk_ids": [
+      "chunk-4cc0783f1b88ff1504f1a79dad5f9bcc"
+    ],
+    "count": 1,
+    "create_time": 1779825882,
+    "update_time": 1779825882,
+    "_id": "Ana Gonzalez-Barrera<SEP>Latino Support for Democrats"
+  },
+  "Jens Manuel Krogstad<SEP>Latino Support for Democrats": {
+    "chunk_ids": [
+      "chunk-4cc0783f1b88ff1504f1a79dad5f9bcc"
+    ],
+    "count": 1,
+    "create_time": 1779825882,
+    "update_time": 1779825882,
+    "_id": "Jens Manuel Krogstad<SEP>Latino Support for Democrats"
+  },
+  "Hispanic<SEP>Hispanic adults": {
+    "chunk_ids": [
+      "chunk-4685a8d7626394b5ed73ecc6b964ecae"
+    ],
+    "count": 1,
+    "create_time": 1779825882,
+    "update_time": 1779825882,
+    "_id": "Hispanic<SEP>Hispanic adults"
+  },
+  "Hispanic<SEP>Latinos": {
+    "chunk_ids": [
+      "chunk-4685a8d7626394b5ed73ecc6b964ecae"
+    ],
+    "count": 1,
+    "create_time": 1779825883,
+    "update_time": 1779825883,
+    "_id": "Hispanic<SEP>Latinos"
+  },
+  "National Survey of Latinos<SEP>Pew Research Center": {
+    "chunk_ids": [
+      "chunk-4685a8d7626394b5ed73ecc6b964ecae"
+    ],
+    "count": 1,
+    "create_time": 1779825883,
+    "update_time": 1779825883,
+    "_id": "National Survey of Latinos<SEP>Pew Research Center"
+  },
+  "2008<SEP>Hispanic": {
+    "chunk_ids": [
+      "chunk-4685a8d7626394b5ed73ecc6b964ecae"
+    ],
+    "count": 1,
+    "create_time": 1779825883,
+    "update_time": 1779825883,
+    "_id": "2008<SEP>Hispanic"
+  },
+  "2014<SEP>Hispanic": {
+    "chunk_ids": [
+      "chunk-4685a8d7626394b5ed73ecc6b964ecae"
+    ],
+    "count": 1,
+    "create_time": 1779825884,
+    "update_time": 1779825884,
+    "_id": "2014<SEP>Hispanic"
+  },
+  "2015<SEP>Hispanic": {
+    "chunk_ids": [
+      "chunk-4685a8d7626394b5ed73ecc6b964ecae"
+    ],
+    "count": 1,
+    "create_time": 1779825884,
+    "update_time": 1779825884,
+    "_id": "2015<SEP>Hispanic"
+  },
+  "Family income<SEP>Hispanic": {
+    "chunk_ids": [
+      "chunk-4685a8d7626394b5ed73ecc6b964ecae"
+    ],
+    "count": 1,
+    "create_time": 1779825884,
+    "update_time": 1779825884,
+    "_id": "Family income<SEP>Hispanic"
+  },
+  "Cost of living<SEP>Hispanic": {
+    "chunk_ids": [
+      "chunk-4685a8d7626394b5ed73ecc6b964ecae"
+    ],
+    "count": 1,
+    "create_time": 1779825885,
+    "update_time": 1779825885,
+    "_id": "Cost of living<SEP>Hispanic"
+  },
+  "Financial expectations<SEP>Hispanic": {
+    "chunk_ids": [
+      "chunk-4685a8d7626394b5ed73ecc6b964ecae"
+    ],
+    "count": 1,
+    "create_time": 1779825885,
+    "update_time": 1779825885,
+    "_id": "Financial expectations<SEP>Hispanic"
+  },
+  "Latinos<SEP>PewResearchCenter": {
+    "chunk_ids": [
+      "chunk-6380c2e8f0c4e8f8887468340bc0071d"
+    ],
+    "count": 1,
+    "create_time": 1779825885,
+    "update_time": 1779825885,
+    "_id": "Latinos<SEP>PewResearchCenter"
+  },
+  "Personal Finances<SEP>PewResearchCenter": {
+    "chunk_ids": [
+      "chunk-6380c2e8f0c4e8f8887468340bc0071d"
+    ],
+    "count": 1,
+    "create_time": 1779825886,
+    "update_time": 1779825886,
+    "_id": "Personal Finances<SEP>PewResearchCenter"
+  },
+  "Economic Times<SEP>PewResearchCenter": {
+    "chunk_ids": [
+      "chunk-6380c2e8f0c4e8f8887468340bc0071d"
+    ],
+    "count": 1,
+    "create_time": 1779825886,
+    "update_time": 1779825886,
+    "_id": "Economic Times<SEP>PewResearchCenter"
+  },
+  "Great Recession<SEP>PewResearchCenter": {
+    "chunk_ids": [
+      "chunk-6380c2e8f0c4e8f8887468340bc0071d"
+    ],
+    "count": 1,
+    "create_time": 1779825886,
+    "update_time": 1779825886,
+    "_id": "Great Recession<SEP>PewResearchCenter"
+  },
+  "Mark Hugo Lopez<SEP>PewResearchCenter": {
+    "chunk_ids": [
+      "chunk-6380c2e8f0c4e8f8887468340bc0071d"
+    ],
+    "count": 1,
+    "create_time": 1779825887,
+    "update_time": 1779825887,
+    "_id": "Mark Hugo Lopez<SEP>PewResearchCenter"
+  },
+  "PewResearchCenter<SEP>Rich Morin": {
+    "chunk_ids": [
+      "chunk-6380c2e8f0c4e8f8887468340bc0071d"
+    ],
+    "count": 1,
+    "create_time": 1779825887,
+    "update_time": 1779825887,
+    "_id": "PewResearchCenter<SEP>Rich Morin"
+  },
+  "Jens Manuel Krogstad<SEP>PewResearchCenter": {
+    "chunk_ids": [
+      "chunk-6380c2e8f0c4e8f8887468340bc0071d"
+    ],
+    "count": 1,
+    "create_time": 1779825888,
+    "update_time": 1779825888,
+    "_id": "Jens Manuel Krogstad<SEP>PewResearchCenter"
+  },
+  "Brian Mahl<SEP>PewResearchCenter": {
+    "chunk_ids": [
+      "chunk-6380c2e8f0c4e8f8887468340bc0071d"
+    ],
+    "count": 1,
+    "create_time": 1779825888,
+    "update_time": 1779825888,
+    "_id": "Brian Mahl<SEP>PewResearchCenter"
+  },
+  "Hispanic<SEP>PewResearchCenter": {
+    "chunk_ids": [
+      "chunk-6380c2e8f0c4e8f8887468340bc0071d"
+    ],
+    "count": 1,
+    "create_time": 1779825889,
+    "update_time": 1779825889,
+    "_id": "Hispanic<SEP>PewResearchCenter"
+  },
+  "PewResearchCenter<SEP>U.S. born": {
+    "chunk_ids": [
+      "chunk-6380c2e8f0c4e8f8887468340bc0071d"
+    ],
+    "count": 1,
+    "create_time": 1779825889,
+    "update_time": 1779825889,
+    "_id": "PewResearchCenter<SEP>U.S. born"
+  },
+  "Foreign born<SEP>PewResearchCenter": {
+    "chunk_ids": [
+      "chunk-6380c2e8f0c4e8f8887468340bc0071d"
+    ],
+    "count": 1,
+    "create_time": 1779825889,
+    "update_time": 1779825889,
+    "_id": "Foreign born<SEP>PewResearchCenter"
+  },
+  "Hispanic trends<SEP>PewResearchCenter": {
+    "chunk_ids": [
+      "chunk-6380c2e8f0c4e8f8887468340bc0071d"
+    ],
+    "count": 1,
+    "create_time": 1779825890,
+    "update_time": 1779825890,
+    "_id": "Hispanic trends<SEP>PewResearchCenter"
+  },
+  "PewResearchCenter<SEP>U.S. social and demographic trends": {
+    "chunk_ids": [
+      "chunk-6380c2e8f0c4e8f8887468340bc0071d"
+    ],
+    "count": 1,
+    "create_time": 1779825890,
+    "update_time": 1779825890,
+    "_id": "PewResearchCenter<SEP>U.S. social and demographic trends"
+  },
+  "Latinos<SEP>PEW RESEARCH CENTER": {
+    "chunk_ids": [
+      "chunk-db196f5cf13b5838df29dfc7a60b3fba"
+    ],
+    "count": 1,
+    "create_time": 1779825890,
+    "update_time": 1779825890,
+    "_id": "Latinos<SEP>PEW RESEARCH CENTER"
+  },
+  "Latinos<SEP>Personal Finances": {
+    "chunk_ids": [
+      "chunk-72f7a37181bc78b429ba629dce8fa4a6"
+    ],
+    "count": 1,
+    "create_time": 1779825891,
+    "update_time": 1779825891,
+    "_id": "Latinos<SEP>Personal Finances"
+  },
+  "Latinos<SEP>Pew Research Center": {
+    "chunk_ids": [
+      "chunk-72f7a37181bc78b429ba629dce8fa4a6"
+    ],
+    "count": 1,
+    "create_time": 1779825891,
+    "update_time": 1779825891,
+    "_id": "Latinos<SEP>Pew Research Center"
+  },
+  "Personal Finances<SEP>Pew Research Center": {
+    "chunk_ids": [
+      "chunk-72f7a37181bc78b429ba629dce8fa4a6"
+    ],
+    "count": 1,
+    "create_time": 1779825892,
+    "update_time": 1779825892,
+    "_id": "Personal Finances<SEP>Pew Research Center"
+  },
+  "2015<SEP>Pew Research Center": {
+    "chunk_ids": [
+      "chunk-72f7a37181bc78b429ba629dce8fa4a6"
+    ],
+    "count": 1,
+    "create_time": 1779825892,
+    "update_time": 1779825892,
+    "_id": "2015<SEP>Pew Research Center"
+  },
+  "2012<SEP>Pew Research Center": {
+    "chunk_ids": [
+      "chunk-72f7a37181bc78b429ba629dce8fa4a6"
+    ],
+    "count": 1,
+    "create_time": 1779825892,
+    "update_time": 1779825892,
+    "_id": "2012<SEP>Pew Research Center"
+  },
+  "Cellphone<SEP>Landline": {
+    "chunk_ids": [
+      "chunk-1b7d693f1e826e239ac0b4cbf2422f3f"
+    ],
+    "count": 1,
+    "create_time": 1779825892,
+    "update_time": 1779825892,
+    "_id": "Cellphone<SEP>Landline"
+  },
+  "Landline<SEP>Marketing Systems Group": {
+    "chunk_ids": [
+      "chunk-1b7d693f1e826e239ac0b4cbf2422f3f"
+    ],
+    "count": 1,
+    "create_time": 1779825893,
+    "update_time": 1779825893,
+    "_id": "Landline<SEP>Marketing Systems Group"
+  },
+  "Cellphone<SEP>Marketing Systems Group": {
+    "chunk_ids": [
+      "chunk-1b7d693f1e826e239ac0b4cbf2422f3f"
+    ],
+    "count": 1,
+    "create_time": 1779825893,
+    "update_time": 1779825893,
+    "_id": "Cellphone<SEP>Marketing Systems Group"
+  },
+  "InfoUSA<SEP>Landline": {
+    "chunk_ids": [
+      "chunk-1b7d693f1e826e239ac0b4cbf2422f3f"
+    ],
+    "count": 1,
+    "create_time": 1779825893,
+    "update_time": 1779825893,
+    "_id": "InfoUSA<SEP>Landline"
+  },
+  "Experian<SEP>Landline": {
+    "chunk_ids": [
+      "chunk-1b7d693f1e826e239ac0b4cbf2422f3f"
+    ],
+    "count": 1,
+    "create_time": 1779825894,
+    "update_time": 1779825894,
+    "_id": "Experian<SEP>Landline"
+  },
+  "National Center for Health Statistics<SEP>National Health Interview Survey": {
+    "chunk_ids": [
+      "chunk-1b7d693f1e826e239ac0b4cbf2422f3f"
+    ],
+    "count": 1,
+    "create_time": 1779825894,
+    "update_time": 1779825894,
+    "_id": "National Center for Health Statistics<SEP>National Health Interview Survey"
+  },
+  "American Community Survey<SEP>U.S. Census Bureau": {
+    "chunk_ids": [
+      "chunk-1b7d693f1e826e239ac0b4cbf2422f3f"
+    ],
+    "count": 1,
+    "create_time": 1779825894,
+    "update_time": 1779825894,
+    "_id": "American Community Survey<SEP>U.S. Census Bureau"
+  },
+  "SSRS<SEP>Weekly Dual-Frame": {
+    "chunk_ids": [
+      "chunk-1b7d693f1e826e239ac0b4cbf2422f3f"
+    ],
+    "count": 1,
+    "create_time": 1779825894,
+    "update_time": 1779825894,
+    "_id": "SSRS<SEP>Weekly Dual-Frame"
+  },
+  "Dual-Frame<SEP>Pew Research Center": {
+    "chunk_ids": [
+      "chunk-1b7d693f1e826e239ac0b4cbf2422f3f"
+    ],
+    "count": 1,
+    "create_time": 1779825895,
+    "update_time": 1779825895,
+    "_id": "Dual-Frame<SEP>Pew Research Center"
+  },
+  "Pew Research Center<SEP>Random-Digit-Dial": {
+    "chunk_ids": [
+      "chunk-1b7d693f1e826e239ac0b4cbf2422f3f"
+    ],
+    "count": 1,
+    "create_time": 1779825895,
+    "update_time": 1779825895,
+    "_id": "Pew Research Center<SEP>Random-Digit-Dial"
+  },
+  "Pew Research Center<SEP>Stratified Sampling": {
+    "chunk_ids": [
+      "chunk-1b7d693f1e826e239ac0b4cbf2422f3f"
+    ],
+    "count": 1,
+    "create_time": 1779825896,
+    "update_time": 1779825896,
+    "_id": "Pew Research Center<SEP>Stratified Sampling"
+  },
+  "Pew Research Center<SEP>Post-Stratification": {
+    "chunk_ids": [
+      "chunk-1b7d693f1e826e239ac0b4cbf2422f3f"
+    ],
+    "count": 1,
+    "create_time": 1779825896,
+    "update_time": 1779825896,
+    "_id": "Pew Research Center<SEP>Post-Stratification"
+  },
+  "General Public<SEP>Great Recession": {
+    "chunk_ids": [
+      "chunk-2f090473fd475b5ea69ebf13b4ebb884"
+    ],
+    "count": 1,
+    "create_time": 1779825896,
+    "update_time": 1779825896,
+    "_id": "General Public<SEP>Great Recession"
+  },
+  "Latinos<SEP>National Survey of Latinos": {
+    "chunk_ids": [
+      "chunk-2f090473fd475b5ea69ebf13b4ebb884"
+    ],
+    "count": 1,
+    "create_time": 1779825896,
+    "update_time": 1779825896,
+    "_id": "Latinos<SEP>National Survey of Latinos"
+  }
+}

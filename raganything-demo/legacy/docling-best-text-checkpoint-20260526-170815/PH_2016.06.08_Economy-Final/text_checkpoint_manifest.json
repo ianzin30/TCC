@@ -1,0 +1,8 @@
+{
+  "doc_id": "PH_2016.06.08_Economy-Final.pdf",
+  "content_doc_id": "doc-701ca9043e08dac15f0327ab0ed444a7",
+  "pdf_path": "C:\\Users\\Ian Gabriel\\Desktop\\TCC\\MMLongBench-Doc\\documents\\PH_2016.06.08_Economy-Final.pdf",
+  "text_characters": 37555,
+  "multimodal_items": 15,
+  "working_dir": "./rag_storage/ollama-qwen-bge-text-checkpoint/PH_2016.06.08_Economy-Final"
+}

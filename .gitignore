@@ -31,6 +31,8 @@ output/
 raganything-demo/rag_storage/
 raganything-demo/output/
 raganything-demo/sample.pdf
+raganything-demo/.tiktoken_cache/
+raganything-demo/smoke_results/
 
 # Local datasets and downloaded documents
 MMLongBench-Doc/
