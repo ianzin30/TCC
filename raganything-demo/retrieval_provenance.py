@@ -8,11 +8,13 @@ inserting page markers into their searchable content.
 
 from __future__ import annotations
 
+import html
 import time
 from dataclasses import dataclass
 from pathlib import Path
 from typing import Any, Callable
 
+from lightrag import utils as lightrag_utils
 from lightrag.operate import chunking_by_token_size, merge_nodes_and_edges
 from lightrag.kg.shared_storage import get_namespace_data, get_pipeline_status_lock
 from raganything.parser import DoclingParser, list_parsers, register_parser
@@ -49,6 +51,138 @@ def require_page_number(item: dict[str, Any]) -> int:
 
 class DoclingProvenanceParser(DoclingParser):
     """Docling parser adapter that preserves its native page provenance."""
+
+    def _get_converter(self, **kwargs: Any) -> Any:
+        """Build a Docling converter with low-memory options from local_config."""
+        from docling.datamodel.accelerator_options import AcceleratorOptions
+        from docling.datamodel.base_models import InputFormat
+        from docling.datamodel.pipeline_options import (
+            PdfPipelineOptions,
+            TableFormerMode,
+        )
+        from docling.datamodel.settings import settings
+        from docling.document_converter import DocumentConverter, PdfFormatOption
+
+        def optional_int(name: str) -> int | None:
+            value = kwargs.get(name)
+            return None if value is None else int(value)
+
+        table_mode = str(kwargs.get("table_mode", "fast")).lower()
+        do_tables = bool(kwargs.get("tables", True))
+        do_ocr = bool(kwargs.get("allow_ocr", True))
+        artifacts_path = kwargs.get("artifacts_path")
+        images_scale = float(kwargs.get("images_scale", 2.0))
+        generate_picture_images = bool(kwargs.get("generate_picture_images", True))
+        page_batch_size = optional_int("page_batch_size")
+        ocr_batch_size = optional_int("ocr_batch_size")
+        layout_batch_size = optional_int("layout_batch_size")
+        table_batch_size = optional_int("table_batch_size")
+        queue_max_size = optional_int("queue_max_size")
+        accelerator_num_threads = optional_int("accelerator_num_threads")
+        accelerator_device = str(kwargs.get("accelerator_device", "cpu"))
+        document_timeout_s = kwargs.get("document_timeout_s")
+
+        if page_batch_size is not None:
+            settings.perf.page_batch_size = page_batch_size
+        if accelerator_num_threads is not None:
+            settings.perf.elements_batch_size = min(
+                settings.perf.elements_batch_size, max(1, accelerator_num_threads)
+            )
+
+        cache_key = (
+            table_mode,
+            do_tables,
+            do_ocr,
+            artifacts_path,
+            images_scale,
+            generate_picture_images,
+            page_batch_size,
+            ocr_batch_size,
+            layout_batch_size,
+            table_batch_size,
+            queue_max_size,
+            accelerator_num_threads,
+            accelerator_device,
+            document_timeout_s,
+        )
+        cached = self._converter_cache.get(cache_key)
+        if cached is not None:
+            return cached
+
+        pipeline_options = PdfPipelineOptions()
+        if hasattr(pipeline_options, "do_ocr"):
+            pipeline_options.do_ocr = do_ocr
+        if hasattr(pipeline_options, "do_table_structure"):
+            pipeline_options.do_table_structure = do_tables
+        if hasattr(pipeline_options, "table_structure_options"):
+            try:
+                pipeline_options.table_structure_options.mode = (
+                    TableFormerMode.ACCURATE
+                    if table_mode == "accurate"
+                    else TableFormerMode.FAST
+                )
+            except Exception as e:  # pragma: no cover - defensive
+                self.logger.debug(f"Could not set TableFormer mode '{table_mode}': {e}")
+        if artifacts_path and hasattr(pipeline_options, "artifacts_path"):
+            pipeline_options.artifacts_path = artifacts_path
+        if hasattr(pipeline_options, "generate_picture_images"):
+            pipeline_options.generate_picture_images = generate_picture_images
+        if hasattr(pipeline_options, "images_scale"):
+            pipeline_options.images_scale = images_scale
+        if document_timeout_s is not None and hasattr(
+            pipeline_options, "document_timeout"
+        ):
+            pipeline_options.document_timeout = float(document_timeout_s)
+        if ocr_batch_size is not None and hasattr(pipeline_options, "ocr_batch_size"):
+            pipeline_options.ocr_batch_size = ocr_batch_size
+        if layout_batch_size is not None and hasattr(
+            pipeline_options, "layout_batch_size"
+        ):
+            pipeline_options.layout_batch_size = layout_batch_size
+        if table_batch_size is not None and hasattr(
+            pipeline_options, "table_batch_size"
+        ):
+            pipeline_options.table_batch_size = table_batch_size
+        if queue_max_size is not None and hasattr(pipeline_options, "queue_max_size"):
+            pipeline_options.queue_max_size = queue_max_size
+        if accelerator_num_threads is not None and hasattr(
+            pipeline_options, "accelerator_options"
+        ):
+            pipeline_options.accelerator_options = AcceleratorOptions(
+                num_threads=accelerator_num_threads,
+                device=accelerator_device,
+            )
+
+        with self._converter_cache_lock:
+            cached = self._converter_cache.get(cache_key)
+            if cached is not None:
+                return cached
+            converter = DocumentConverter(
+                format_options={
+                    InputFormat.PDF: PdfFormatOption(pipeline_options=pipeline_options),
+                }
+            )
+            self._converter_cache[cache_key] = converter
+            return converter
+
+    def read_from_block_recursive(
+        self,
+        block: dict[str, Any],
+        type: str,
+        output_dir: Path,
+        cnt: int,
+        num: str,
+        docling_content: dict[str, Any],
+    ) -> list[dict[str, Any]]:
+        if type == "groups" and not block.get("children"):
+            self.logger.debug(
+                "Skipping empty Docling group block without page provenance: "
+                f"{block.get('self_ref', num)}"
+            )
+            return []
+        return super().read_from_block_recursive(
+            block, type, output_dir, cnt, num, docling_content
+        )
 
     def read_from_block(
         self, block: dict[str, Any], type: str, output_dir: Path, cnt: int, num: str
@@ -88,8 +222,18 @@ class TextPageSpan:
     page_number: int
 
 
+def _sanitize_text_fragment_like_lightrag(text: str) -> str:
+    """Apply LightRAG's unsafe-character cleanup without per-block stripping."""
+    if not text:
+        return text
+    text = html.unescape(text)
+    text = lightrag_utils._SURROGATE_PATTERN.sub("", text)
+    text = lightrag_utils._CONTROL_CHAR_PATTERN_ALL.sub("", text)
+    return text
+
+
 def build_text_content_with_page_spans(
-    content_list: list[dict[str, Any]],
+    content_list: list[dict[str, Any]], *, sanitize_for_lightrag: bool = False
 ) -> tuple[str, list[TextPageSpan]]:
     """Build the same text as ``separate_content`` plus source-page spans."""
     text_parts: list[str] = []
@@ -103,6 +247,8 @@ def build_text_content_with_page_spans(
         if not text.strip():
             continue
         page_number = require_page_number(item)
+        if sanitize_for_lightrag:
+            text = _sanitize_text_fragment_like_lightrag(text)
         if text_parts:
             position += 2  # ``separate_content`` joins text parts with "\n\n".
         start = position
@@ -110,7 +256,23 @@ def build_text_content_with_page_spans(
         position += len(text)
         spans.append(TextPageSpan(start=start, end=position, page_number=page_number))
 
-    return "\n\n".join(text_parts), spans
+    text_content = "\n\n".join(text_parts)
+    if not sanitize_for_lightrag:
+        return text_content, spans
+
+    left_trim = len(text_content) - len(text_content.lstrip())
+    stripped_text = text_content.strip()
+    stripped_len = len(stripped_text)
+    adjusted_spans = [
+        TextPageSpan(
+            start=max(0, span.start - left_trim),
+            end=min(stripped_len, span.end - left_trim),
+            page_number=span.page_number,
+        )
+        for span in spans
+        if max(0, span.start - left_trim) < min(stripped_len, span.end - left_trim)
+    ]
+    return stripped_text, adjusted_spans
 
 
 def _pages_for_range(
@@ -260,8 +422,11 @@ async def process_multimodal_content_individual_with_pages(
             )
 
     if all_chunk_results:
-        pipeline_status = await get_namespace_data("pipeline_status")
-        pipeline_status_lock = get_pipeline_status_lock()
+        workspace = getattr(rag.lightrag, "workspace", "")
+        pipeline_status = await get_namespace_data(
+            "pipeline_status", workspace=workspace
+        )
+        pipeline_status_lock = get_pipeline_status_lock(workspace=workspace)
         await merge_nodes_and_edges(
             chunk_results=all_chunk_results,
             knowledge_graph_inst=rag.lightrag.chunk_entity_relation_graph,

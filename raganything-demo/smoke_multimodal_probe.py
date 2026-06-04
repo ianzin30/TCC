@@ -25,6 +25,7 @@ from local_config import (
     PDF_INDEX_RANGE,
     RETRIEVAL_EVAL,
     build_parser_kwargs,
+    require_current_model_manifest,
 )
 from retrieval_provenance import (
     PAGE_PROVENANCE,
@@ -81,6 +82,7 @@ def _prepare_probe_dir(doc_id: str, content_type: str, index: int) -> tuple[Path
         )
 
     manifest = json.loads(manifest_path.read_text(encoding="utf-8"))
+    require_current_model_manifest(manifest, "Text checkpoint")
     if (
         manifest.get("parser") != RETRIEVAL_EVAL.parser_name
         or manifest.get("chunk_token_size") != RETRIEVAL_EVAL.chunk_token_size
@@ -191,6 +193,8 @@ async def _probe_document(doc_id: str, content_type: str, index: int, list_only:
         added_chunks = chunks_after - chunks_before
         result = {
             "document": doc_id,
+            "text_llm_model": manifest["text_llm_model"],
+            "vision_llm_model": manifest["vision_llm_model"],
             "content_type": content_type,
             "index": index,
             "page_number": selected_item.get("page_number"),

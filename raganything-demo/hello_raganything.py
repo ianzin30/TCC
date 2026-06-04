@@ -29,10 +29,12 @@ import pandas as pd
 from raganything import RAGAnything
 
 from local_config import (
-    LLM,
+    EMBED,
     OLLAMA_HOST,
     PDF_INDEX_RANGE,
     PARSER_OUTPUT_DIR,
+    TEXT_LLM,
+    VISION_LLM,
     build_embedding_func,
     build_lightrag_kwargs,
     build_llm_func,
@@ -141,10 +143,14 @@ def _format_bytes(size: int | None) -> str:
 
 def _print_ollama_request() -> None:
     """Print the model request; process status later confirms GPU placement."""
+    text_gpu = TEXT_LLM.num_gpu if TEXT_LLM.num_gpu is not None else "auto"
+    vision_gpu = VISION_LLM.num_gpu if VISION_LLM.num_gpu is not None else "auto"
     print(
-        f"[ollama] requested model={LLM.name}, num_ctx={LLM.num_ctx}, "
-        f"num_gpu={LLM.num_gpu}; actual GPU placement is confirmed once "
-        "Ollama reports a loaded model.",
+        f"[ollama] TEXT_LLM={TEXT_LLM.name}, num_ctx={TEXT_LLM.num_ctx}, "
+        f"num_gpu={text_gpu}; VISION_LLM={VISION_LLM.name}, "
+        f"num_ctx={VISION_LLM.num_ctx}, num_gpu={vision_gpu}; "
+        f"EMBED={EMBED.name}, num_gpu={EMBED.num_gpu}. Actual GPU placement "
+        "is confirmed once Ollama reports a loaded model.",
         flush=True,
     )
 
