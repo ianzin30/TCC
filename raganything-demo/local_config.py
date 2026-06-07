@@ -424,7 +424,7 @@ DOCLING = DoclingParserProfile()
 #
 # Example: `(2, 5)` processes PDFs 2, 3, 4 and 5, including all of their
 # answerable questions.
-PDF_INDEX_RANGE: tuple[int, int] = (1, 5)
+PDF_INDEX_RANGE: tuple[int, int] = (1, 30)
 
 
 # ---------------------------------------------------------------------------

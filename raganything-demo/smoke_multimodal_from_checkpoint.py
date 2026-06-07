@@ -263,16 +263,22 @@ async def _process_multimodal_attempt(
         if not init_result or not init_result.get("success"):
             raise RuntimeError(f"LightRAG initialization failed: {init_result}")
 
-        content_list, content_doc_id = await rag.parse_document(
+        content_list, parsed_content_doc_id = await rag.parse_document(
             str(pdf_path),
             PARSER_OUTPUT_DIR,
             "auto",
             True,
             **build_parser_kwargs(),
         )
-        if content_doc_id != manifest["content_doc_id"]:
-            raise RuntimeError(
-                "Parsed document id differs from text checkpoint; rebuild the checkpoint."
+        content_doc_id = manifest["content_doc_id"]
+        content_doc_id_source = "parsed"
+        if parsed_content_doc_id != content_doc_id:
+            content_doc_id_source = "checkpoint_manifest"
+            print(
+                "[attempt] parsed document id differs from text checkpoint; "
+                "using checkpoint id for multimodal integration. "
+                f"parsed={parsed_content_doc_id}; checkpoint={content_doc_id}",
+                flush=True,
             )
 
         validate_content_pages(content_list)
@@ -325,6 +331,8 @@ async def _process_multimodal_attempt(
             **manifest,
             "working_dir": str(attempt_dir),
             "lightrag_workspace": build_lightrag_workspace(str(attempt_dir)),
+            "parsed_content_doc_id": parsed_content_doc_id,
+            "content_doc_id_source": content_doc_id_source,
             "multimodal_items_attempted": len(multimodal_items),
             "multimodal_chunks_added": added_chunks,
             "total_chunks": len(chunk_ids),
