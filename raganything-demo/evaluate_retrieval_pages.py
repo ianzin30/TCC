@@ -26,10 +26,14 @@ from lightrag.base import QueryParam
 from hello_raganything import _load_questions
 from local_config import (
     PDF_INDEX_RANGE,
+    RERANK_EVAL,
     RETRIEVAL_EVAL,
     build_lightrag_workspace,
     build_parser_kwargs,
+    ensure_reranker_available,
     model_manifest_fields,
+    rerank_manifest_fields,
+    rerank_model_func,
     require_current_model_manifest,
 )
 from retrieval_provenance import PAGE_PROVENANCE
@@ -42,6 +46,11 @@ from smoke_multimodal_from_checkpoint import (
 
 
 K_VALUES = (1, 3, 5, 10, 20)
+OUTPUT_STEM = (
+    f"{ATTEMPT_ARCH_NAME}-{RERANK_EVAL.output_suffix}-retrieval-pages"
+    if RERANK_EVAL.enabled
+    else f"{ATTEMPT_ARCH_NAME}-retrieval-pages"
+)
 
 
 def _mean(values: list[float]) -> float:
@@ -190,16 +199,59 @@ async def _ranked_chunks_with_pages(rag, retrieval: dict[str, Any]) -> list[dict
         pages = stored.get("page_numbers") if stored else None
         if not pages:
             raise RuntimeError(f"Retrieved chunk {chunk_id} has no page_numbers")
-        ranked_chunks.append(
-            {
-                "rank": rank,
-                "chunk_id": chunk_id,
-                "page_numbers": list(pages),
-                "content_type": stored.get("content_type", "unknown"),
-                "content_preview": chunk.get("content", "")[:180],
-            }
-        )
+        ranked_chunk = {
+            "rank": rank,
+            "chunk_id": chunk_id,
+            "page_numbers": list(pages),
+            "content_type": stored.get("content_type", "unknown"),
+            "content_preview": chunk.get("content", "")[:180],
+        }
+        if "rerank_score" in chunk:
+            ranked_chunk["rerank_score"] = float(chunk["rerank_score"])
+        if "rerank_original_rank" in chunk:
+            ranked_chunk["rerank_original_rank"] = int(chunk["rerank_original_rank"])
+        ranked_chunks.append(ranked_chunk)
     return ranked_chunks
+
+
+async def _rerank_retrieved_chunks(
+    query: str, result_chunks: list[dict[str, Any]]
+) -> tuple[list[dict[str, Any]], dict[str, Any]]:
+    rerank_metadata = {
+        **rerank_manifest_fields(),
+        "lightrag_internal_rerank_enabled": False,
+        "rerank_input_chunks": len(result_chunks),
+        "rerank_output_chunks": len(result_chunks),
+    }
+    if not RERANK_EVAL.enabled:
+        return result_chunks, rerank_metadata
+
+    documents = [chunk.get("content", "") for chunk in result_chunks]
+    rerank_results = await rerank_model_func(
+        query=query,
+        documents=documents,
+        top_n=RERANK_EVAL.top_n,
+    )
+    if not rerank_results:
+        raise RuntimeError("Reranker returned no results")
+
+    reranked_chunks: list[dict[str, Any]] = []
+    seen_indexes: set[int] = set()
+    for result in rerank_results:
+        index = int(result["index"])
+        if index < 0 or index >= len(result_chunks):
+            raise RuntimeError(f"Reranker returned out-of-range index {index}")
+        if index in seen_indexes:
+            raise RuntimeError(f"Reranker returned duplicate index {index}")
+        seen_indexes.add(index)
+
+        chunk = result_chunks[index].copy()
+        chunk["rerank_score"] = float(result["relevance_score"])
+        chunk["rerank_original_rank"] = index + 1
+        reranked_chunks.append(chunk)
+
+    rerank_metadata["rerank_output_chunks"] = len(reranked_chunks)
+    return reranked_chunks, rerank_metadata
 
 
 def _metrics_for_question(
@@ -257,6 +309,11 @@ def _ranked_pages(
                     "content_type": chunk["content_type"],
                     "chunk_id": chunk["chunk_id"],
                     "matches_evidence": page_number in evidence,
+                    **(
+                        {"first_chunk_rerank_score": chunk["rerank_score"]}
+                        if "rerank_score" in chunk
+                        else {}
+                    ),
                 }
             )
     return pages
@@ -264,7 +321,7 @@ def _ranked_pages(
 
 async def _evaluate_document(doc_id: str, group) -> list[dict[str, Any]]:
     attempt_dir, manifest = _validate_attempt(doc_id)
-    rag = _build_rag(str(attempt_dir))
+    rag = _build_rag(str(attempt_dir), enable_reranker=RERANK_EVAL.enabled)
     results: list[dict[str, Any]] = []
     try:
         initialized = await rag._ensure_lightrag_initialized()
@@ -283,10 +340,21 @@ async def _evaluate_document(doc_id: str, group) -> list[dict[str, Any]]:
             try:
                 retrieval = await rag.lightrag.aquery_data(
                     row["question"],
-                    QueryParam(mode="hybrid", enable_rerank=False),
+                    QueryParam(
+                        mode="hybrid",
+                        chunk_top_k=RERANK_EVAL.top_n,
+                        enable_rerank=False,
+                    ),
                 )
                 if retrieval.get("status") != "success":
                     raise RuntimeError(f"Retrieval did not succeed: {retrieval}")
+                result_chunks, rerank_metadata = await _rerank_retrieved_chunks(
+                    row["question"], retrieval.get("data", {}).get("chunks", [])
+                )
+                retrieval = {
+                    **retrieval,
+                    "data": {**retrieval.get("data", {}), "chunks": result_chunks},
+                }
                 ranked_chunks = await _ranked_chunks_with_pages(rag, retrieval)
                 if not ranked_chunks:
                     raise RuntimeError(
@@ -300,7 +368,10 @@ async def _evaluate_document(doc_id: str, group) -> list[dict[str, Any]]:
                     )
                 ranked_pages = _ranked_pages(ranked_chunks, evidence_pages)
                 metrics = _metrics_for_question(ranked_chunks, evidence_pages)
-                retrieval_metadata = retrieval.get("metadata", {})
+                retrieval_metadata = {
+                    **retrieval.get("metadata", {}),
+                    **rerank_metadata,
+                }
                 error = None
             except Exception as exc:
                 ranked_chunks = []
@@ -319,6 +390,7 @@ async def _evaluate_document(doc_id: str, group) -> list[dict[str, Any]]:
                     "chunk_token_size": manifest["chunk_token_size"],
                     "text_llm_model": manifest["text_llm_model"],
                     "vision_llm_model": manifest["vision_llm_model"],
+                    **rerank_manifest_fields(),
                     "document_artifacts": _document_artifacts_from_manifest(manifest),
                     "ranked_chunks": ranked_chunks,
                     "ranked_pages": ranked_pages,
@@ -421,6 +493,7 @@ def _summarize(results: list[dict[str, Any]]) -> dict[str, Any]:
     )
     summary: dict[str, Any] = {
         **model_manifest_fields(),
+        **rerank_manifest_fields(),
         "arch": ATTEMPT_ARCH_NAME,
         "pdf_index_range": list(PDF_INDEX_RANGE),
         "documents": len(document_summaries),
@@ -536,6 +609,7 @@ def _summarize(results: list[dict[str, Any]]) -> dict[str, Any]:
 
 
 async def main() -> None:
+    ensure_reranker_available()
     questions = _load_questions(PDF_INDEX_RANGE)
     results: list[dict[str, Any]] = []
     for doc_id, group in questions.groupby("doc_id", sort=False):
@@ -543,11 +617,9 @@ async def main() -> None:
 
     output_dir = Path("./smoke_results")
     output_dir.mkdir(exist_ok=True)
-    details_path = output_dir / f"{ATTEMPT_ARCH_NAME}-retrieval-pages.jsonl"
-    readable_details_path = (
-        output_dir / f"{ATTEMPT_ARCH_NAME}-retrieval-pages-readable.json"
-    )
-    summary_path = output_dir / f"{ATTEMPT_ARCH_NAME}-retrieval-pages-summary.json"
+    details_path = output_dir / f"{OUTPUT_STEM}.jsonl"
+    readable_details_path = output_dir / f"{OUTPUT_STEM}-readable.json"
+    summary_path = output_dir / f"{OUTPUT_STEM}-summary.json"
     with details_path.open("w", encoding="utf-8") as output:
         for result in results:
             output.write(json.dumps(result, ensure_ascii=False) + "\n")

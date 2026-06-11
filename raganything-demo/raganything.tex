@@ -65,7 +65,7 @@ Os valores indicam que a recuperação híbrida continua dependendo fortemente d
 \subsection{Leitura da saída de avaliação}
 \label{subsec:raganything-saida-avaliacao}
 
-O arquivo \texttt{ollama-qwen-bge-multimodal-attempt-retrieval-pages-readable.json} foi utilizado para a análise manual dos resultados. Para cada pergunta, ele registra o ranking de chunks, as páginas associadas a cada chunk, o tipo de conteúdo recuperado e as métricas calculadas. Essa saída é especialmente útil para distinguir dois casos: perguntas em que o acerto veio de texto extraído e perguntas em que o acerto dependeu de uma descrição multimodal.
+O arquivo \texttt{ollama-qwen-bge-multimodal-attempt-retrieval-pages-readable.json} foi utilizado para a análise manual dos resultados sem reranqueamento. Para cada pergunta, ele registra o ranking de chunks, as páginas associadas a cada chunk, o tipo de conteúdo recuperado e as métricas calculadas. Essa saída é especialmente útil para distinguir dois casos: perguntas em que o acerto veio de texto extraído e perguntas em que o acerto dependeu de uma descrição multimodal. Após a inclusão do reranking, a análise complementar passou a utilizar também o arquivo \texttt{ollama-qwen-bge-multimodal-attempt-reranked-retrieval-pages-readable.json}, que preserva os mesmos campos e acrescenta a pontuação \texttt{rerank\_score} atribuída ao chunk.
 
 \subsection{Resultados gerais}
 \label{subsec:raganything-resultados-gerais}
@@ -103,6 +103,45 @@ Evidence Page Recall@20 & 0,8645 \\
 \end{table}
 
 Observa-se que o maior salto de desempenho ocorre entre Hit@1 e Hit@3, sugerindo que muitas páginas corretas aparecem nas primeiras posições, ainda que nem sempre no primeiro resultado. A diferença entre Hit@20 e Recall@20 indica que, em perguntas com múltiplas páginas de evidência, o pipeline frequentemente encontra ao menos uma página correta, mas nem sempre cobre todas as páginas esperadas.
+
+\subsection{Efeito do reranking}
+\label{subsec:raganything-reranking}
+
+Além da configuração base, foi avaliada uma etapa de reranking posterior à recuperação inicial. Nessa variação, o LightRAG continuou responsável por recuperar os chunks candidatos, mas os 20 primeiros chunks foram reordenados por um modelo especializado de relevância, o \texttt{BAAI/bge-reranker-v2-m3}, mesmo reranker indicado na configuração experimental original do RAG-Anything. Essa etapa não exigiu reconstrução do índice, nova execução do Docling ou novo processamento multimodal; ela altera apenas a ordem final dos chunks considerados pela avaliação.
+
+\begin{table}[htbp]
+\centering
+\caption{Comparação do RAG-Anything com e sem reranking.}
+\label{tab:raganything-reranking}
+\small
+\begin{tabular}{p{5.2cm}r r r}
+\toprule
+\textbf{Métrica} & \textbf{Sem reranking} & \textbf{Com reranking} & \textbf{Variação} \\
+\midrule
+MRR & 0,6793 & 0,6982 & +0,0190 \\
+First Hit Rank médio & 2,4013 & 2,2930 & -0,1083 \\
+\addlinespace
+Hit@1 & 0,5698 & 0,6047 & +0,0349 \\
+Hit@3 & 0,7674 & 0,7616 & -0,0058 \\
+Hit@5 & 0,8140 & 0,8256 & +0,0116 \\
+Hit@10 & 0,8779 & 0,8837 & +0,0058 \\
+Hit@20 & 0,9128 & 0,9128 & 0,0000 \\
+\addlinespace
+Evidence Page Recall@1 & 0,4590 & 0,4917 & +0,0328 \\
+Evidence Page Recall@3 & 0,6544 & 0,6554 & +0,0011 \\
+Evidence Page Recall@5 & 0,7147 & 0,7182 & +0,0035 \\
+Evidence Page Recall@10 & 0,7946 & 0,8140 & +0,0194 \\
+Evidence Page Recall@20 & 0,8645 & 0,8645 & 0,0000 \\
+\addlinespace
+Tempo total de consulta & 192,37 s & 6.874,10 s & +6.681,73 s \\
+Tempo médio por pergunta & 1,12 s & 39,97 s & +38,85 s \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+O reranking melhorou principalmente a precisão no topo do ranking. O Hit@1 subiu de 0,5698 para 0,6047, enquanto o MRR passou de 0,6793 para 0,6982. A cobertura em profundidade, por outro lado, permaneceu praticamente inalterada: Hit@20 e Evidence Page Recall@20 ficaram iguais, pois o reranker apenas reordena os candidatos já recuperados, sem introduzir novas páginas no conjunto de 20 resultados. Em nível de pergunta, 40 casos tiveram o primeiro acerto antecipado, 32 foram rebaixados e 100 permaneceram com o mesmo primeiro acerto.
+
+Essa diferença mostra que o reranking é mais útil como mecanismo de refinamento do ranking do que como solução para falhas de cobertura. Quando a página correta já está entre os candidatos, o reranker pode promovê-la para posições mais altas; quando ela não foi recuperada inicialmente, o reranking não consegue corrigir a ausência. O custo computacional também aumenta substancialmente, já que cada pergunta passa a exigir a comparação entre a consulta e os chunks candidatos por um modelo adicional.
 
 \subsection{Tempo de processamento}
 \label{subsec:raganything-tempo-processamento}
@@ -368,5 +407,7 @@ Também foram observadas inconsistências de anotação do benchmark. Em alguns 
 A avaliação mostra que o RAG-Anything ocupa uma posição intermediária entre o baseline textual e os modelos ColVision. Em relação ao pipeline textual, a arquitetura híbrida amplia a cobertura de evidências ao adicionar chunks derivados de imagens e tabelas, o que melhora principalmente perguntas dependentes de gráficos, mapas e diagramas. Por outro lado, esse ganho vem acompanhado de um custo computacional muito maior, especialmente durante a construção do índice.
 
 Comparado aos modelos ColVision, o RAG-Anything mantém uma estrutura mais interpretável no nível de chunk, pois permite inspecionar se o resultado veio de texto, imagem, tabela ou equação. Essa característica facilita a análise qualitativa dos acertos e das falhas. Entretanto, a recuperação ainda depende da qualidade das descrições geradas pelos modelos locais e da forma como esses chunks são integrados ao LightRAG.
+
+O reranking reforça essa leitura. Ao aplicar o \texttt{BAAI/bge-reranker-v2-m3} sobre os chunks candidatos recuperados pelo RAG-Anything, houve melhora moderada nas métricas de topo, especialmente em MRR e Hit@1, mas sem alteração em Hit@20. Isso indica que parte dos erros estava na ordenação dos candidatos e não necessariamente na ausência da página correta entre os resultados recuperados. Por outro lado, o custo temporal aumentou de forma expressiva, pois cada pergunta passou a exigir a reavaliação dos pares pergunta--chunk por um segundo modelo. Assim, o reranking é útil quando a prioridade é melhorar as primeiras posições do ranking, mas deve ser ponderado em cenários nos quais latência e throughput são relevantes.
 
 Portanto, o pipeline híbrido oferece uma vantagem clara sobre a recuperação puramente textual em perguntas multimodais, mas não elimina todos os problemas associados à interpretação visual. Seus resultados devem ser analisados considerando três fatores principais: a qualidade do parser, a qualidade das descrições multimodais e o custo elevado de processamento para construir o índice híbrido.

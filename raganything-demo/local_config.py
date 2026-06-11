@@ -27,7 +27,7 @@ Local replacements used here:
   Text LLM ................. qwen2.5:7b
   Vision LLM ............... qwen2.5vl:7b
   Embedding ................ bge-m3:latest  (1024-dim, NOT 3072-dim)
-  Reranker ................. (not wired; stub at bottom of file)
+  Reranker ................. bge-reranker-v2-m3  (evaluation only)
   Parser ................... docling
 
 Deviations worth noting:
@@ -361,6 +361,21 @@ class RetrievalEvaluationProfile:
 RETRIEVAL_EVAL = RetrievalEvaluationProfile()
 
 
+@dataclass(frozen=True)
+class RerankEvaluationProfile:
+    """Reranker used only when evaluating retrieval results."""
+
+    enabled: bool = True
+    model_name: str = "BAAI/bge-reranker-v2-m3"
+    top_n: int = 20
+    min_score: float = 0.0
+    use_fp16: bool | None = None
+    output_suffix: str = "reranked"
+
+
+RERANK_EVAL = RerankEvaluationProfile()
+
+
 # ---------------------------------------------------------------------------
 # Docling parser memory knobs
 # ---------------------------------------------------------------------------
@@ -424,7 +439,7 @@ DOCLING = DoclingParserProfile()
 #
 # Example: `(2, 5)` processes PDFs 2, 3, 4 and 5, including all of their
 # answerable questions.
-PDF_INDEX_RANGE: tuple[int, int] = (29, 29)
+PDF_INDEX_RANGE: tuple[int, int] = (1, 30)
 
 
 # ---------------------------------------------------------------------------
@@ -1227,7 +1242,10 @@ def build_lightrag_workspace(working_dir: str) -> str:
 
 
 def build_lightrag_kwargs(
-    *, chunk_token_size: int | None = None, workspace: str | None = None
+    *,
+    chunk_token_size: int | None = None,
+    workspace: str | None = None,
+    enable_reranker: bool = False,
 ) -> dict[str, Any]:
     """LightRAG init kwargs that carry the paper's token limits + batch knobs."""
     kwargs = {
@@ -1246,24 +1264,122 @@ def build_lightrag_kwargs(
         # EXTRACTION_QUALITY.attempt_timeout_s and converted into retries.
         "default_llm_timeout": RUNTIME.default_llm_timeout_s,
     }
+    if enable_reranker:
+        kwargs.update(
+            {
+                "rerank_model_func": rerank_model_func,
+                "min_rerank_score": RERANK_EVAL.min_score,
+            }
+        )
     if workspace:
         kwargs["workspace"] = workspace
     return kwargs
 
 
 # ---------------------------------------------------------------------------
-# Reranker stub (paper used bge-reranker-v2-m3; see ablation Table 4)
+# Reranker (paper used bge-reranker-v2-m3; see ablation Table 4)
 # ---------------------------------------------------------------------------
-# When you want to add the reranker, wire something like:
-#
-#   from FlagEmbedding import FlagReranker
-#   _reranker = FlagReranker("BAAI/bge-reranker-v2-m3", use_fp16=True)
-#
-#   async def rerank_model_func(query, documents, top_n=None, **_):
-#       pairs = [[query, d["content"]] for d in documents]
-#       scores = _reranker.compute_score(pairs, normalize=True)
-#       ranked = sorted(zip(documents, scores), key=lambda x: -x[1])
-#       if top_n: ranked = ranked[:top_n]
-#       return [{**d, "rerank_score": s} for d, s in ranked]
-#
-# then add `"rerank_model_func": rerank_model_func` to build_lightrag_kwargs().
+
+_RERANKER: Any | None = None
+
+
+def rerank_manifest_fields() -> dict[str, Any]:
+    """Return reranking metadata persisted with evaluation outputs."""
+    return {
+        "rerank_enabled": RERANK_EVAL.enabled,
+        "rerank_model": RERANK_EVAL.model_name if RERANK_EVAL.enabled else None,
+        "rerank_top_n": RERANK_EVAL.top_n if RERANK_EVAL.enabled else None,
+        "rerank_min_score": RERANK_EVAL.min_score,
+        "rerank_stage": "post_retrieval_chunk_rerank",
+    }
+
+
+def _reranker_use_fp16() -> bool:
+    if RERANK_EVAL.use_fp16 is not None:
+        return RERANK_EVAL.use_fp16
+    try:
+        import torch
+
+        return bool(torch.cuda.is_available())
+    except Exception:
+        return False
+
+
+def _get_reranker():
+    """Lazy-load the reranker only for reranked evaluation runs."""
+    global _RERANKER
+    if _RERANKER is not None:
+        return _RERANKER
+
+    try:
+        from FlagEmbedding import FlagReranker
+    except Exception as exc:
+        raise RuntimeError(
+            "Reranking requires FlagEmbedding. Install it with "
+            "`uv add FlagEmbedding` from raganything-demo, then rerun the eval."
+        ) from exc
+
+    try:
+        _RERANKER = FlagReranker(
+            RERANK_EVAL.model_name,
+            use_fp16=_reranker_use_fp16(),
+            normalize=True,
+        )
+    except Exception as exc:
+        raise RuntimeError(
+            f"Failed to load reranker model {RERANK_EVAL.model_name!r}. "
+            "Check Hugging Face access, disk space, and available CPU/GPU memory."
+        ) from exc
+    return _RERANKER
+
+
+def ensure_reranker_available() -> None:
+    """Fail early when a reranked eval cannot actually load its reranker."""
+    if RERANK_EVAL.enabled:
+        _get_reranker()
+
+
+def _normalize_rerank_scores(scores: Any, expected_count: int) -> list[float]:
+    if hasattr(scores, "tolist"):
+        scores = scores.tolist()
+    if isinstance(scores, (int, float)):
+        scores = [scores]
+    if not isinstance(scores, list):
+        scores = list(scores)
+    if len(scores) != expected_count:
+        raise RuntimeError(
+            f"Reranker returned {len(scores)} score(s) for "
+            f"{expected_count} document(s)."
+        )
+    return [float(score) for score in scores]
+
+
+async def rerank_model_func(
+    query: str, documents: list[str], top_n: int | None = None, **_
+) -> list[dict[str, Any]]:
+    """Return LightRAG-compatible index-based rerank results."""
+    if not documents:
+        return []
+
+    reranker = _get_reranker()
+    pairs = [
+        (query, document if document and document.strip() else " ")
+        for document in documents
+    ]
+    scores = await asyncio.to_thread(
+        reranker.compute_score,
+        pairs,
+        normalize=True,
+    )
+    normalized_scores = _normalize_rerank_scores(scores, len(documents))
+    ranked = sorted(
+        (
+            {"index": index, "relevance_score": score}
+            for index, score in enumerate(normalized_scores)
+        ),
+        key=lambda item: item["relevance_score"],
+        reverse=True,
+    )
+    if top_n is not None:
+        ranked = ranked[:top_n]
+    return ranked

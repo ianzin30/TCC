@@ -60,7 +60,7 @@ def _attempt_working_dir(doc_id: str) -> Path:
     return Path(f"./rag_storage/{ATTEMPT_ARCH_NAME}/{Path(doc_id).stem}")
 
 
-def _build_rag(working_dir: str) -> RAGAnything:
+def _build_rag(working_dir: str, *, enable_reranker: bool = False) -> RAGAnything:
     register_docling_provenance_parser()
     workspace = build_lightrag_workspace(working_dir)
     return RAGAnything(
@@ -73,6 +73,7 @@ def _build_rag(working_dir: str) -> RAGAnything:
         lightrag_kwargs=build_lightrag_kwargs(
             chunk_token_size=RETRIEVAL_EVAL.chunk_token_size,
             workspace=workspace,
+            enable_reranker=enable_reranker,
         ),
     )
 

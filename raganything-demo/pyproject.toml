@@ -4,6 +4,7 @@ version = "0.1.0"
 requires-python = ">=3.11,<3.12"
 dependencies = [
     "docling>=2.95.0",
+    "flagembedding>=1.4.0",
     "huggingface-hub[hf-xet]>=0.36.2",
     "lightrag-hku>=1.4.16",
     "mineru>=3.1.15",
