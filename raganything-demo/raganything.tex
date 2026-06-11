@@ -1,0 +1,372 @@
+\section{Resultados da recuperação híbrida com RAG-Anything}
+\label{sec:resultados-raganything}
+
+Esta seção apresenta a avaliação empírica do pipeline híbrido baseado em RAG-Anything. Como a arquitetura, as adaptações locais e as métricas já foram discutidas na metodologia, a análise a seguir concentra-se nos artefatos produzidos, no custo de execução e na qualidade da recuperação por página.
+
+\subsection{Escopo da avaliação}
+\label{subsec:raganything-visao-geral}
+
+O experimento avaliou os 30 primeiros PDFs do MMLongBench-Doc, totalizando 172 perguntas respondíveis. A unidade retornada pelo RAG-Anything é um chunk armazenado no LightRAG, que pode ter origem textual ou multimodal; para manter a comparação com as demais arquiteturas, cada chunk recuperado foi mapeado para sua página de origem e comparado com o campo \texttt{evidence\_pages}.
+
+As métricas seguem a mesma definição utilizada nas demais estratégias: Hit@k indica se ao menos uma página correta aparece até a posição $k$ do ranking de chunks, Evidence Page Recall@k mede a cobertura das páginas de evidência e MRR avalia a posição do primeiro acerto. Assim, a diferença central desta seção não está na métrica, mas na composição do ranking, que pode conter chunks derivados de texto, imagens, tabelas e equações.
+
+\subsection{Artefatos gerados}
+\label{subsec:raganything-artefatos}
+
+A execução completa produziu um índice híbrido com 5.240 chunks, dos quais 2.702 vieram da etapa textual e 2.538 foram adicionados a partir de itens multimodais. Esses valores são apresentados como resultado experimental porque indicam o volume efetivamente disponibilizado ao mecanismo de recuperação, e não apenas a configuração planejada do pipeline.
+
+\begin{table}[htbp]
+\centering
+\caption{Resumo dos artefatos gerados pelo RAG-Anything.}
+\label{tab:artefatos-raganything}
+\small
+\begin{tabular}{p{7.4cm}r}
+\toprule
+\textbf{Artefato} & \textbf{Quantidade} \\
+\midrule
+Caracteres textuais extraídos & 1.657.860 \\
+Chunks textuais & 2.702 \\
+Itens multimodais identificados & 2.538 \\
+Itens multimodais processados & 2.538 \\
+Chunks multimodais adicionados & 2.538 \\
+Total de chunks no índice híbrido & 5.240 \\
+Ocorrências de problemas de parsing Docling & 2 \\
+Saídas textuais inválidas após validação & 0 \\
+Chunks completos sem relações extraídas & 14 \\
+Chunks completos sem entidades extraídas & 0 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\subsection{Composição dos chunks recuperados}
+\label{subsec:raganything-tipos-conteudo}
+
+Diferentemente do baseline textual, o arquivo de avaliação do RAG-Anything permite observar a modalidade de origem de cada chunk ranqueado. A Tabela~\ref{tab:tipos-conteudo-raganything} resume a distribuição dos tipos de conteúdo entre os chunks recuperados e entre aqueles associados a alguma página de evidência.
+
+\begin{table}[htbp]
+\centering
+\caption{Tipos de conteúdo presentes nos chunks recuperados pelo RAG-Anything.}
+\label{tab:tipos-conteudo-raganything}
+\small
+\begin{tabular}{l r r}
+\toprule
+\textbf{Tipo de conteúdo} & \textbf{Chunks recuperados} & \textbf{Chunks em páginas de evidência} \\
+\midrule
+Texto & 1.808 & 449 \\
+Imagem & 1.285 & 216 \\
+Tabela & 311 & 54 \\
+Equação & 11 & 3 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+Os valores indicam que a recuperação híbrida continua dependendo fortemente de texto, mas uma parcela relevante dos acertos passa por chunks de imagem e tabela. Isso reforça a utilidade da etapa multimodal para perguntas cuja evidência está codificada em gráficos, mapas, diagramas ou tabelas, sem repetir aqui os detalhes de construção dessa representação.
+
+\subsection{Leitura da saída de avaliação}
+\label{subsec:raganything-saida-avaliacao}
+
+O arquivo \texttt{ollama-qwen-bge-multimodal-attempt-retrieval-pages-readable.json} foi utilizado para a análise manual dos resultados. Para cada pergunta, ele registra o ranking de chunks, as páginas associadas a cada chunk, o tipo de conteúdo recuperado e as métricas calculadas. Essa saída é especialmente útil para distinguir dois casos: perguntas em que o acerto veio de texto extraído e perguntas em que o acerto dependeu de uma descrição multimodal.
+
+\subsection{Resultados gerais}
+\label{subsec:raganything-resultados-gerais}
+
+No experimento completo foram avaliados 30 PDFs e 172 perguntas respondíveis do MMLongBench-Doc, sem falhas de execução. O pipeline alcançou MRR geral de 0,6793 e Hit@20 de 0,9128, indicando que em aproximadamente 91,28\% das perguntas pelo menos uma página de evidência foi recuperada entre os 20 primeiros chunks.
+
+\begin{table}[htbp]
+\centering
+\caption{Resultados globais do pipeline RAG-Anything.}
+\label{tab:resultados-gerais-raganything}
+\small
+\begin{tabular}{p{6.6cm}r}
+\toprule
+\textbf{Métrica} & \textbf{Valor} \\
+\midrule
+PDFs avaliados & 30 \\
+Perguntas avaliadas & 172 \\
+Falhas de execução & 0 \\
+First Hit Rank médio & 2,4013 \\
+MRR & 0,6793 \\
+\addlinespace
+Hit@1 & 0,5698 \\
+Hit@3 & 0,7674 \\
+Hit@5 & 0,8140 \\
+Hit@10 & 0,8779 \\
+Hit@20 & 0,9128 \\
+\addlinespace
+Evidence Page Recall@1 & 0,4590 \\
+Evidence Page Recall@3 & 0,6544 \\
+Evidence Page Recall@5 & 0,7147 \\
+Evidence Page Recall@10 & 0,7946 \\
+Evidence Page Recall@20 & 0,8645 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+Observa-se que o maior salto de desempenho ocorre entre Hit@1 e Hit@3, sugerindo que muitas páginas corretas aparecem nas primeiras posições, ainda que nem sempre no primeiro resultado. A diferença entre Hit@20 e Recall@20 indica que, em perguntas com múltiplas páginas de evidência, o pipeline frequentemente encontra ao menos uma página correta, mas nem sempre cobre todas as páginas esperadas.
+
+\subsection{Tempo de processamento}
+\label{subsec:raganything-tempo-processamento}
+
+O tempo de processamento do RAG-Anything deve ser analisado separadamente para a etapa textual, a etapa multimodal e a etapa de retrieval, pois cada uma representa um custo computacional distinto. Diferentemente do baseline textual, esta arquitetura exige chamadas adicionais ao modelo textual para extração de entidades e relações, além de chamadas ao modelo visual para interpretação dos itens multimodais.
+
+\begin{table}[htbp]
+\centering
+\caption{Tempo de processamento do pipeline RAG-Anything.}
+\label{tab:tempo-raganything}
+\small
+\begin{tabular}{p{7.6cm}p{4.8cm}}
+\toprule
+\textbf{Etapa ou métrica} & \textbf{Valor} \\
+\midrule
+Processamento textual total (segundos) & 100.689,10 s \\
+Processamento textual total (formatado) & 27h 58min 09s \\
+\addlinespace
+Processamento multimodal total (segundos) & 105.952,04 s \\
+Processamento multimodal total (formatado) & 29h 25min 52s \\
+\addlinespace
+Processamento total do índice híbrido (segundos) & 206.641,14 s \\
+Processamento total do índice híbrido (formatado) & 57h 24min 01s \\
+\addlinespace
+Retrieval das perguntas (segundos) & 192,37 s \\
+Retrieval das perguntas (formatado) & 3min 12s \\
+\addlinespace
+Tempo total incluindo retrieval (segundos) & 206.833,51 s \\
+Tempo total incluindo retrieval (formatado) & 57h 27min 13s \\
+\addlinespace
+Média de processamento por PDF (segundos) & 6.888,04 s \\
+Média de processamento por PDF (formatado) & 1h 54min 48s \\
+Média de retrieval por pergunta & 1,12 s \\
+Mediana de retrieval por pergunta & 0,68 s \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+Os resultados mostram que o custo dominante está nas etapas de construção do índice, e não na consulta. A etapa textual e a etapa multimodal tiveram custos totais semelhantes, ambas próximas de 28 a 29 horas, enquanto a etapa de retrieval para as 172 perguntas levou pouco mais de três minutos.
+
+\subsection{Resultados por PDF}
+\label{subsec:raganything-resultados-pdf}
+
+A análise por PDF permite observar como a arquitetura híbrida se comporta em documentos com diferentes quantidades de texto, imagens, tabelas, páginas e perguntas avaliadas. Nas tabelas a seguir, Qs indica a quantidade de perguntas associadas ao PDF, enquanto Falhas representa perguntas que não puderam ser avaliadas. A coluna FHM representa o First Hit Rank médio entre as perguntas em que houve ao menos um acerto.
+
+\begin{table}[htbp]
+\centering
+\caption{Resultados por PDF: FHM e Hit@k do pipeline RAG-Anything.}
+\label{tab:resultados-raganything-hit-pdf}
+\scriptsize
+\resizebox{\textwidth}{!}{
+\begin{tabular}{r r r r r r r r r}
+\toprule
+\textbf{PDF} & \textbf{Qs} & \textbf{Falhas} & \textbf{FHM} & \textbf{H@1} & \textbf{H@3} & \textbf{H@5} & \textbf{H@10} & \textbf{H@20} \\
+\midrule
+01 & 7 & 0 & 1.5714 & 0.7143 & 0.8571 & 1.0000 & 1.0000 & 1.0000 \\
+02 & 4 & 0 & 2.7500 & 0.7500 & 0.7500 & 0.7500 & 1.0000 & 1.0000 \\
+03 & 7 & 0 & 1.4286 & 0.8571 & 0.8571 & 1.0000 & 1.0000 & 1.0000 \\
+04 & 7 & 0 & 2.5714 & 0.4286 & 0.7143 & 0.8571 & 1.0000 & 1.0000 \\
+05 & 6 & 0 & 4.2500 & 0.1667 & 0.5000 & 0.5000 & 0.6667 & 0.6667 \\
+06 & 7 & 0 & 1.1667 & 0.7143 & 0.8571 & 0.8571 & 0.8571 & 0.8571 \\
+07 & 7 & 0 & 1.1429 & 0.8571 & 1.0000 & 1.0000 & 1.0000 & 1.0000 \\
+08 & 8 & 0 & 1.5000 & 0.7500 & 1.0000 & 1.0000 & 1.0000 & 1.0000 \\
+09 & 6 & 0 & 1.1667 & 0.8333 & 1.0000 & 1.0000 & 1.0000 & 1.0000 \\
+10 & 6 & 0 & 2.0000 & 0.1667 & 0.8333 & 0.8333 & 0.8333 & 0.8333 \\
+11 & 6 & 0 & 3.5000 & 0.5000 & 0.6667 & 0.6667 & 1.0000 & 1.0000 \\
+12 & 5 & 0 & 5.0000 & 0.4000 & 0.6000 & 0.8000 & 0.8000 & 1.0000 \\
+13 & 4 & 0 & 4.2500 & 0.2500 & 0.5000 & 0.5000 & 1.0000 & 1.0000 \\
+14 & 4 & 0 & 1.5000 & 0.7500 & 1.0000 & 1.0000 & 1.0000 & 1.0000 \\
+15 & 5 & 0 & 1.0000 & 1.0000 & 1.0000 & 1.0000 & 1.0000 & 1.0000 \\
+16 & 5 & 0 & 1.7500 & 0.6000 & 0.6000 & 0.8000 & 0.8000 & 0.8000 \\
+17 & 5 & 0 & 1.4000 & 0.8000 & 1.0000 & 1.0000 & 1.0000 & 1.0000 \\
+18 & 6 & 0 & 1.3333 & 0.8333 & 1.0000 & 1.0000 & 1.0000 & 1.0000 \\
+19 & 4 & 0 & 2.7500 & 0.2500 & 0.7500 & 0.7500 & 1.0000 & 1.0000 \\
+20 & 4 & 0 & 2.2500 & 0.5000 & 0.7500 & 1.0000 & 1.0000 & 1.0000 \\
+21 & 6 & 0 & 1.2000 & 0.6667 & 0.8333 & 0.8333 & 0.8333 & 0.8333 \\
+22 & 4 & 0 & 1.5000 & 0.2500 & 0.5000 & 0.5000 & 0.5000 & 0.5000 \\
+23 & 5 & 0 & 1.0000 & 0.6000 & 0.6000 & 0.6000 & 0.6000 & 0.6000 \\
+24 & 4 & 0 & 4.3333 & 0.5000 & 0.5000 & 0.5000 & 0.5000 & 0.7500 \\
+25 & 7 & 0 & 1.3333 & 0.5714 & 0.8571 & 0.8571 & 0.8571 & 0.8571 \\
+26 & 6 & 0 & 1.8333 & 0.8333 & 0.8333 & 0.8333 & 1.0000 & 1.0000 \\
+27 & 11 & 0 & 6.4000 & 0.0909 & 0.4545 & 0.5455 & 0.6364 & 0.9091 \\
+28 & 5 & 0 & 3.2500 & 0.4000 & 0.4000 & 0.6000 & 0.8000 & 0.8000 \\
+29 & 5 & 0 & 1.2500 & 0.6000 & 0.8000 & 0.8000 & 0.8000 & 0.8000 \\
+30 & 6 & 0 & 4.0000 & 0.5000 & 0.8333 & 0.8333 & 0.8333 & 1.0000 \\
+\bottomrule
+\end{tabular}
+}
+\end{table}
+
+\begin{table}[htbp]
+\centering
+\caption{Resultados por PDF: MRR e Evidence Page Recall@k do pipeline RAG-Anything.}
+\label{tab:resultados-raganything-recall-pdf}
+\scriptsize
+\resizebox{\textwidth}{!}{
+\begin{tabular}{r r r r r r r r r}
+\toprule
+\textbf{PDF} & \textbf{Qs} & \textbf{Falhas} & \textbf{MRR} & \textbf{R@1} & \textbf{R@3} & \textbf{R@5} & \textbf{R@10} & \textbf{R@20} \\
+\midrule
+01 & 7 & 0 & 0.8214 & 0.5476 & 0.6429 & 0.8571 & 0.9524 & 1.0000 \\
+02 & 4 & 0 & 0.7812 & 0.2857 & 0.6071 & 0.6429 & 0.8036 & 1.0000 \\
+03 & 7 & 0 & 0.8929 & 0.8571 & 0.8571 & 1.0000 & 1.0000 & 1.0000 \\
+04 & 7 & 0 & 0.6276 & 0.4286 & 0.6071 & 0.6393 & 0.8357 & 0.8857 \\
+05 & 6 & 0 & 0.2944 & 0.1667 & 0.5000 & 0.5000 & 0.5556 & 0.5556 \\
+06 & 7 & 0 & 0.7857 & 0.4538 & 0.6363 & 0.6758 & 0.7121 & 0.7956 \\
+07 & 7 & 0 & 0.9286 & 0.5536 & 0.8929 & 0.9286 & 0.9464 & 0.9643 \\
+08 & 8 & 0 & 0.8333 & 0.6250 & 0.8750 & 0.9375 & 1.0000 & 1.0000 \\
+09 & 6 & 0 & 0.9167 & 0.6667 & 0.8333 & 0.8333 & 1.0000 & 1.0000 \\
+10 & 6 & 0 & 0.4722 & 0.1111 & 0.6944 & 0.7778 & 0.7778 & 0.8333 \\
+11 & 6 & 0 & 0.6019 & 0.5000 & 0.6667 & 0.6667 & 0.8333 & 0.9167 \\
+12 & 5 & 0 & 0.5200 & 0.2667 & 0.5000 & 0.7000 & 0.7000 & 0.9000 \\
+13 & 4 & 0 & 0.4479 & 0.2500 & 0.5000 & 0.5000 & 1.0000 & 1.0000 \\
+14 & 4 & 0 & 0.8333 & 0.7500 & 1.0000 & 1.0000 & 1.0000 & 1.0000 \\
+15 & 5 & 0 & 1.0000 & 0.7667 & 0.8667 & 0.8667 & 0.8667 & 0.8667 \\
+16 & 5 & 0 & 0.6500 & 0.4500 & 0.5500 & 0.7500 & 0.7500 & 0.7500 \\
+17 & 5 & 0 & 0.8667 & 0.4667 & 0.5667 & 0.6000 & 0.7000 & 0.8000 \\
+18 & 6 & 0 & 0.8889 & 0.6250 & 0.7500 & 0.8333 & 0.9583 & 1.0000 \\
+19 & 4 & 0 & 0.5417 & 0.2500 & 0.7500 & 0.7500 & 1.0000 & 1.0000 \\
+20 & 4 & 0 & 0.6750 & 0.3750 & 0.7500 & 0.7857 & 0.9286 & 1.0000 \\
+21 & 6 & 0 & 0.7500 & 0.5278 & 0.6389 & 0.6667 & 0.6944 & 0.8333 \\
+22 & 4 & 0 & 0.3750 & 0.2500 & 0.5000 & 0.5000 & 0.5000 & 0.5000 \\
+23 & 5 & 0 & 0.6000 & 0.4500 & 0.5500 & 0.5500 & 0.5500 & 0.6000 \\
+24 & 4 & 0 & 0.5227 & 0.5000 & 0.5000 & 0.5000 & 0.5000 & 0.7500 \\
+25 & 7 & 0 & 0.7143 & 0.5714 & 0.7619 & 0.7619 & 0.8095 & 0.8571 \\
+26 & 6 & 0 & 0.8611 & 0.7500 & 0.7500 & 0.7500 & 0.7833 & 0.8500 \\
+27 & 11 & 0 & 0.2954 & 0.0909 & 0.3485 & 0.4697 & 0.5606 & 0.7727 \\
+28 & 5 & 0 & 0.4733 & 0.3000 & 0.3000 & 0.4000 & 0.6000 & 0.7000 \\
+29 & 5 & 0 & 0.7000 & 0.5000 & 0.6333 & 0.8000 & 0.8000 & 0.8000 \\
+30 & 6 & 0 & 0.6765 & 0.3889 & 0.6111 & 0.6667 & 0.7222 & 0.9444 \\
+\bottomrule
+\end{tabular}
+}
+\end{table}
+
+\begin{table}[htbp]
+\centering
+\caption{Tempo e volume de chunks por PDF no pipeline RAG-Anything.}
+\label{tab:tempo-raganything-pdf}
+\scriptsize
+\resizebox{\textwidth}{!}{
+\begin{tabular}{r r r r r r r r r}
+\toprule
+\textbf{PDF} & \textbf{Qs} & \textbf{Txt.} & \textbf{MM} & \textbf{Total} & \textbf{Textual (s)} & \textbf{MM (s)} & \textbf{Proc. total (s)} & \textbf{Retrieval (s)} \\
+\midrule
+01 & 7 & 60 & 15 & 75 & 1288.81 & 854.33 & 2143.14 & 7.13 \\
+02 & 4 & 36 & 15 & 51 & 607.93 & 955.40 & 1563.33 & 2.60 \\
+03 & 7 & 18 & 16 & 34 & 788.03 & 763.56 & 1551.59 & 4.22 \\
+04 & 7 & 74 & 13 & 87 & 2957.73 & 712.08 & 3669.81 & 4.20 \\
+05 & 6 & 206 & 113 & 319 & 10735.23 & 5290.52 & 16025.75 & 3.81 \\
+06 & 7 & 39 & 50 & 89 & 2157.77 & 2317.49 & 4475.26 & 4.51 \\
+07 & 7 & 20 & 58 & 78 & 1989.41 & 2299.40 & 4288.81 & 4.41 \\
+08 & 8 & 21 & 165 & 186 & 915.20 & 6028.03 & 6943.23 & 5.35 \\
+09 & 6 & 119 & 12 & 131 & 2868.25 & 532.19 & 3400.44 & 3.87 \\
+10 & 6 & 115 & 28 & 143 & 3453.20 & 1134.58 & 4587.78 & 4.00 \\
+11 & 6 & 174 & 10 & 184 & 7292.57 & 634.60 & 7927.17 & 3.83 \\
+12 & 5 & 99 & 48 & 147 & 1997.73 & 1634.60 & 3632.33 & 3.26 \\
+13 & 4 & 89 & 155 & 244 & 2082.67 & 5542.82 & 7625.49 & 2.53 \\
+14 & 4 & 49 & 39 & 88 & 918.08 & 1391.38 & 2309.46 & 2.59 \\
+15 & 5 & 88 & 322 & 410 & 2985.39 & 11655.53 & 14640.92 & 3.29 \\
+16 & 5 & 205 & 580 & 785 & 7369.83 & 21396.37 & 28766.20 & 3.59 \\
+17 & 5 & 109 & 36 & 145 & 2785.93 & 2075.46 & 4861.39 & 3.74 \\
+18 & 6 & 50 & 21 & 71 & 968.37 & 1158.77 & 2127.14 & 4.28 \\
+19 & 4 & 55 & 25 & 80 & 1516.62 & 955.82 & 2472.44 & 2.52 \\
+20 & 4 & 56 & 19 & 75 & 1500.55 & 555.49 & 2056.04 & 2.64 \\
+21 & 6 & 75 & 20 & 95 & 3986.82 & 870.35 & 4857.17 & 16.97 \\
+22 & 4 & 57 & 52 & 109 & 2644.68 & 1855.37 & 4500.05 & 6.84 \\
+23 & 5 & 13 & 35 & 48 & 1364.56 & 1230.82 & 2595.38 & 9.07 \\
+24 & 4 & 5 & 20 & 25 & 254.48 & 651.83 & 906.31 & 6.79 \\
+25 & 7 & 39 & 69 & 108 & 2088.80 & 3711.65 & 5800.45 & 12.52 \\
+26 & 6 & 47 & 201 & 248 & 5392.60 & 8688.87 & 14081.47 & 12.06 \\
+27 & 11 & 400 & 207 & 607 & 13669.75 & 9878.22 & 23547.97 & 20.88 \\
+28 & 5 & 154 & 31 & 185 & 5839.60 & 2013.36 & 7852.96 & 9.77 \\
+29 & 5 & 140 & 99 & 239 & 6076.09 & 4196.00 & 10272.09 & 9.88 \\
+30 & 6 & 90 & 64 & 154 & 2192.42 & 4967.15 & 7159.57 & 11.22 \\
+\bottomrule
+\end{tabular}
+}
+\end{table}
+
+\subsection{Análise dos casos de sucesso}
+\label{subsec:raganything-casos-sucesso}
+
+Os casos de sucesso mais relevantes são aqueles em que o baseline textual não encontrou a página correta entre os 20 primeiros chunks, mas o RAG-Anything conseguiu recuperar a evidência. Ao cruzar os resultados dos dois pipelines, foram identificadas 25 perguntas nessa condição, muitas delas associadas a gráficos, mapas, diagramas e tabelas.
+
+\begin{table}[htbp]
+\centering
+\caption{Exemplos de perguntas em que o RAG-Anything recuperou evidências não encontradas pelo baseline textual.}
+\label{tab:sucessos-raganything}
+\scriptsize
+\resizebox{\textwidth}{!}{
+\begin{tabular}{r p{7.0cm} p{2.2cm} p{2.6cm} p{2.7cm}}
+\toprule
+\textbf{PDF} & \textbf{Pergunta resumida} & \textbf{Evidência} & \textbf{Textual} & \textbf{RAG-Anything} \\
+\midrule
+03 & Tempo gasto com família e amigos em 2010 em um gráfico. & Página 14 & Sem H@20 & Rank 1, imagem \\
+03 & Faixa representada pela cor vermelha em um mapa/gráfico. & Página 10 & Sem H@20 & Rank 1, imagem \\
+06 & Comparação entre índice de IPOs da Europa e dos Estados Unidos. & Página 11 & Sem H@20 & Rank 1, imagem \\
+07 & Elemento intermediário no fluxograma ``Analytics Value Chain''. & Página 13 & Sem H@20 & Rank 2, imagem \\
+25 & Cor de Kailali no mapa da página 12. & Página 12 & Sem H@20 & Rank 1, imagem \\
+27 & Quantidade de casos de Economics na categoria Perceptual Error. & Página 21 & Sem H@20 & Rank 5, tabela \\
+\bottomrule
+\end{tabular}
+}
+\end{table}
+
+Esses exemplos evidenciam a principal contribuição da arquitetura híbrida: transformar elementos visuais em chunks recuperáveis. Em perguntas dependentes de mapas, gráficos ou diagramas, a informação necessária frequentemente não aparece como texto corrido extraído pelo parser, mas pode ser capturada pela descrição produzida durante a etapa multimodal.
+
+\subsection{Análise dos casos de baixo desempenho}
+\label{subsec:raganything-baixo-desempenho}
+
+Apesar do ganho em relação ao baseline textual, o RAG-Anything ainda apresentou casos de baixo desempenho. No total, 15 perguntas não tiveram nenhuma página de evidência recuperada entre os 20 primeiros chunks, enquanto 6 perguntas tiveram o primeiro acerto apenas entre as posições 11 e 20. A Tabela~\ref{tab:baixo-desempenho-raganything} resume esses casos.
+
+\begin{table}[htbp]
+\centering
+\caption{Resumo dos casos de baixo desempenho do pipeline RAG-Anything.}
+\label{tab:baixo-desempenho-raganything}
+\small
+\begin{tabular}{p{9.0cm}r}
+\toprule
+\textbf{Critério analisado} & \textbf{Quantidade} \\
+\midrule
+Total de perguntas avaliadas & 172 \\
+Primeiro acerto até o rank 10 & 151 \\
+Primeiro acerto entre os ranks 11 e 20 & 6 \\
+Sem nenhum acerto entre os 20 chunks recuperados & 15 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\begin{table}[htbp]
+\centering
+\caption{PDFs mais problemáticos para o pipeline RAG-Anything.}
+\label{tab:pdfs-problematicos-raganything}
+\small
+\begin{tabular}{r r r r r}
+\toprule
+\textbf{PDF} & \textbf{Sem H@20} & \textbf{Perguntas} & \textbf{MRR} & \textbf{R@20} \\
+\midrule
+05 & 2 & 6 & 0.2944 & 0.5556 \\
+22 & 2 & 4 & 0.3750 & 0.5000 \\
+23 & 2 & 5 & 0.6000 & 0.6000 \\
+06 & 1 & 7 & 0.7857 & 0.7956 \\
+10 & 1 & 6 & 0.4722 & 0.8333 \\
+16 & 1 & 5 & 0.6500 & 0.7500 \\
+21 & 1 & 6 & 0.7500 & 0.8333 \\
+24 & 1 & 4 & 0.5227 & 0.7500 \\
+25 & 1 & 7 & 0.7143 & 0.8571 \\
+27 & 1 & 11 & 0.2954 & 0.7727 \\
+28 & 1 & 5 & 0.4733 & 0.7000 \\
+29 & 1 & 5 & 0.7000 & 0.8000 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+Parte das falhas está associada a perguntas que exigem leitura visual muito específica, como contagem de objetos em uma fotografia, identificação de texto pequeno em caixas coloridas ou localização de uma informação em slides visualmente semelhantes. Nesses casos, mesmo que chunks de imagem sejam recuperados, a descrição gerada pelo modelo visual pode não conter o detalhe necessário para aproximar a pergunta da página correta.
+
+Também foram observadas inconsistências de anotação do benchmark. Em alguns casos, a lista \texttt{evidence\_pages} estava vazia ou continha a página 0, o que é incompatível com a numeração real utilizada pelo pipeline, iniciada em 1. Esses casos reduzem artificialmente as métricas, pois se tornam impossíveis ou praticamente impossíveis de acertar no formato atual da avaliação.
+
+\subsection{Discussão comparativa}
+\label{subsec:raganything-discussao-comparativa}
+
+A avaliação mostra que o RAG-Anything ocupa uma posição intermediária entre o baseline textual e os modelos ColVision. Em relação ao pipeline textual, a arquitetura híbrida amplia a cobertura de evidências ao adicionar chunks derivados de imagens e tabelas, o que melhora principalmente perguntas dependentes de gráficos, mapas e diagramas. Por outro lado, esse ganho vem acompanhado de um custo computacional muito maior, especialmente durante a construção do índice.
+
+Comparado aos modelos ColVision, o RAG-Anything mantém uma estrutura mais interpretável no nível de chunk, pois permite inspecionar se o resultado veio de texto, imagem, tabela ou equação. Essa característica facilita a análise qualitativa dos acertos e das falhas. Entretanto, a recuperação ainda depende da qualidade das descrições geradas pelos modelos locais e da forma como esses chunks são integrados ao LightRAG.
+
+Portanto, o pipeline híbrido oferece uma vantagem clara sobre a recuperação puramente textual em perguntas multimodais, mas não elimina todos os problemas associados à interpretação visual. Seus resultados devem ser analisados considerando três fatores principais: a qualidade do parser, a qualidade das descrições multimodais e o custo elevado de processamento para construir o índice híbrido.

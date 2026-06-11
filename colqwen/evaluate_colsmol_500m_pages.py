@@ -1,9 +1,9 @@
-"""Evaluate ColQwen3.5 page retrieval against MMLongBench evidence pages.
+"""Evaluate ColSmol 500M page retrieval against MMLongBench evidence pages.
 
 Usage:
-    uv run python evaluate_colqwen_pages.py
+    uv run python evaluate_colsmol_500m_pages.py
 
-The evaluator renders each PDF page, embeds pages with ColQwen3.5, ranks
+The evaluator renders each PDF page, embeds pages with ColSmol 500M, ranks
 pages for each question, and compares the ranking with MMLongBench
 ``evidence_pages``. It evaluates retrieval only; it does not generate final
 answers.
@@ -23,25 +23,33 @@ from typing import Any
 import fitz
 import pandas as pd
 import torch
+from huggingface_hub import hf_hub_download
 from PIL import Image
+from safetensors.torch import load_file
 
-from colpali_engine.models import ColQwen3_5, ColQwen3_5Processor
+# The first ColSmol download can stall on some macOS setups when the HF Xet
+# backend is active; plain HTTP download is slower but more predictable here.
+os.environ.setdefault("HF_HUB_DISABLE_XET", "1")
+
+from colpali_engine.models import ColIdefics3, ColIdefics3Processor
 
 
-MODEL_NAME = "athrael-soju/colqwen3.5-4.5B-v3"
-ARCH_NAME = "colqwen3_5-4.5B-v3"
-OUTPUT_STEM = "colqwen3_5-retrieval-pages"
+MODEL_NAME = "vidore/colSmol-500M"
+ARCH_NAME = "colsmol_500m"
+OUTPUT_STEM = "colsmol_500m-retrieval-pages"
 PARSER_NAME = "pdf_page_rendering"
 PAGE_PROVENANCE = "rendered_pdf_page"
-MODEL_LOAD_STRATEGY = "cpu_staged_to_selected_device"
+MODEL_LOAD_STRATEGY = "direct_to_selected_device"
 
-PDF_INDEX_RANGE: tuple[int, int] = (1, 30)
+DEFAULT_PDF_INDEX_RANGE: tuple[int, int] = (1, 30)
+PDF_INDEX_RANGE_ENV = "COLSMOL_500M_PDF_INDEX_RANGE"
 UNANSWERABLE_MARKER = "Not answerable"
 K_VALUES = (1, 3, 5, 10, 20)
 
 RENDER_DPI = 144
 PAGE_IMAGE_BATCH_SIZE = 1
 QUERY_BATCH_SIZE = 1
+EMBEDDING_CACHE_VERSION = "adapter_remap_v1"
 
 SCRIPT_DIR = Path(__file__).resolve().parent
 PROJECT_ROOT = SCRIPT_DIR.parent
@@ -50,7 +58,7 @@ MMLONGBENCH_PARQUET = (
 )
 MMLONGBENCH_PDFS_DIR = PROJECT_ROOT / "MMLongBench-Doc" / "documents"
 OUTPUT_DIR = SCRIPT_DIR / "smoke_results"
-CACHE_DIR = SCRIPT_DIR / "cache" / "colqwen3_5"
+CACHE_DIR = SCRIPT_DIR / "cache" / "colsmol_500m"
 RENDER_CACHE_DIR = CACHE_DIR / "rendered_pages"
 EMBEDDING_CACHE_DIR = CACHE_DIR / "page_embeddings"
 
@@ -70,6 +78,21 @@ def _parse_list(value: Any) -> list[Any]:
         return []
     parsed = ast.literal_eval(str(value))
     return parsed if isinstance(parsed, list) else [parsed]
+
+
+def _pdf_index_range() -> tuple[int, int]:
+    raw_range = os.getenv(PDF_INDEX_RANGE_ENV)
+    if not raw_range:
+        return DEFAULT_PDF_INDEX_RANGE
+
+    try:
+        start_text, end_text = raw_range.split(",", maxsplit=1)
+        return int(start_text.strip()), int(end_text.strip())
+    except ValueError as exc:
+        raise ValueError(
+            f"{PDF_INDEX_RANGE_ENV} must use 'start,end', for example '1,1'; "
+            f"received {raw_range!r}."
+        ) from exc
 
 
 def _load_questions(pdf_index_range: tuple[int, int]) -> pd.DataFrame:
@@ -127,8 +150,74 @@ def _render_cache_dir(doc_id: str) -> Path:
 
 
 def _embedding_cache_path(doc_id: str) -> Path:
-    filename = f"{_safe_model_name()}_dpi{RENDER_DPI}.pt"
+    filename = f"{_safe_model_name()}_{EMBEDDING_CACHE_VERSION}_dpi{RENDER_DPI}.pt"
     return EMBEDDING_CACHE_DIR / Path(doc_id).stem / filename
+
+
+def _target_adapter_key(source_key: str) -> str | None:
+    language_prefix = "base_model.model.model."
+    custom_projection_prefix = "base_model.model.custom_text_proj."
+    if source_key.startswith(language_prefix):
+        target_key = "model." + source_key.removeprefix(language_prefix)
+    elif source_key.startswith(custom_projection_prefix):
+        target_key = "custom_text_proj." + source_key.removeprefix(
+            custom_projection_prefix
+        )
+    else:
+        return None
+
+    return target_key.replace(".lora_A.weight", ".lora_A.default.weight").replace(
+        ".lora_B.weight", ".lora_B.default.weight"
+    )
+
+
+def _reload_colsmol_adapter_weights(model: ColIdefics3) -> dict[str, Any]:
+    adapter_path = hf_hub_download(MODEL_NAME, "adapter_model.safetensors")
+    adapter_state = load_file(adapter_path, device="cpu")
+    model_parameters = dict(model.named_parameters())
+
+    missing_keys: list[str] = []
+    shape_mismatches: list[dict[str, Any]] = []
+    loaded_weights = 0
+    for source_key, source_tensor in adapter_state.items():
+        target_key = _target_adapter_key(source_key)
+        if target_key is None:
+            continue
+        target_parameter = model_parameters.get(target_key)
+        if target_parameter is None:
+            missing_keys.append(target_key)
+            continue
+        if tuple(target_parameter.shape) != tuple(source_tensor.shape):
+            shape_mismatches.append(
+                {
+                    "source_key": source_key,
+                    "target_key": target_key,
+                    "source_shape": list(source_tensor.shape),
+                    "target_shape": list(target_parameter.shape),
+                }
+            )
+            continue
+        target_parameter.data.copy_(
+            source_tensor.to(
+                device=target_parameter.device,
+                dtype=target_parameter.dtype,
+            )
+        )
+        loaded_weights += 1
+
+    if missing_keys or shape_mismatches:
+        raise RuntimeError(
+            "Failed to remap all ColSmol adapter weights: "
+            f"missing={missing_keys[:5]}, shape_mismatches={shape_mismatches[:5]}"
+        )
+    if loaded_weights == 0:
+        raise RuntimeError("No ColSmol adapter weights were remapped.")
+
+    return {
+        "adapter_path": str(adapter_path),
+        "adapter_weights_reloaded": loaded_weights,
+        "embedding_cache_version": EMBEDDING_CACHE_VERSION,
+    }
 
 
 def _render_pdf_pages(pdf_path: Path, doc_id: str) -> tuple[list[Path], dict[str, Any]]:
@@ -200,26 +289,24 @@ def _device_and_dtype() -> tuple[str, torch.dtype]:
     return "cpu", torch.float32
 
 
-def _load_model() -> tuple[ColQwen3_5, ColQwen3_5Processor, str, torch.dtype]:
+def _load_model() -> tuple[ColIdefics3, ColIdefics3Processor, str, torch.dtype]:
     device, dtype = _device_and_dtype()
     # Avoid a Windows access violation in Transformers async weight materialization.
     os.environ.setdefault("HF_DEACTIVATE_ASYNC_LOAD", "1")
-    load_device = "cpu" if device != "cpu" else device
-    model = ColQwen3_5.from_pretrained(
+    model = ColIdefics3.from_pretrained(
         MODEL_NAME,
         torch_dtype=dtype,
-        device_map=load_device,
+        device_map={"": device},
         attn_implementation="sdpa",
     ).eval()
-    if load_device != device:
-        model = model.to(device)
-    processor = ColQwen3_5Processor.from_pretrained(MODEL_NAME)
+    model._adapter_reload_metadata = _reload_colsmol_adapter_weights(model)
+    processor = ColIdefics3Processor.from_pretrained(MODEL_NAME)
     return model, processor, device, dtype
 
 
 def _load_or_encode_page_embeddings(
-    model: ColQwen3_5,
-    processor: ColQwen3_5Processor,
+    model: ColIdefics3,
+    processor: ColIdefics3Processor,
     doc_id: str,
     page_paths: list[Path],
 ) -> tuple[list[torch.Tensor], dict[str, Any]]:
@@ -231,6 +318,7 @@ def _load_or_encode_page_embeddings(
             cached.get("model_name") == MODEL_NAME
             and cached.get("render_dpi") == RENDER_DPI
             and cached.get("page_count") == len(page_paths)
+            and cached.get("embedding_cache_version") == EMBEDDING_CACHE_VERSION
         ):
             metadata = dict(cached.get("metadata", {}))
             metadata.update(
@@ -267,6 +355,7 @@ def _load_or_encode_page_embeddings(
         "render_dpi": RENDER_DPI,
         "page_count": len(page_paths),
         "page_image_batch_size": PAGE_IMAGE_BATCH_SIZE,
+        "embedding_cache_version": EMBEDDING_CACHE_VERSION,
         "embedding_storage": "list[torch.Tensor]",
         "cache_hit": False,
         "duration_s": round(time.perf_counter() - started, 2),
@@ -279,6 +368,7 @@ def _load_or_encode_page_embeddings(
             "model_name": MODEL_NAME,
             "render_dpi": RENDER_DPI,
             "page_count": len(page_paths),
+            "embedding_cache_version": EMBEDDING_CACHE_VERSION,
             "embedding_storage": "list[torch.Tensor]",
             "embeddings": embeddings,
             "metadata": metadata,
@@ -290,8 +380,8 @@ def _load_or_encode_page_embeddings(
 
 
 def _encode_queries(
-    model: ColQwen3_5,
-    processor: ColQwen3_5Processor,
+    model: ColIdefics3,
+    processor: ColIdefics3Processor,
     queries: list[str],
 ) -> torch.Tensor:
     embeddings: list[torch.Tensor] = []
@@ -299,14 +389,15 @@ def _encode_queries(
         batch_queries = queries[start : start + QUERY_BATCH_SIZE]
         batch = processor.process_queries(batch_queries).to(model.device)
         with torch.inference_mode():
-            model.rope_deltas = None
+            if hasattr(model, "rope_deltas"):
+                model.rope_deltas = None
             batch_embeddings = model(**batch)
         embeddings.append(batch_embeddings.detach())
     return torch.cat(embeddings, dim=0)
 
 
 def _score_pages(
-    processor: ColQwen3_5Processor,
+    processor: ColIdefics3Processor,
     query_embeddings: torch.Tensor,
     page_embeddings: list[torch.Tensor],
 ) -> tuple[torch.Tensor, str]:
@@ -387,8 +478,8 @@ def _failed_result(doc_id: str, row: Any, error: str) -> dict[str, Any]:
 
 
 def _evaluate_document(
-    model: ColQwen3_5,
-    processor: ColQwen3_5Processor,
+    model: ColIdefics3,
+    processor: ColIdefics3Processor,
     doc_id: str,
     group: pd.DataFrame,
 ) -> list[dict[str, Any]]:
@@ -416,6 +507,7 @@ def _evaluate_document(
         "embedding_duration_s": embedding_metadata.get("duration_s"),
         "indexing_duration_s": indexing_duration_s,
         "embedding_cache_path": embedding_metadata.get("cache_path"),
+        "adapter_reload": getattr(model, "_adapter_reload_metadata", {}),
     }
 
     results: list[dict[str, Any]] = []
@@ -535,7 +627,7 @@ def _summarize(
         "model_name": MODEL_NAME,
         "device": device,
         "dtype": str(dtype).replace("torch.", ""),
-        "pdf_index_range": list(PDF_INDEX_RANGE),
+        "pdf_index_range": list(_pdf_index_range()),
         "render_dpi": RENDER_DPI,
         "page_image_batch_size": PAGE_IMAGE_BATCH_SIZE,
         "query_batch_size": QUERY_BATCH_SIZE,
@@ -592,7 +684,7 @@ def _summarize(
         ),
         "processing_duration_available": True,
         "processing_duration_note": (
-            "ColQwen indexing duration includes PDF page rendering plus page "
+            "ColSmol 500M indexing duration includes PDF page rendering plus page "
             "embedding, and query duration measures query embedding plus page scoring."
         ),
         "artifact_totals": {
@@ -632,7 +724,7 @@ def _summarize(
 
 
 def main() -> None:
-    questions = _load_questions(PDF_INDEX_RANGE)
+    questions = _load_questions(_pdf_index_range())
     model, processor, device, dtype = _load_model()
     results: list[dict[str, Any]] = []
     for doc_id, group in questions.groupby("doc_id", sort=False):

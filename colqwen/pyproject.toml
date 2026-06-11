@@ -5,19 +5,25 @@ requires-python = ">=3.11,<3.14"
 dependencies = [
     "accelerate>=1.13.0",
     "colpali-engine>=0.3.16",
+    "huggingface-hub>=1.16.1",
     "pandas>=2.3.0",
     "pillow>=12.2.0",
     "pyarrow>=21.0.0",
     "pymupdf>=1.26.0",
     "qwen-vl-utils>=0.0.14",
+    "safetensors>=0.7.0",
     "torch>=2.2.0,<2.12.0",
     "torchvision>=0.17.0,<0.27.0",
     "transformers>=5.8.1",
 ]
 
 [tool.uv.sources]
-torch = { index = "pytorch-cu130" }
-torchvision = { index = "pytorch-cu130" }
+torch = [
+    { index = "pytorch-cu130", marker = "platform_system != 'Darwin'" },
+]
+torchvision = [
+    { index = "pytorch-cu130", marker = "platform_system != 'Darwin'" },
+]
 
 [[tool.uv.index]]
 name = "pytorch-cu130"

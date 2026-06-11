@@ -33,6 +33,14 @@ raganything-demo/output/
 raganything-demo/sample.pdf
 raganything-demo/.tiktoken_cache/
 raganything-demo/smoke_results/
+raganything-demo/transfer_pdfs_*.tar.gz
+docling-langchain/.venv/
+docling-langchain/cache/
+docling-langchain/smoke_results/
+colqwen/cache/colpali_v1_1/
+colqwen/cache/colqwen2_5_v0_2/
+colqwen/cache/colsmol_256m/
+colqwen/cache/colsmol_500m/
 
 # Local datasets and downloaded documents
 MMLongBench-Doc/

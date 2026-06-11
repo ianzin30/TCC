@@ -1,0 +1,1397 @@
+[
+  {
+    "arch": "colsmol_500m",
+    "model_name": "vidore/colSmol-500M",
+    "doc_id": "PH_2016.06.08_Economy-Final.pdf",
+    "question": "According to the report, how do 5% of the Latinos see economic upward mobility for their children?",
+    "evidence_pages": [
+      5
+    ],
+    "evidence_sources": [
+      "Chart"
+    ],
+    "parser": "pdf_page_rendering",
+    "chunk_token_size": null,
+    "text_llm_model": null,
+    "vision_llm_model": "vidore/colSmol-500M",
+    "ranked_pages": [
+      {
+        "rank": 1,
+        "page_number": 17,
+        "score": 22.375,
+        "matches_evidence": false
+      },
+      {
+        "rank": 2,
+        "page_number": 5,
+        "score": 22.25,
+        "matches_evidence": true
+      },
+      {
+        "rank": 3,
+        "page_number": 3,
+        "score": 20.75,
+        "matches_evidence": false
+      },
+      {
+        "rank": 4,
+        "page_number": 13,
+        "score": 20.625,
+        "matches_evidence": false
+      },
+      {
+        "rank": 5,
+        "page_number": 15,
+        "score": 19.375,
+        "matches_evidence": false
+      },
+      {
+        "rank": 6,
+        "page_number": 14,
+        "score": 18.875,
+        "matches_evidence": false
+      },
+      {
+        "rank": 7,
+        "page_number": 11,
+        "score": 18.25,
+        "matches_evidence": false
+      },
+      {
+        "rank": 8,
+        "page_number": 6,
+        "score": 18.0,
+        "matches_evidence": false
+      },
+      {
+        "rank": 9,
+        "page_number": 4,
+        "score": 17.875,
+        "matches_evidence": false
+      },
+      {
+        "rank": 10,
+        "page_number": 7,
+        "score": 17.875,
+        "matches_evidence": false
+      },
+      {
+        "rank": 11,
+        "page_number": 10,
+        "score": 17.875,
+        "matches_evidence": false
+      },
+      {
+        "rank": 12,
+        "page_number": 16,
+        "score": 17.875,
+        "matches_evidence": false
+      },
+      {
+        "rank": 13,
+        "page_number": 9,
+        "score": 17.75,
+        "matches_evidence": false
+      },
+      {
+        "rank": 14,
+        "page_number": 8,
+        "score": 17.625,
+        "matches_evidence": false
+      },
+      {
+        "rank": 15,
+        "page_number": 23,
+        "score": 17.0,
+        "matches_evidence": false
+      },
+      {
+        "rank": 16,
+        "page_number": 19,
+        "score": 16.75,
+        "matches_evidence": false
+      },
+      {
+        "rank": 17,
+        "page_number": 22,
+        "score": 16.625,
+        "matches_evidence": false
+      },
+      {
+        "rank": 18,
+        "page_number": 1,
+        "score": 16.0,
+        "matches_evidence": false
+      },
+      {
+        "rank": 19,
+        "page_number": 12,
+        "score": 15.9375,
+        "matches_evidence": false
+      },
+      {
+        "rank": 20,
+        "page_number": 20,
+        "score": 15.9375,
+        "matches_evidence": false
+      },
+      {
+        "rank": 21,
+        "page_number": 2,
+        "score": 14.9375,
+        "matches_evidence": false
+      },
+      {
+        "rank": 22,
+        "page_number": 21,
+        "score": 14.8125,
+        "matches_evidence": false
+      },
+      {
+        "rank": 23,
+        "page_number": 18,
+        "score": 10.1875,
+        "matches_evidence": false
+      }
+    ],
+    "ranked_chunks": [],
+    "retrieval_metadata": {
+      "retrieval_unit": "page",
+      "page_count": 23,
+      "render_dpi": 144,
+      "score_function": "processor.score"
+    },
+    "metrics": {
+      "first_hit_rank": 2,
+      "mrr": 0.5,
+      "retrieved_pages": 23,
+      "evidence_pages_count": 1,
+      "hit_at_1": false,
+      "evidence_page_recall_at_1": 0.0,
+      "hit_at_3": true,
+      "evidence_page_recall_at_3": 1.0,
+      "hit_at_5": true,
+      "evidence_page_recall_at_5": 1.0,
+      "hit_at_10": true,
+      "evidence_page_recall_at_10": 1.0,
+      "hit_at_20": true,
+      "evidence_page_recall_at_20": 1.0
+    },
+    "duration_s": 0.09,
+    "document_artifacts": {
+      "pdf_path": "/Users/fernandotrinta/Desktop/TCC/TCC/MMLongBench-Doc/documents/PH_2016.06.08_Economy-Final.pdf",
+      "page_count": 23,
+      "render_dpi": 144,
+      "page_image_batch_size": 1,
+      "render_cache_hit": false,
+      "render_duration_s": 0.74,
+      "embedding_cache_hit": false,
+      "embedding_duration_s": 40.0,
+      "indexing_duration_s": 40.77,
+      "embedding_cache_path": "/Users/fernandotrinta/Desktop/TCC/TCC/colqwen/cache/colsmol_500m/page_embeddings/PH_2016.06.08_Economy-Final/vidore__colSmol-500M_adapter_remap_v1_dpi144.pt",
+      "adapter_reload": {
+        "adapter_path": "/Users/fernandotrinta/.cache/huggingface/hub/models--vidore--colSmol-500M/snapshots/1aa9325cba7ed2b3b9b97ede4d55026322504902/adapter_model.safetensors",
+        "adapter_weights_reloaded": 448,
+        "embedding_cache_version": "adapter_remap_v1"
+      }
+    },
+    "error": null
+  },
+  {
+    "arch": "colsmol_500m",
+    "model_name": "vidore/colSmol-500M",
+    "doc_id": "PH_2016.06.08_Economy-Final.pdf",
+    "question": "According to the report, which one is greater in population in the survey? Foreign born Latinos, or the Latinos interviewed by cellphone?",
+    "evidence_pages": [
+      19,
+      20
+    ],
+    "evidence_sources": [
+      "Table"
+    ],
+    "parser": "pdf_page_rendering",
+    "chunk_token_size": null,
+    "text_llm_model": null,
+    "vision_llm_model": "vidore/colSmol-500M",
+    "ranked_pages": [
+      {
+        "rank": 1,
+        "page_number": 19,
+        "score": 23.0,
+        "matches_evidence": true
+      },
+      {
+        "rank": 2,
+        "page_number": 5,
+        "score": 22.0,
+        "matches_evidence": false
+      },
+      {
+        "rank": 3,
+        "page_number": 20,
+        "score": 21.75,
+        "matches_evidence": true
+      },
+      {
+        "rank": 4,
+        "page_number": 14,
+        "score": 21.25,
+        "matches_evidence": false
+      },
+      {
+        "rank": 5,
+        "page_number": 21,
+        "score": 21.25,
+        "matches_evidence": false
+      },
+      {
+        "rank": 6,
+        "page_number": 10,
+        "score": 20.75,
+        "matches_evidence": false
+      },
+      {
+        "rank": 7,
+        "page_number": 17,
+        "score": 20.75,
+        "matches_evidence": false
+      },
+      {
+        "rank": 8,
+        "page_number": 15,
+        "score": 19.625,
+        "matches_evidence": false
+      },
+      {
+        "rank": 9,
+        "page_number": 4,
+        "score": 19.5,
+        "matches_evidence": false
+      },
+      {
+        "rank": 10,
+        "page_number": 9,
+        "score": 19.375,
+        "matches_evidence": false
+      },
+      {
+        "rank": 11,
+        "page_number": 11,
+        "score": 19.375,
+        "matches_evidence": false
+      },
+      {
+        "rank": 12,
+        "page_number": 2,
+        "score": 19.125,
+        "matches_evidence": false
+      },
+      {
+        "rank": 13,
+        "page_number": 13,
+        "score": 19.125,
+        "matches_evidence": false
+      },
+      {
+        "rank": 14,
+        "page_number": 8,
+        "score": 19.0,
+        "matches_evidence": false
+      },
+      {
+        "rank": 15,
+        "page_number": 7,
+        "score": 18.875,
+        "matches_evidence": false
+      },
+      {
+        "rank": 16,
+        "page_number": 6,
+        "score": 18.5,
+        "matches_evidence": false
+      },
+      {
+        "rank": 17,
+        "page_number": 3,
+        "score": 18.375,
+        "matches_evidence": false
+      },
+      {
+        "rank": 18,
+        "page_number": 16,
+        "score": 18.375,
+        "matches_evidence": false
+      },
+      {
+        "rank": 19,
+        "page_number": 22,
+        "score": 18.0,
+        "matches_evidence": false
+      },
+      {
+        "rank": 20,
+        "page_number": 23,
+        "score": 18.0,
+        "matches_evidence": false
+      },
+      {
+        "rank": 21,
+        "page_number": 12,
+        "score": 16.625,
+        "matches_evidence": false
+      },
+      {
+        "rank": 22,
+        "page_number": 1,
+        "score": 16.375,
+        "matches_evidence": false
+      },
+      {
+        "rank": 23,
+        "page_number": 18,
+        "score": 13.25,
+        "matches_evidence": false
+      }
+    ],
+    "ranked_chunks": [],
+    "retrieval_metadata": {
+      "retrieval_unit": "page",
+      "page_count": 23,
+      "render_dpi": 144,
+      "score_function": "processor.score"
+    },
+    "metrics": {
+      "first_hit_rank": 1,
+      "mrr": 1.0,
+      "retrieved_pages": 23,
+      "evidence_pages_count": 2,
+      "hit_at_1": true,
+      "evidence_page_recall_at_1": 0.5,
+      "hit_at_3": true,
+      "evidence_page_recall_at_3": 1.0,
+      "hit_at_5": true,
+      "evidence_page_recall_at_5": 1.0,
+      "hit_at_10": true,
+      "evidence_page_recall_at_10": 1.0,
+      "hit_at_20": true,
+      "evidence_page_recall_at_20": 1.0
+    },
+    "duration_s": 0.05,
+    "document_artifacts": {
+      "pdf_path": "/Users/fernandotrinta/Desktop/TCC/TCC/MMLongBench-Doc/documents/PH_2016.06.08_Economy-Final.pdf",
+      "page_count": 23,
+      "render_dpi": 144,
+      "page_image_batch_size": 1,
+      "render_cache_hit": false,
+      "render_duration_s": 0.74,
+      "embedding_cache_hit": false,
+      "embedding_duration_s": 40.0,
+      "indexing_duration_s": 40.77,
+      "embedding_cache_path": "/Users/fernandotrinta/Desktop/TCC/TCC/colqwen/cache/colsmol_500m/page_embeddings/PH_2016.06.08_Economy-Final/vidore__colSmol-500M_adapter_remap_v1_dpi144.pt",
+      "adapter_reload": {
+        "adapter_path": "/Users/fernandotrinta/.cache/huggingface/hub/models--vidore--colSmol-500M/snapshots/1aa9325cba7ed2b3b9b97ede4d55026322504902/adapter_model.safetensors",
+        "adapter_weights_reloaded": 448,
+        "embedding_cache_version": "adapter_remap_v1"
+      }
+    },
+    "error": null
+  },
+  {
+    "arch": "colsmol_500m",
+    "model_name": "vidore/colSmol-500M",
+    "doc_id": "PH_2016.06.08_Economy-Final.pdf",
+    "question": "From this report, which subgroup among Hispanics has gained most confidence from 2008 to 2015? ",
+    "evidence_pages": [
+      14
+    ],
+    "evidence_sources": [
+      "Chart"
+    ],
+    "parser": "pdf_page_rendering",
+    "chunk_token_size": null,
+    "text_llm_model": null,
+    "vision_llm_model": "vidore/colSmol-500M",
+    "ranked_pages": [
+      {
+        "rank": 1,
+        "page_number": 4,
+        "score": 24.75,
+        "matches_evidence": false
+      },
+      {
+        "rank": 2,
+        "page_number": 14,
+        "score": 24.625,
+        "matches_evidence": true
+      },
+      {
+        "rank": 3,
+        "page_number": 6,
+        "score": 24.25,
+        "matches_evidence": false
+      },
+      {
+        "rank": 4,
+        "page_number": 13,
+        "score": 24.25,
+        "matches_evidence": false
+      },
+      {
+        "rank": 5,
+        "page_number": 10,
+        "score": 23.625,
+        "matches_evidence": false
+      },
+      {
+        "rank": 6,
+        "page_number": 15,
+        "score": 23.5,
+        "matches_evidence": false
+      },
+      {
+        "rank": 7,
+        "page_number": 9,
+        "score": 23.25,
+        "matches_evidence": false
+      },
+      {
+        "rank": 8,
+        "page_number": 5,
+        "score": 22.375,
+        "matches_evidence": false
+      },
+      {
+        "rank": 9,
+        "page_number": 11,
+        "score": 21.875,
+        "matches_evidence": false
+      },
+      {
+        "rank": 10,
+        "page_number": 19,
+        "score": 21.625,
+        "matches_evidence": false
+      },
+      {
+        "rank": 11,
+        "page_number": 12,
+        "score": 20.5,
+        "matches_evidence": false
+      },
+      {
+        "rank": 12,
+        "page_number": 8,
+        "score": 20.375,
+        "matches_evidence": false
+      },
+      {
+        "rank": 13,
+        "page_number": 17,
+        "score": 19.875,
+        "matches_evidence": false
+      },
+      {
+        "rank": 14,
+        "page_number": 16,
+        "score": 19.75,
+        "matches_evidence": false
+      },
+      {
+        "rank": 15,
+        "page_number": 7,
+        "score": 19.5,
+        "matches_evidence": false
+      },
+      {
+        "rank": 16,
+        "page_number": 1,
+        "score": 18.75,
+        "matches_evidence": false
+      },
+      {
+        "rank": 17,
+        "page_number": 22,
+        "score": 18.5,
+        "matches_evidence": false
+      },
+      {
+        "rank": 18,
+        "page_number": 23,
+        "score": 17.5,
+        "matches_evidence": false
+      },
+      {
+        "rank": 19,
+        "page_number": 2,
+        "score": 17.375,
+        "matches_evidence": false
+      },
+      {
+        "rank": 20,
+        "page_number": 3,
+        "score": 17.25,
+        "matches_evidence": false
+      },
+      {
+        "rank": 21,
+        "page_number": 21,
+        "score": 17.25,
+        "matches_evidence": false
+      },
+      {
+        "rank": 22,
+        "page_number": 20,
+        "score": 15.1875,
+        "matches_evidence": false
+      },
+      {
+        "rank": 23,
+        "page_number": 18,
+        "score": 13.9375,
+        "matches_evidence": false
+      }
+    ],
+    "ranked_chunks": [],
+    "retrieval_metadata": {
+      "retrieval_unit": "page",
+      "page_count": 23,
+      "render_dpi": 144,
+      "score_function": "processor.score"
+    },
+    "metrics": {
+      "first_hit_rank": 2,
+      "mrr": 0.5,
+      "retrieved_pages": 23,
+      "evidence_pages_count": 1,
+      "hit_at_1": false,
+      "evidence_page_recall_at_1": 0.0,
+      "hit_at_3": true,
+      "evidence_page_recall_at_3": 1.0,
+      "hit_at_5": true,
+      "evidence_page_recall_at_5": 1.0,
+      "hit_at_10": true,
+      "evidence_page_recall_at_10": 1.0,
+      "hit_at_20": true,
+      "evidence_page_recall_at_20": 1.0
+    },
+    "duration_s": 0.03,
+    "document_artifacts": {
+      "pdf_path": "/Users/fernandotrinta/Desktop/TCC/TCC/MMLongBench-Doc/documents/PH_2016.06.08_Economy-Final.pdf",
+      "page_count": 23,
+      "render_dpi": 144,
+      "page_image_batch_size": 1,
+      "render_cache_hit": false,
+      "render_duration_s": 0.74,
+      "embedding_cache_hit": false,
+      "embedding_duration_s": 40.0,
+      "indexing_duration_s": 40.77,
+      "embedding_cache_path": "/Users/fernandotrinta/Desktop/TCC/TCC/colqwen/cache/colsmol_500m/page_embeddings/PH_2016.06.08_Economy-Final/vidore__colSmol-500M_adapter_remap_v1_dpi144.pt",
+      "adapter_reload": {
+        "adapter_path": "/Users/fernandotrinta/.cache/huggingface/hub/models--vidore--colSmol-500M/snapshots/1aa9325cba7ed2b3b9b97ede4d55026322504902/adapter_model.safetensors",
+        "adapter_weights_reloaded": 448,
+        "embedding_cache_version": "adapter_remap_v1"
+      }
+    },
+    "error": null
+  },
+  {
+    "arch": "colsmol_500m",
+    "model_name": "vidore/colSmol-500M",
+    "doc_id": "PH_2016.06.08_Economy-Final.pdf",
+    "question": "Among all 12 references in this report, how many are from its own research center?",
+    "evidence_pages": [
+      2,
+      22,
+      23
+    ],
+    "evidence_sources": [
+      "Pure-text (Plain-text)"
+    ],
+    "parser": "pdf_page_rendering",
+    "chunk_token_size": null,
+    "text_llm_model": null,
+    "vision_llm_model": "vidore/colSmol-500M",
+    "ranked_pages": [
+      {
+        "rank": 1,
+        "page_number": 22,
+        "score": 19.625,
+        "matches_evidence": true
+      },
+      {
+        "rank": 2,
+        "page_number": 23,
+        "score": 19.5,
+        "matches_evidence": true
+      },
+      {
+        "rank": 3,
+        "page_number": 3,
+        "score": 17.75,
+        "matches_evidence": false
+      },
+      {
+        "rank": 4,
+        "page_number": 8,
+        "score": 16.875,
+        "matches_evidence": false
+      },
+      {
+        "rank": 5,
+        "page_number": 18,
+        "score": 16.75,
+        "matches_evidence": false
+      },
+      {
+        "rank": 6,
+        "page_number": 2,
+        "score": 16.625,
+        "matches_evidence": true
+      },
+      {
+        "rank": 7,
+        "page_number": 11,
+        "score": 15.625,
+        "matches_evidence": false
+      },
+      {
+        "rank": 8,
+        "page_number": 1,
+        "score": 15.5,
+        "matches_evidence": false
+      },
+      {
+        "rank": 9,
+        "page_number": 6,
+        "score": 13.875,
+        "matches_evidence": false
+      },
+      {
+        "rank": 10,
+        "page_number": 9,
+        "score": 13.8125,
+        "matches_evidence": false
+      },
+      {
+        "rank": 11,
+        "page_number": 12,
+        "score": 13.8125,
+        "matches_evidence": false
+      },
+      {
+        "rank": 12,
+        "page_number": 4,
+        "score": 13.625,
+        "matches_evidence": false
+      },
+      {
+        "rank": 13,
+        "page_number": 20,
+        "score": 13.4375,
+        "matches_evidence": false
+      },
+      {
+        "rank": 14,
+        "page_number": 19,
+        "score": 13.1875,
+        "matches_evidence": false
+      },
+      {
+        "rank": 15,
+        "page_number": 21,
+        "score": 13.125,
+        "matches_evidence": false
+      },
+      {
+        "rank": 16,
+        "page_number": 5,
+        "score": 13.0625,
+        "matches_evidence": false
+      },
+      {
+        "rank": 17,
+        "page_number": 15,
+        "score": 13.0625,
+        "matches_evidence": false
+      },
+      {
+        "rank": 18,
+        "page_number": 16,
+        "score": 13.0625,
+        "matches_evidence": false
+      },
+      {
+        "rank": 19,
+        "page_number": 13,
+        "score": 12.9375,
+        "matches_evidence": false
+      },
+      {
+        "rank": 20,
+        "page_number": 7,
+        "score": 12.875,
+        "matches_evidence": false
+      },
+      {
+        "rank": 21,
+        "page_number": 14,
+        "score": 12.875,
+        "matches_evidence": false
+      },
+      {
+        "rank": 22,
+        "page_number": 10,
+        "score": 12.5,
+        "matches_evidence": false
+      },
+      {
+        "rank": 23,
+        "page_number": 17,
+        "score": 12.4375,
+        "matches_evidence": false
+      }
+    ],
+    "ranked_chunks": [],
+    "retrieval_metadata": {
+      "retrieval_unit": "page",
+      "page_count": 23,
+      "render_dpi": 144,
+      "score_function": "processor.score"
+    },
+    "metrics": {
+      "first_hit_rank": 1,
+      "mrr": 1.0,
+      "retrieved_pages": 23,
+      "evidence_pages_count": 3,
+      "hit_at_1": true,
+      "evidence_page_recall_at_1": 0.3333333333333333,
+      "hit_at_3": true,
+      "evidence_page_recall_at_3": 0.6666666666666666,
+      "hit_at_5": true,
+      "evidence_page_recall_at_5": 0.6666666666666666,
+      "hit_at_10": true,
+      "evidence_page_recall_at_10": 1.0,
+      "hit_at_20": true,
+      "evidence_page_recall_at_20": 1.0
+    },
+    "duration_s": 0.05,
+    "document_artifacts": {
+      "pdf_path": "/Users/fernandotrinta/Desktop/TCC/TCC/MMLongBench-Doc/documents/PH_2016.06.08_Economy-Final.pdf",
+      "page_count": 23,
+      "render_dpi": 144,
+      "page_image_batch_size": 1,
+      "render_cache_hit": false,
+      "render_duration_s": 0.74,
+      "embedding_cache_hit": false,
+      "embedding_duration_s": 40.0,
+      "indexing_duration_s": 40.77,
+      "embedding_cache_path": "/Users/fernandotrinta/Desktop/TCC/TCC/colqwen/cache/colsmol_500m/page_embeddings/PH_2016.06.08_Economy-Final/vidore__colSmol-500M_adapter_remap_v1_dpi144.pt",
+      "adapter_reload": {
+        "adapter_path": "/Users/fernandotrinta/.cache/huggingface/hub/models--vidore--colSmol-500M/snapshots/1aa9325cba7ed2b3b9b97ede4d55026322504902/adapter_model.safetensors",
+        "adapter_weights_reloaded": 448,
+        "embedding_cache_version": "adapter_remap_v1"
+      }
+    },
+    "error": null
+  },
+  {
+    "arch": "colsmol_500m",
+    "model_name": "vidore/colSmol-500M",
+    "doc_id": "PH_2016.06.08_Economy-Final.pdf",
+    "question": "Among all charts in this report, how many compare between the general public with the Latinos/Hispanics? A few small charts sharing the same chart title is considered one chart. ",
+    "evidence_pages": [
+      4,
+      7,
+      9,
+      10,
+      13,
+      14
+    ],
+    "evidence_sources": [
+      "Chart",
+      "Generalized-text (Layout)"
+    ],
+    "parser": "pdf_page_rendering",
+    "chunk_token_size": null,
+    "text_llm_model": null,
+    "vision_llm_model": "vidore/colSmol-500M",
+    "ranked_pages": [
+      {
+        "rank": 1,
+        "page_number": 4,
+        "score": 29.25,
+        "matches_evidence": true
+      },
+      {
+        "rank": 2,
+        "page_number": 7,
+        "score": 29.125,
+        "matches_evidence": true
+      },
+      {
+        "rank": 3,
+        "page_number": 13,
+        "score": 29.125,
+        "matches_evidence": true
+      },
+      {
+        "rank": 4,
+        "page_number": 9,
+        "score": 29.0,
+        "matches_evidence": true
+      },
+      {
+        "rank": 5,
+        "page_number": 14,
+        "score": 28.5,
+        "matches_evidence": true
+      },
+      {
+        "rank": 6,
+        "page_number": 10,
+        "score": 28.125,
+        "matches_evidence": true
+      },
+      {
+        "rank": 7,
+        "page_number": 11,
+        "score": 27.75,
+        "matches_evidence": false
+      },
+      {
+        "rank": 8,
+        "page_number": 17,
+        "score": 27.5,
+        "matches_evidence": false
+      },
+      {
+        "rank": 9,
+        "page_number": 8,
+        "score": 27.25,
+        "matches_evidence": false
+      },
+      {
+        "rank": 10,
+        "page_number": 16,
+        "score": 26.5,
+        "matches_evidence": false
+      },
+      {
+        "rank": 11,
+        "page_number": 23,
+        "score": 26.5,
+        "matches_evidence": false
+      },
+      {
+        "rank": 12,
+        "page_number": 15,
+        "score": 25.875,
+        "matches_evidence": false
+      },
+      {
+        "rank": 13,
+        "page_number": 6,
+        "score": 25.75,
+        "matches_evidence": false
+      },
+      {
+        "rank": 14,
+        "page_number": 22,
+        "score": 25.5,
+        "matches_evidence": false
+      },
+      {
+        "rank": 15,
+        "page_number": 3,
+        "score": 25.375,
+        "matches_evidence": false
+      },
+      {
+        "rank": 16,
+        "page_number": 19,
+        "score": 25.375,
+        "matches_evidence": false
+      },
+      {
+        "rank": 17,
+        "page_number": 12,
+        "score": 24.875,
+        "matches_evidence": false
+      },
+      {
+        "rank": 18,
+        "page_number": 5,
+        "score": 24.75,
+        "matches_evidence": false
+      },
+      {
+        "rank": 19,
+        "page_number": 2,
+        "score": 24.5,
+        "matches_evidence": false
+      },
+      {
+        "rank": 20,
+        "page_number": 20,
+        "score": 24.125,
+        "matches_evidence": false
+      },
+      {
+        "rank": 21,
+        "page_number": 21,
+        "score": 22.875,
+        "matches_evidence": false
+      },
+      {
+        "rank": 22,
+        "page_number": 1,
+        "score": 22.375,
+        "matches_evidence": false
+      },
+      {
+        "rank": 23,
+        "page_number": 18,
+        "score": 21.75,
+        "matches_evidence": false
+      }
+    ],
+    "ranked_chunks": [],
+    "retrieval_metadata": {
+      "retrieval_unit": "page",
+      "page_count": 23,
+      "render_dpi": 144,
+      "score_function": "processor.score"
+    },
+    "metrics": {
+      "first_hit_rank": 1,
+      "mrr": 1.0,
+      "retrieved_pages": 23,
+      "evidence_pages_count": 6,
+      "hit_at_1": true,
+      "evidence_page_recall_at_1": 0.16666666666666666,
+      "hit_at_3": true,
+      "evidence_page_recall_at_3": 0.5,
+      "hit_at_5": true,
+      "evidence_page_recall_at_5": 0.8333333333333334,
+      "hit_at_10": true,
+      "evidence_page_recall_at_10": 1.0,
+      "hit_at_20": true,
+      "evidence_page_recall_at_20": 1.0
+    },
+    "duration_s": 0.08,
+    "document_artifacts": {
+      "pdf_path": "/Users/fernandotrinta/Desktop/TCC/TCC/MMLongBench-Doc/documents/PH_2016.06.08_Economy-Final.pdf",
+      "page_count": 23,
+      "render_dpi": 144,
+      "page_image_batch_size": 1,
+      "render_cache_hit": false,
+      "render_duration_s": 0.74,
+      "embedding_cache_hit": false,
+      "embedding_duration_s": 40.0,
+      "indexing_duration_s": 40.77,
+      "embedding_cache_path": "/Users/fernandotrinta/Desktop/TCC/TCC/colqwen/cache/colsmol_500m/page_embeddings/PH_2016.06.08_Economy-Final/vidore__colSmol-500M_adapter_remap_v1_dpi144.pt",
+      "adapter_reload": {
+        "adapter_path": "/Users/fernandotrinta/.cache/huggingface/hub/models--vidore--colSmol-500M/snapshots/1aa9325cba7ed2b3b9b97ede4d55026322504902/adapter_model.safetensors",
+        "adapter_weights_reloaded": 448,
+        "embedding_cache_version": "adapter_remap_v1"
+      }
+    },
+    "error": null
+  },
+  {
+    "arch": "colsmol_500m",
+    "model_name": "vidore/colSmol-500M",
+    "doc_id": "PH_2016.06.08_Economy-Final.pdf",
+    "question": "According to this report, among the Hispanics shaped by four current personal financial situation, which situation involves the highest percentage that expects their future financial situation to get a lot worse?",
+    "evidence_pages": [
+      16
+    ],
+    "evidence_sources": [
+      "Chart"
+    ],
+    "parser": "pdf_page_rendering",
+    "chunk_token_size": null,
+    "text_llm_model": null,
+    "vision_llm_model": "vidore/colSmol-500M",
+    "ranked_pages": [
+      {
+        "rank": 1,
+        "page_number": 16,
+        "score": 32.5,
+        "matches_evidence": true
+      },
+      {
+        "rank": 2,
+        "page_number": 14,
+        "score": 31.25,
+        "matches_evidence": false
+      },
+      {
+        "rank": 3,
+        "page_number": 8,
+        "score": 30.75,
+        "matches_evidence": false
+      },
+      {
+        "rank": 4,
+        "page_number": 4,
+        "score": 30.625,
+        "matches_evidence": false
+      },
+      {
+        "rank": 5,
+        "page_number": 5,
+        "score": 29.875,
+        "matches_evidence": false
+      },
+      {
+        "rank": 6,
+        "page_number": 13,
+        "score": 29.875,
+        "matches_evidence": false
+      },
+      {
+        "rank": 7,
+        "page_number": 9,
+        "score": 29.625,
+        "matches_evidence": false
+      },
+      {
+        "rank": 8,
+        "page_number": 15,
+        "score": 29.25,
+        "matches_evidence": false
+      },
+      {
+        "rank": 9,
+        "page_number": 10,
+        "score": 28.875,
+        "matches_evidence": false
+      },
+      {
+        "rank": 10,
+        "page_number": 17,
+        "score": 28.875,
+        "matches_evidence": false
+      },
+      {
+        "rank": 11,
+        "page_number": 11,
+        "score": 27.75,
+        "matches_evidence": false
+      },
+      {
+        "rank": 12,
+        "page_number": 3,
+        "score": 27.625,
+        "matches_evidence": false
+      },
+      {
+        "rank": 13,
+        "page_number": 7,
+        "score": 26.5,
+        "matches_evidence": false
+      },
+      {
+        "rank": 14,
+        "page_number": 12,
+        "score": 26.5,
+        "matches_evidence": false
+      },
+      {
+        "rank": 15,
+        "page_number": 6,
+        "score": 25.375,
+        "matches_evidence": false
+      },
+      {
+        "rank": 16,
+        "page_number": 22,
+        "score": 24.875,
+        "matches_evidence": false
+      },
+      {
+        "rank": 17,
+        "page_number": 1,
+        "score": 23.625,
+        "matches_evidence": false
+      },
+      {
+        "rank": 18,
+        "page_number": 2,
+        "score": 20.875,
+        "matches_evidence": false
+      },
+      {
+        "rank": 19,
+        "page_number": 19,
+        "score": 20.75,
+        "matches_evidence": false
+      },
+      {
+        "rank": 20,
+        "page_number": 23,
+        "score": 20.75,
+        "matches_evidence": false
+      },
+      {
+        "rank": 21,
+        "page_number": 21,
+        "score": 19.875,
+        "matches_evidence": false
+      },
+      {
+        "rank": 22,
+        "page_number": 20,
+        "score": 18.375,
+        "matches_evidence": false
+      },
+      {
+        "rank": 23,
+        "page_number": 18,
+        "score": 16.25,
+        "matches_evidence": false
+      }
+    ],
+    "ranked_chunks": [],
+    "retrieval_metadata": {
+      "retrieval_unit": "page",
+      "page_count": 23,
+      "render_dpi": 144,
+      "score_function": "processor.score"
+    },
+    "metrics": {
+      "first_hit_rank": 1,
+      "mrr": 1.0,
+      "retrieved_pages": 23,
+      "evidence_pages_count": 1,
+      "hit_at_1": true,
+      "evidence_page_recall_at_1": 1.0,
+      "hit_at_3": true,
+      "evidence_page_recall_at_3": 1.0,
+      "hit_at_5": true,
+      "evidence_page_recall_at_5": 1.0,
+      "hit_at_10": true,
+      "evidence_page_recall_at_10": 1.0,
+      "hit_at_20": true,
+      "evidence_page_recall_at_20": 1.0
+    },
+    "duration_s": 0.05,
+    "document_artifacts": {
+      "pdf_path": "/Users/fernandotrinta/Desktop/TCC/TCC/MMLongBench-Doc/documents/PH_2016.06.08_Economy-Final.pdf",
+      "page_count": 23,
+      "render_dpi": 144,
+      "page_image_batch_size": 1,
+      "render_cache_hit": false,
+      "render_duration_s": 0.74,
+      "embedding_cache_hit": false,
+      "embedding_duration_s": 40.0,
+      "indexing_duration_s": 40.77,
+      "embedding_cache_path": "/Users/fernandotrinta/Desktop/TCC/TCC/colqwen/cache/colsmol_500m/page_embeddings/PH_2016.06.08_Economy-Final/vidore__colSmol-500M_adapter_remap_v1_dpi144.pt",
+      "adapter_reload": {
+        "adapter_path": "/Users/fernandotrinta/.cache/huggingface/hub/models--vidore--colSmol-500M/snapshots/1aa9325cba7ed2b3b9b97ede4d55026322504902/adapter_model.safetensors",
+        "adapter_weights_reloaded": 448,
+        "embedding_cache_version": "adapter_remap_v1"
+      }
+    },
+    "error": null
+  },
+  {
+    "arch": "colsmol_500m",
+    "model_name": "vidore/colSmol-500M",
+    "doc_id": "PH_2016.06.08_Economy-Final.pdf",
+    "question": "According to this report, from 2014 to 2015, one group has the most significant drop of percentage of households claiming their income was falling behind cost of living.\nWhich group is this, and what is the percentage droped?",
+    "evidence_pages": [
+      11
+    ],
+    "evidence_sources": [
+      "Chart"
+    ],
+    "parser": "pdf_page_rendering",
+    "chunk_token_size": null,
+    "text_llm_model": null,
+    "vision_llm_model": "vidore/colSmol-500M",
+    "ranked_pages": [
+      {
+        "rank": 1,
+        "page_number": 12,
+        "score": 40.0,
+        "matches_evidence": false
+      },
+      {
+        "rank": 2,
+        "page_number": 11,
+        "score": 39.0,
+        "matches_evidence": true
+      },
+      {
+        "rank": 3,
+        "page_number": 6,
+        "score": 38.75,
+        "matches_evidence": false
+      },
+      {
+        "rank": 4,
+        "page_number": 7,
+        "score": 37.75,
+        "matches_evidence": false
+      },
+      {
+        "rank": 5,
+        "page_number": 9,
+        "score": 35.75,
+        "matches_evidence": false
+      },
+      {
+        "rank": 6,
+        "page_number": 5,
+        "score": 34.0,
+        "matches_evidence": false
+      },
+      {
+        "rank": 7,
+        "page_number": 14,
+        "score": 34.0,
+        "matches_evidence": false
+      },
+      {
+        "rank": 8,
+        "page_number": 22,
+        "score": 34.0,
+        "matches_evidence": false
+      },
+      {
+        "rank": 9,
+        "page_number": 4,
+        "score": 33.0,
+        "matches_evidence": false
+      },
+      {
+        "rank": 10,
+        "page_number": 13,
+        "score": 32.25,
+        "matches_evidence": false
+      },
+      {
+        "rank": 11,
+        "page_number": 3,
+        "score": 32.0,
+        "matches_evidence": false
+      },
+      {
+        "rank": 12,
+        "page_number": 10,
+        "score": 31.875,
+        "matches_evidence": false
+      },
+      {
+        "rank": 13,
+        "page_number": 8,
+        "score": 31.5,
+        "matches_evidence": false
+      },
+      {
+        "rank": 14,
+        "page_number": 23,
+        "score": 30.625,
+        "matches_evidence": false
+      },
+      {
+        "rank": 15,
+        "page_number": 19,
+        "score": 30.25,
+        "matches_evidence": false
+      },
+      {
+        "rank": 16,
+        "page_number": 17,
+        "score": 29.75,
+        "matches_evidence": false
+      },
+      {
+        "rank": 17,
+        "page_number": 21,
+        "score": 29.625,
+        "matches_evidence": false
+      },
+      {
+        "rank": 18,
+        "page_number": 15,
+        "score": 29.5,
+        "matches_evidence": false
+      },
+      {
+        "rank": 19,
+        "page_number": 16,
+        "score": 29.125,
+        "matches_evidence": false
+      },
+      {
+        "rank": 20,
+        "page_number": 2,
+        "score": 27.375,
+        "matches_evidence": false
+      },
+      {
+        "rank": 21,
+        "page_number": 20,
+        "score": 25.125,
+        "matches_evidence": false
+      },
+      {
+        "rank": 22,
+        "page_number": 1,
+        "score": 24.25,
+        "matches_evidence": false
+      },
+      {
+        "rank": 23,
+        "page_number": 18,
+        "score": 18.0,
+        "matches_evidence": false
+      }
+    ],
+    "ranked_chunks": [],
+    "retrieval_metadata": {
+      "retrieval_unit": "page",
+      "page_count": 23,
+      "render_dpi": 144,
+      "score_function": "processor.score"
+    },
+    "metrics": {
+      "first_hit_rank": 2,
+      "mrr": 0.5,
+      "retrieved_pages": 23,
+      "evidence_pages_count": 1,
+      "hit_at_1": false,
+      "evidence_page_recall_at_1": 0.0,
+      "hit_at_3": true,
+      "evidence_page_recall_at_3": 1.0,
+      "hit_at_5": true,
+      "evidence_page_recall_at_5": 1.0,
+      "hit_at_10": true,
+      "evidence_page_recall_at_10": 1.0,
+      "hit_at_20": true,
+      "evidence_page_recall_at_20": 1.0
+    },
+    "duration_s": 0.05,
+    "document_artifacts": {
+      "pdf_path": "/Users/fernandotrinta/Desktop/TCC/TCC/MMLongBench-Doc/documents/PH_2016.06.08_Economy-Final.pdf",
+      "page_count": 23,
+      "render_dpi": 144,
+      "page_image_batch_size": 1,
+      "render_cache_hit": false,
+      "render_duration_s": 0.74,
+      "embedding_cache_hit": false,
+      "embedding_duration_s": 40.0,
+      "indexing_duration_s": 40.77,
+      "embedding_cache_path": "/Users/fernandotrinta/Desktop/TCC/TCC/colqwen/cache/colsmol_500m/page_embeddings/PH_2016.06.08_Economy-Final/vidore__colSmol-500M_adapter_remap_v1_dpi144.pt",
+      "adapter_reload": {
+        "adapter_path": "/Users/fernandotrinta/.cache/huggingface/hub/models--vidore--colSmol-500M/snapshots/1aa9325cba7ed2b3b9b97ede4d55026322504902/adapter_model.safetensors",
+        "adapter_weights_reloaded": 448,
+        "embedding_cache_version": "adapter_remap_v1"
+      }
+    },
+    "error": null
+  }
+]
