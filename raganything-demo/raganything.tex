@@ -1,3 +1,895 @@
+\chapter{Resultados e Discussões}
+
+\section{Visão geral dos experimentos}
+
+Conforme descrito nas seções anteriores, os experimentos deste trabalho consistem na avaliação comparativa de três estratégias de recuperação de informação aplicadas ao mesmo recorte do conjunto de dados MMLongBench-Doc\cite{MA2024MMLONGBENCHDOC}, benchmark utilizado para a avaliação rigorosa de modelos de recuperação. O objetivo é analisar a capacidade de cada abordagem em recuperar corretamente as páginas que contêm as evidências necessárias para responder às perguntas relacionadas, essas que possuem seu contexto entre diferentes possíveis entidades, como imagens, gráficos, tabelas ou textos.
+
+Para garantir uma comparação uniforme, todas as estratégias foram avaliadas sobre o mesmo recorte de 30 documentos e 172 perguntas. Além disso, os resultados recuperados por cada pipeline foram convertidos para o mesmo nível de avaliação: a página do documento. Dessa forma, mesmo que as arquiteturas apresentem unidades internas de recuperação diferentes, como chunks textuais, páginas renderizadas ou elementos multimodais, a comparação final é realizada sempre entre as páginas recuperadas e as páginas indicadas no campo evidence\_pages.
+
+As estratégias avaliadas foram: uma abordagem textual baseada em Docling e LangChain, uma abordagem visual baseada em ColQwen e ColPali, e uma abordagem híbrida baseada em uma adaptação local do RAG-Anything. Para cada pergunta, foi gerado um ranking de páginas candidatas, posteriormente avaliado por meio das métricas Hit@k, Evidence Page Recall@k, MRR, número de consultas com falha e tempo de processamento.
+
+A~\ref{tab:visao-geral-experimentos} resume a configuração geral dos experimentos realizados.
+
+\begin{table}[htbp]
+\centering
+\caption{Visão geral dos experimentos realizados.}
+\label{tab:visao-geral-experimentos}
+\small
+\begin{tabular}{p{4.0cm}p{9.2cm}}
+\toprule
+\textbf{Elemento} & \textbf{Descrição} \\
+\midrule
+Conjunto avaliado & 30 documentos e 172 perguntas do MMLongBench-Doc. \\
+\addlinespace
+Estratégia textual & Docling e LangChain \\
+\addlinespace
+Estratégia visual & ColQwen e ColPali \\
+\addlinespace
+Estratégia híbrida & Adaptação local do RAG-Anything \\
+\addlinespace
+Unidade de avaliação & Página do documento, comparada com o campo evidence\_pages do benchmark. \\
+\addlinespace
+Métricas utilizadas & Hit@k, Evidence Page Recall@k, MRR, failed\_queries e tempo de processamento. \\
+\addlinespace
+Valores de k & 1, 3, 5, 10 e 20. \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+
+\section{Resultados da recuperação textual}
+
+O arquivo docling-langchain-bge-m3-retrieval-pages apresenta o resultado da execução bem sucedida da pipeline, essencial para inspeção manual dos resultados e construção de visualizações, onde é possível encontrar os chunks ranqueados e as métricas calculadas por pergunta.
+
+A saída legível contém, para cada pergunta, informações sobre o documento avaliado, a pergunta utilizada como consulta, as páginas esperadas como evidência e os resultados recuperados pelo pipeline. No exemplo analisado, referente ao documento PH\_2016.06.08\_Economy-Final.pdf, a página de evidência esperada era a página 5. O pipeline recuperou chunks textuais associados às páginas 5 e 6, sendo que o primeiro resultado ranqueado já continha a página correta. Dessa forma, a pergunta obteve first\_hit\_rank igual a 1 e MRR igual a 100,00\%. O "score" que é visto no ranking é referente à nota de similaridade com a consulta, logo, quanto maior o número, maior a coesão daquele chunk ou página com o contexto.
+
+
+\begin{figure}[h!]
+    \centering
+    \includegraphics[width=1.0\textwidth]{02_Textuais/desenvolvimento/metodologia/imagens/JSON 1.png}
+    \caption{Arquivo resultado do pipeline Docling}
+    \label{fig:minha_imagem}
+\end{figure}
+
+\begin{figure}[h!]
+    \centering
+    \begin{minipage}{0.48\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{02_Textuais/desenvolvimento/metodologia/imagens/Captura de Tela 2026-06-10 às 16.48.26.png}
+        \caption*{(a) Exemplo do ranking de chunks}
+    \end{minipage}
+    \hfill
+    \begin{minipage}{0.48\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{02_Textuais/desenvolvimento/metodologia/imagens/Captura de Tela 2026-06-10 às 16.49.06.png}
+        \caption*{(b) Exemplo do ranking de páginas}
+    \end{minipage}
+    \label{fig:mmlongbench-doc-visao-geral}
+\end{figure}
+
+
+Os resultados recuperados aparecem principalmente em duas estruturas: ranked\_chunks e ranked\_pages. A primeira lista os chunks textuais retornados, ordenados pela pontuação de similaridade com a pergunta. Cada chunk possui uma posição no ranking, um identificador, uma pontuação, uma ou mais páginas associadas e a indicação se ele coincide com alguma página de evidência. A segunda estrutura, ranked\_pages, consolida esses resultados no nível de página, métrica que é o padrão para o estudo, removendo repetições e indicando em que posição do ranking a página apareceu pela primeira vez.
+
+A~\ref{tab:saida-textual-readable} resume os principais campos presentes na saída legível do pipeline textual.
+
+\begin{table}[htbp]
+\centering
+\caption{Principais campos da saída legível do pipeline textual.}
+\label{tab:saida-textual-readable}
+\small
+\renewcommand{\arraystretch}{1.2}
+\begin{tabular}{|p{4.2cm}|p{9.0cm}|}
+\hline
+\textbf{Campo} & \textbf{Descrição} \\
+\hline
+arch & Identifica a arquitetura utilizada no experimento, neste caso Docling, LangChain, BGE-M3 e Milvus. \\
+\hline
+model\_name & Indica o modelo de embeddings utilizado para representar as perguntas e os chunks textuais. \\
+\hline
+doc\_id & Identifica o PDF associado à pergunta avaliada. \\
+\hline
+question & Pergunta utilizada como consulta na etapa de recuperação. \\
+\hline
+evidence\_pages & Lista de páginas esperadas como evidência, de acordo com o MMLongBench-Doc. \\
+\hline
+parser & Indica o modo de processamento documental utilizado pelo Docling. \\
+\hline
+chunk\_token\_size & Tamanho máximo adotado para os chunks textuais. \\
+\hline
+page\_provenance & Indica a origem da informação de página usada para mapear chunks recuperados para páginas do PDF. \\
+\hline
+\end{tabular}
+\end{table}
+
+
+Por fim, o campo metrics apresenta as métricas calculadas para a pergunta. No exemplo apresentado, a primeira página relevante aparece na primeira posição do ranking, resultando em first\_hit\_rank igual a 1 e MRR igual a 100,00\%. Como a única página de evidência esperada foi recuperada já no primeiro resultado, os valores de Hit@1, Hit@3, Hit@5, Hit@10 e Hit@20 são verdadeiros, enquanto Evidence Page Recall@1, Recall@3, Recall@5, Recall@10 e Recall@20 assumem valor 100,00\%. Esse exemplo representa um caso em que o pipeline textual conseguiu recuperar corretamente a evidência esperada já no topo do ranking.
+
+
+\begin{table}[htbp]
+\centering
+\caption{Interpretação dos resultados recuperados pelo pipeline textual.}
+\label{tab:rankings-pipeline-textual}
+\small
+\begin{tabular}{p{4.2cm}p{9.0cm}}
+\toprule
+\textbf{Campo} & \textbf{Descrição} \\
+\midrule
+\texttt{ranked\_chunks} & Lista de chunks textuais recuperados, ordenados por similaridade com a pergunta. \\
+\addlinespace
+\texttt{rank} & Posição do chunk no ranking de recuperação. \\
+\addlinespace
+\texttt{score} & Pontuação de similaridade atribuída ao chunk recuperado. \\
+\addlinespace
+\texttt{page\_numbers} & Páginas de origem associadas ao chunk recuperado. \\
+\addlinespace
+\texttt{matches\_evidence} & Indica se o chunk recuperado está associado a alguma página esperada como evidência. \\
+\addlinespace
+\texttt{ranked\_pages} & Lista consolidada de páginas recuperadas a partir dos chunks. \\
+\addlinespace
+\texttt{first\_chunk\_rank} & Primeira posição em que uma página apareceu por meio de algum chunk recuperado. \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+
+\subsection{Tempo de processamento da recuperação textual}
+
+Previamente à análise de métricas de desempenho, é interessante analisar o tempo de processamento do pipeline, visto que o custo computacional representa uma métrica relevante ao trabalho quando comparada com as futuras arquiteruras que apresentam maior complexidade operacional, em especial a híbrida.
+
+A~\ref{tab:tempo-processamento-textual} apresenta os principais tempos registrados no processamento dos documentos. Ao todo, foram processados 3.326 chunks textuais, onde não houveram falhas de execução.
+
+\begin{table}[htbp]
+\centering
+\caption{Tempo de processamento do pipeline textual.}
+\label{tab:tempo-processamento-textual}
+\small
+\begin{tabular}{p{7.8cm}p{4.8cm}}
+\toprule
+\textbf{Etapa ou métrica} & \textbf{Valor} \\
+\midrule
+Total de PDFs processados & 30 \\
+Total de perguntas avaliadas & 172 \\
+Total de chunks textuais gerados & 3.326 \\
+Falhas de execução & 0 \\
+\addlinespace
+Parsing com Docling & 58 min e 25 s \\
+Indexação no Milvus & 2 min e 3 s \\
+Processamento textual total & 1 h e 28 s \\
+Retrieval das perguntas & 11,88 s \\
+Tempo total incluindo retrieval & 1 h e 40 s \\
+\addlinespace
+Média de processamento por PDF & 2 min e 1 s \\
+Mediana de processamento por PDF & 1 min e 10 s \\
+Média de retrieval por pergunta & 0,07 s \\
+Mediana de retrieval por pergunta & 0,06 s \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+Os resultados indicam que a etapa dominante do pipeline textual foi o parsing com Docling, responsável pela maior parte do tempo total de execução. Em comparação, a indexação vetorial com BGE-M3 e Milvus Lite apresentou custo relativamente baixo, consumindo pouco mais de dois minutos no conjunto completo. Após a construção dos índices, a etapa de retrieval foi rápida, totalizando 11,88 s para as 172 perguntas avaliadas.
+
+Também foi observada variação significativa entre os documentos. O PDF mais rápido levou 11,98 s para ser processado, enquanto o mais lento levou 15 min e 51,21 s. Essa diferença indica que o custo do pipeline textual depende fortemente das características internas de cada PDF, como tamanho, estrutura, complexidade de layout e dificuldade de extração pelo parser, detalhe que então visa ser explorado na seção seguinte.
+
+\subsection{Resultados detalhados por PDF}
+
+Precedentemente à análise global, é válido ressaltar as métricas examinadas por documento. Essa análise permite observar variações de desempenho entre os PDFs avaliados, considerando que os documentos possuem tamanhos, estruturas e tipos de evidência diferentes. Nas tabelas a seguir, Qs indica a quantidade de perguntas associadas ao PDF, enquanto Falhas representa perguntas que não puderam ser avaliadas. A coluna FHM corresponde ao FirstHit médio, isto é, à posição média da primeira evidência correta entre as perguntas em que houve ao menos um acerto.
+
+
+\begin{table}[htbp]
+    \centering
+    \caption{Tempo de processamento por PDF do pipeline textual.}
+    \label{tab:tempo-processamento-textual-pdf}
+    \scriptsize
+    \resizebox{\textwidth}{!}{
+    \begin{tabular}{r r r r r r r}
+    \toprule
+    \textbf{PDF} & \textbf{Qs} & \textbf{Chunks} & \textbf{Parsing} & \textbf{Index.} & \textbf{Processamento total} & \textbf{Retrieval} \\
+    \midrule
+    01 & 7 & 54 & 20,20 s & 2,49 s & 22,69 s & 0,44 s \\
+    02 & 4 & 34 & 17,33 s & 2,59 s & 19,92 s & 0,16 s \\
+    03 & 7 & 5 & 79,89 s & 0,81 s & 80,70 s & 0,54 s \\
+    04 & 7 & 61 & 76,70 s & 2,76 s & 79,46 s & 0,82 s \\
+    05 & 6 & 94 & 947,43 s & 3,78 s & 951,21 s & 0,61 s \\
+    06 & 7 & 24 & 200,53 s & 1,38 s & 201,91 s & 0,42 s \\
+    07 & 7 & 28 & 164,97 s & 1,30 s & 166,27 s & 0,18 s \\
+    08 & 8 & 38 & 127,57 s & 1,20 s & 128,77 s & 0,43 s \\
+    09 & 6 & 130 & 13,39 s & 6,26 s & 19,65 s & 0,34 s \\
+    10 & 6 & 133 & 36,19 s & 5,57 s & 41,76 s & 0,39 s \\
+    11 & 6 & 196 & 51,09 s & 8,58 s & 59,67 s & 0,43 s \\
+    12 & 5 & 152 & 30,51 s & 3,95 s & 34,46 s & 0,32 s \\
+    13 & 4 & 170 & 26,50 s & 4,25 s & 30,75 s & 0,26 s \\
+    14 & 4 & 91 & 20,94 s & 2,89 s & 23,83 s & 0,33 s \\
+    15 & 5 & 192 & 76,55 s & 4,88 s & 81,43 s & 0,34 s \\
+    16 & 5 & 277 & 148,21 s & 6,71 s & 154,92 s & 0,41 s \\
+    17 & 5 & 88 & 11,42 s & 3,70 s & 15,12 s & 0,33 s \\
+    18 & 6 & 52 & 35,98 s & 2,24 s & 38,22 s & 0,40 s \\
+    19 & 4 & 49 & 163,19 s & 2,67 s & 165,86 s & 0,26 s \\
+    20 & 4 & 71 & 8,82 s & 3,16 s & 11,98 s & 0,25 s \\
+    21 & 6 & 107 & 22,29 s & 3,70 s & 25,99 s & 0,51 s \\
+    22 & 4 & 62 & 198,65 s & 2,42 s & 201,07 s & 0,18 s \\
+    23 & 5 & 19 & 115,04 s & 1,13 s & 116,17 s & 0,22 s \\
+    24 & 4 & 11 & 54,54 s & 0,87 s & 55,41 s & 0,18 s \\
+    25 & 7 & 33 & 230,96 s & 2,05 s & 233,01 s & 0,24 s \\
+    26 & 6 & 49 & 265,18 s & 1,70 s & 266,88 s & 0,31 s \\
+    27 & 11 & 589 & 192,56 s & 20,62 s & 213,18 s & 1,52 s \\
+    28 & 5 & 206 & 42,73 s & 9,34 s & 52,07 s & 0,38 s \\
+    29 & 5 & 214 & 88,20 s & 6,60 s & 94,80 s & 0,35 s \\
+    30 & 6 & 97 & 37,55 s & 3,55 s & 41,10 s & 0,33 s \\
+    \bottomrule
+    \end{tabular}
+    }
+    \end{table}
+
+
+
+\begin{table}[htbp]
+    \centering
+    \caption{Resultados por PDF: FHM e Hit@k do pipeline textual.}
+    \label{tab:resultados-textual-hit-pdf}
+    \scriptsize
+    \resizebox{\textwidth}{!}{
+    \begin{tabular}{r r r r r r r r r}
+    \toprule
+    \textbf{PDF} & \textbf{Qs} & \textbf{Falhas} & \textbf{FHM} & \textbf{H@1} & \textbf{H@3} & \textbf{H@5} & \textbf{H@10} & \textbf{H@20} \\
+    \midrule
+    01 & 7 & 0 & 1.7143 & 85,71\% & 85,71\% & 85,71\% & 100,00\% & 100,00\% \\
+    02 & 4 & 0 & 1.7500 & 50,00\% & 100,00\% & 100,00\% & 100,00\% & 100,00\% \\
+    03 & 7 & 0 & 1.0000 & 42,86\% & 42,86\% & 42,86\% & 42,86\% & 42,86\% \\
+    04 & 7 & 0 & 9.6667 & 28,57\% & 28,57\% & 57,14\% & 57,14\% & 71,43\% \\
+    05 & 6 & 0 & 15.0000 & 0,00\% & 0,00\% & 0,00\% & 16,67\% & 33,33\% \\
+    06 & 7 & 0 & 4.0000 & 0,00\% & 42,86\% & 57,14\% & 71,43\% & 71,43\% \\
+    07 & 7 & 0 & 4.4000 & 14,29\% & 42,86\% & 42,86\% & 71,43\% & 71,43\% \\
+    08 & 8 & 0 & 2.3750 & 75,00\% & 87,50\% & 87,50\% & 100,00\% & 100,00\% \\
+    09 & 6 & 0 & 3.5000 & 66,67\% & 83,33\% & 83,33\% & 83,33\% & 100,00\% \\
+    10 & 6 & 0 & 5.3333 & 50,00\% & 66,67\% & 66,67\% & 83,33\% & 100,00\% \\
+    11 & 6 & 0 & 2.8333 & 33,33\% & 66,67\% & 83,33\% & 100,00\% & 100,00\% \\
+    12 & 5 & 0 & 6.8000 & 60,00\% & 80,00\% & 80,00\% & 80,00\% & 80,00\% \\
+    13 & 4 & 0 & 2.0000 & 75,00\% & 75,00\% & 100,00\% & 100,00\% & 100,00\% \\
+    14 & 4 & 0 & 1.0000 & 100,00\% & 100,00\% & 100,00\% & 100,00\% & 100,00\% \\
+    15 & 5 & 0 & 4.4000 & 20,00\% & 60,00\% & 80,00\% & 80,00\% & 100,00\% \\
+    16 & 5 & 0 & 3.2000 & 20,00\% & 60,00\% & 80,00\% & 100,00\% & 100,00\% \\
+    17 & 5 & 0 & 9.2000 & 40,00\% & 40,00\% & 40,00\% & 40,00\% & 100,00\% \\
+    18 & 6 & 0 & 1.8333 & 50,00\% & 100,00\% & 100,00\% & 100,00\% & 100,00\% \\
+    19 & 4 & 0 & 2.2500 & 75,00\% & 75,00\% & 75,00\% & 100,00\% & 100,00\% \\
+    20 & 4 & 0 & 2.7500 & 75,00\% & 75,00\% & 75,00\% & 100,00\% & 100,00\% \\
+    21 & 6 & 0 & 9.1667 & 33,33\% & 33,33\% & 50,00\% & 83,33\% & 83,33\% \\
+    22 & 4 & 0 & 4.3333 & 25,00\% & 50,00\% & 50,00\% & 75,00\% & 75,00\% \\
+    23 & 5 & 0 & 5.6000 & 40,00\% & 40,00\% & 60,00\% & 80,00\% & 100,00\% \\
+    24 & 4 & 0 & 1.7500 & 75,00\% & 75,00\% & 100,00\% & 100,00\% & 100,00\% \\
+    25 & 7 & 0 & 1.0000 & 42,86\% & 42,86\% & 42,86\% & 42,86\% & 42,86\% \\
+    26 & 6 & 0 & 19.0000 & 16,67\% & 33,33\% & 33,33\% & 50,00\% & 66,67\% \\
+    27 & 11 & 0 & 27.3636 & 9,09\% & 9,09\% & 18,18\% & 36,36\% & 45,45\% \\
+    28 & 5 & 0 & 5.7500 & 40,00\% & 40,00\% & 40,00\% & 60,00\% & 80,00\% \\
+    29 & 5 & 0 & 3.2000 & 40,00\% & 40,00\% & 100,00\% & 100,00\% & 100,00\% \\
+    30 & 6 & 0 & 3.7500 & 33,33\% & 50,00\% & 50,00\% & 50,00\% & 66,67\% \\
+    \bottomrule
+    \end{tabular}
+    }
+    \end{table}
+    
+    
+    
+    
+    \begin{table}[htbp]
+    \centering
+    \caption{Resultados por PDF: MRR e Evidence Page Recall@k do pipeline textual.}
+    \label{tab:resultados-textual-recall-pdf}
+    \scriptsize
+    \resizebox{\textwidth}{!}{
+    \begin{tabular}{r r r r r r r r r}
+    \toprule
+    \textbf{PDF} & \textbf{Qs} & \textbf{Falhas} & \textbf{MRR} & \textbf{R@1} & \textbf{R@3} & \textbf{R@5} & \textbf{R@10} & \textbf{R@20} \\
+    \midrule
+    01 & 7 & 0 & 88,10\% & 57,14\% & 64,29\% & 71,43\% & 90,48\% & 95,24\% \\
+    02 & 4 & 0 & 70,83\% & 25,00\% & 57,14\% & 73,21\% & 76,79\% & 100,00\% \\
+    03 & 7 & 0 & 42,86\% & 42,86\% & 42,86\% & 42,86\% & 42,86\% & 42,86\% \\
+    04 & 7 & 0 & 35,99\% & 28,57\% & 28,57\% & 31,79\% & 33,21\% & 53,93\% \\
+    05 & 6 & 0 & 3,80\% & 0,00\% & 0,00\% & 0,00\% & 16,67\% & 22,22\% \\
+    06 & 7 & 0 & 24,21\% & 0,00\% & 18,57\% & 21,10\% & 43,30\% & 52,97\% \\
+    07 & 7 & 0 & 32,04\% & 10,71\% & 32,14\% & 35,71\% & 44,64\% & 50,00\% \\
+    08 & 8 & 0 & 80,42\% & 56,25\% & 75,00\% & 81,25\% & 87,50\% & 100,00\% \\
+    09 & 6 & 0 & 76,11\% & 58,33\% & 66,67\% & 66,67\% & 83,33\% & 100,00\% \\
+    10 & 6 & 0 & 58,39\% & 22,22\% & 50,00\% & 58,33\% & 75,00\% & 91,67\% \\
+    11 & 6 & 0 & 56,55\% & 25,00\% & 58,33\% & 75,00\% & 91,67\% & 91,67\% \\
+    12 & 5 & 0 & 70,69\% & 36,67\% & 56,67\% & 56,67\% & 56,67\% & 66,67\% \\
+    13 & 4 & 0 & 80,00\% & 62,50\% & 75,00\% & 100,00\% & 100,00\% & 100,00\% \\
+    14 & 4 & 0 & 100,00\% & 100,00\% & 100,00\% & 100,00\% & 100,00\% & 100,00\% \\
+    15 & 5 & 0 & 45,67\% & 20,00\% & 50,00\% & 70,00\% & 80,00\% & 93,33\% \\
+    16 & 5 & 0 & 45,00\% & 20,00\% & 60,00\% & 70,00\% & 90,00\% & 95,00\% \\
+    17 & 5 & 0 & 44,18\% & 30,00\% & 30,00\% & 30,00\% & 30,00\% & 63,33\% \\
+    18 & 6 & 0 & 69,44\% & 50,00\% & 79,17\% & 91,67\% & 95,83\% & 95,83\% \\
+    19 & 4 & 0 & 79,17\% & 75,00\% & 75,00\% & 75,00\% & 100,00\% & 100,00\% \\
+    20 & 4 & 0 & 78,12\% & 53,57\% & 57,14\% & 60,71\% & 80,36\% & 83,93\% \\
+    21 & 6 & 0 & 40,97\% & 16,67\% & 33,33\% & 50,00\% & 69,44\% & 69,44\% \\
+    22 & 4 & 0 & 36,11\% & 25,00\% & 50,00\% & 50,00\% & 75,00\% & 75,00\% \\
+    23 & 5 & 0 & 47,82\% & 40,00\% & 40,00\% & 50,00\% & 70,00\% & 88,33\% \\
+    24 & 4 & 0 & 81,25\% & 75,00\% & 75,00\% & 100,00\% & 100,00\% & 100,00\% \\
+    25 & 7 & 0 & 42,86\% & 33,33\% & 38,10\% & 38,10\% & 38,10\% & 38,10\% \\
+    26 & 6 & 0 & 26,32\% & 8,33\% & 33,33\% & 33,33\% & 50,00\% & 56,67\% \\
+    27 & 11 & 0 & 15,19\% & 9,09\% & 9,09\% & 18,18\% & 31,82\% & 38,64\% \\
+    28 & 5 & 0 & 44,29\% & 30,00\% & 30,00\% & 30,00\% & 40,00\% & 60,00\% \\
+    29 & 5 & 0 & 53,00\% & 30,00\% & 30,00\% & 76,67\% & 93,33\% & 100,00\% \\
+    30 & 6 & 0 & 43,18\% & 13,89\% & 38,89\% & 38,89\% & 44,44\% & 50,00\% \\
+    \bottomrule
+    \end{tabular}
+    }
+    \end{table}
+    
+
+
+
+\subsection{Análise dos casos de baixo desempenho}
+
+Além dos resultados agregados por documento, também foram analisados casos específicos em que o pipeline textual apresentou evidente baixo desempenho. Para essa análise, foram considerados três critérios principais: ausência de acerto até a posição 100 do ranking, que demonstra a incapacidade do modelo de encontrar sequer uma única evidência que corretamente responde a consulta, acerto após a posição 20, representada por \texttt{hit\_at\_20 = false}, e recuperação tardia da primeira página correta, representada por \texttt{first\_hit\_rank >= 10}, onde o modelo encontra evidência, mas de forma ineficaz, visto que a mesma se encontra depois dos primeiros 10 chunks retornados. 
+
+A~\ref{tab:baixo-desempenho-resumo} apresenta o resumo geral dos casos de baixo desempenho observados no pipeline textual.
+
+\begin{table}[htbp]
+\centering
+\caption{Resumo dos casos de baixo desempenho do pipeline textual.}
+\label{tab:baixo-desempenho-resumo}
+\small
+\begin{tabular}{p{9.2cm}r}
+\toprule
+\textbf{Critério analisado} & \textbf{Quantidade} \\
+\midrule
+Total de perguntas avaliadas & 172 \\
+Sem nenhum acerto entre os 100 chunks recuperados & 20 \\
+Primeiro acerto apenas depois do rank 20 & 12 \\
+Primeiro acerto entre os ranks 10 e 20 & 17 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+Além disso, é interessante utilizar o argumento relacionado aos tipos de entidade que acarretaram tais falhas no pipeline de recuperação, visto que é importante objeto de estudo da multimodalidade. Portanto, abaixo seguem os tipos de evidência mais recorrentes em falhas.
+
+
+\begin{table}[htbp]
+\centering
+\caption{Falhas do pipeline textual por tipo de evidência.}
+\label{tab:falhas-tipo-evidencia}
+\small
+\begin{tabular}{lrrr}
+\toprule
+\textbf{Tipo de evidência} & \textbf{Total} & \textbf{Sem H@20} & \textbf{Taxa de falha} \\
+\midrule
+Figure & 57 & 16 & 28,1\% \\
+Chart & 44 & 8 & 18,2\% \\
+Table & 34 & 4 & 11,8\% \\
+Generalized-text/Layout & 38 & 3 & 7,9\% \\
+Pure-text & 40 & 1 & 2,5\% \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+Os resultados indicam que o principal padrão de falha do pipeline textual ocorre em perguntas cuja resposta depende de elementos visuais, como figuras, gráficos, mapas, slides, cores, diagramas ou relações espaciais de layout. Esse comportamento é esperado para uma abordagem baseada apenas em texto extraído, uma vez que informações visuais podem não ser convertidas adequadamente para uma representação textual recuperável.
+
+Observa-se que as maiores taxas de falha ocorreram em evidências do tipo Figure e Chart, com 28,1\% e 18,2\% de falhas, respectivamente. Em contrapartida, é fato de que evidências em texto apresentam taxa de acerto excelente.
+
+A\ref{tab:pdfs-problematicos-textual} apresenta os PDFs com maior número de perguntas sem acerto até H@20.
+
+\begin{table}[htbp]
+\centering
+\caption{PDFs mais problemáticos para o pipeline textual.}
+\label{tab:pdfs-problematicos-textual}
+\small
+\begin{tabular}{r r r r r}
+\toprule
+\textbf{PDF} & \textbf{Sem H@20} & \textbf{Perguntas} & \textbf{MRR} & \textbf{R@20} \\
+\midrule
+27 & 6 & 11 & 15,19\% & 38,64\% \\
+05 & 4 & 6 & 3,80\% & 22,22\% \\
+03 & 4 & 7 & 42,86\% & 42,86\% \\
+25 & 4 & 7 & 42,86\% & 38,10\% \\
+04 & 2 & 7 & 35,99\% & 53,93\% \\
+06 & 2 & 7 & 24,21\% & 52,97\% \\
+07 & 2 & 7 & 32,04\% & 50,00\% \\
+26 & 2 & 6 & 26,32\% & 56,67\% \\
+30 & 2 & 6 & 43,18\% & 50,00\% \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+Analisando as métricas, alguns exemplos ajudam a ilustrar o comportamento observado. No PDF 3, há uma pergunta sobre quanto tempo era gasto com família e amigos em 2010, onde a evidência se encontra em um gráfico localizado na página 14, conforme é observado na~\ref{fig:erros-textual}. Entretanto, as páginas mais bem ranqueadas foram 1, 2, 3, 8 e 11. O motivo da falha é que a informação necessária estava codificada no gráfico demonstrado na imagem, assim dificultando a extração da mesma.
+
+No PDF 6, uma pergunta sobre a comparação entre o índice de ``IPOs'' da Europa e dos Estados Unidos também dependia de um gráfico localizado na página 11, conforme demonstrado pela~\ref{fig:erros-textual}. Nesse caso, as páginas inicialmente recuperadas foram 7, 28, 1, 9 e 30. O pipeline textual recuperou páginas semanticamente próximas, mas não a página visual correta para a consulta.
+
+No PDF 7, uma pergunta sobre o fluxograma ``Analytics Value Chain'' tinha como evidência a página 13. As páginas recuperadas no topo do ranking foram 52, 11, 53, 14 e 15, sugerindo dificuldade do pipeline textual em representar adequadamente a estrutura visual do fluxograma.
+
+Outro exemplo ocorre no PDF 30, em uma pergunta sobre as portas localizadas no lado direito do MacBook Air. A evidência estava associada a uma figura na página 30, mas as páginas mais bem ranqueadas foram 31, 5, 60, 61 e 36.
+
+De modo geral, a análise dos casos de baixo desempenho mostra que o baseline textual falha principalmente quando a pergunta exige interpretação visual, como leitura de gráficos, mapas, cores, diagramas, cartoons, posição espacial ou elementos de layout. Quando a evidência está representada como texto puro, a taxa de falha é significativamente menor. Esse resultado reforça a justificativa para comparar o baseline textual com estratégias visuais e híbridas, como ColQwen e RAG-Anything, que têm acesso mais direto à informação visual presente nos documentos.
+
+\begin{figure}[h!]
+    \centering
+
+    \begin{minipage}{0.50\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]
+        {02_Textuais/desenvolvimento/metodologia/imagens/figura_pdf3.png}
+        \caption*{(a) Exemplo da página 3}
+    \end{minipage}
+    \hfill
+    \begin{minipage}{0.49\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]
+        {02_Textuais/desenvolvimento/metodologia/imagens/graphpdf6.png}
+        \caption*{(b) Exemplo da página 6}
+    \end{minipage}
+
+    \caption{Exemplos de páginas associadas a casos de baixo desempenho do pipeline textual.}
+    \label{fig:erros-textual}
+\end{figure}
+
+
+\section{Resultados da recuperação visual com modelos ColVision}
+\label{sec:resultados-colvision}
+
+Esta seção apresenta a avaliação da estratégia visual de recuperação por página. Diferentemente do pipeline textual, que depende da extração de trechos de texto, a abordagem visual renderiza cada página do PDF como imagem e utiliza um modelo ColVision para ranquear diretamente as páginas mais relevantes para cada pergunta.
+
+\section{Resultados da recuperação visual com modelos ColVision}
+\label{sec:resultados-colvision}
+
+Esta seção apresenta a avaliação da estratégia visual de recuperação por página. Diferentemente do pipeline textual, que depende da extração de trechos de texto, a abordagem visual renderiza cada página do PDF como imagem e utiliza um modelo ColVision para ranquear diretamente as páginas mais relevantes para cada pergunta. Nesse estudo, devido ao tempo, inicialmente foi utilizado um único modelo, esse, como argumentado antes, o colqwen3.5-4.5B-v3. Porém, ao decorrer dos experimentos, foi constatada a facilidade da realização de comparações com outros modelos da família, visto que o pipeline visual foi de forma significativa o mais rápido em sua lógica.
+
+\subsection{Visão geral do pipeline visual}
+\label{subsec:colvision-visao-geral}
+
+O pipeline visual foi avaliado a partir do modelo \texttt{athrael-soju/colqwen3.5-4.5B-v3}\cite{FAYSSE2025COLPALI}, utilizado como principal representante da estratégia ColVision neste trabalho. Cada PDF foi convertido em imagens da página correspondente; essas imagens foram codificadas pelo modelo visual e, para cada pergunta, o embedding da consulta foi comparado com os embeddings das páginas do documento.
+
+Essa arquitetura não realiza segmentação textual nem geração de resposta final. A unidade de recuperação é a página renderizada, o que torna a avaliação diretamente compatível com o campo \texttt{evidence\_pages} do MMLongBench-Doc. Assim, o ranking produzido pelo modelo já corresponde ao nível em que as métricas são calculadas, sem exigir conversão alguma. Ainda, é importante ressaltar que tal característica foi a responsável por motivar o experimento conjunto, onde as outras arquiteturas foram adaptadas para aderir à lógica de resultado dos modelos ColVision, visto que ela é a exata definição de saída necessária para a avaliação.
+
+\subsection{Configuração experimental}
+\label{subsec:colvision-configuracao}
+
+A configuração utilizada no experimento completo com ColQwen3.5 está resumida na~\ref{tab:config-colvision-colqwen35}.
+
+\begin{table}[htbp]
+\centering
+\caption{Configuração experimental do pipeline visual com ColQwen3.5.}
+\label{tab:config-colvision-colqwen35}
+\small
+\renewcommand{\arraystretch}{1.2}
+\begin{tabular}{p{4.6cm}p{8.4cm}}
+\toprule
+\textbf{Componente} & \textbf{Configuração utilizada} \\
+\midrule
+Arquitetura avaliada & Recuperação visual por página com ColVision. \\
+\addlinespace
+Modelo principal & \texttt{athrael-soju/colqwen3.5-4.5B-v3}. \\
+\addlinespace
+Processamento do PDF & Renderização de cada página como imagem. \\
+\addlinespace
+Unidade recuperada & Página completa do PDF. \\
+\addlinespace
+Proveniência & Página renderizada, identificada por número de página. \\
+\addlinespace
+Valores de $k$ & 1, 3, 5, 10 e 20. \\
+\addlinespace
+\bottomrule
+\end{tabular}
+\end{table}
+
+Essa configuração favorece uma comparação direta com as páginas anotadas como evidência. Em contrapartida, o modelo trabalha com a página inteira como unidade indivisível, sem indicar internamente qual trecho, tabela, gráfico ou região visual da página motivou a recuperação.
+
+\subsection{Formato da saída de avaliação}
+\label{subsec:colvision-saida-avaliacao}
+
+O arquivo \texttt{colqwen3\_5-retrieval-pages-readable.json} registra, para cada pergunta, o ranking de páginas produzido pelo modelo, a pontuação de similaridade de cada página e as métricas calculadas em relação às páginas de evidência. Como a unidade recuperada já é a própria página, não é necessário consolidar chunks nem inferir a sua proveniência.
+
+\begin{table}[htbp]
+\centering
+\caption{Principais campos da saída legível do pipeline visual.}
+\label{tab:saida-colvision-readable}
+\small
+\begin{tabular}{p{4.3cm}p{9.0cm}}
+\toprule
+\textbf{Campo} & \textbf{Descrição} \\
+\midrule
+\texttt{arch} & Identifica a arquitetura avaliada, neste caso \texttt{colqwen3\_5-4.5B-v3}. \\
+\addlinespace
+\texttt{model\_name} & Nome do modelo ColVision utilizado na execução. \\
+\addlinespace
+\texttt{doc\_id} & Nome do PDF associado à pergunta. \\
+\addlinespace
+\texttt{question} & Pergunta utilizada como consulta. \\
+\addlinespace
+\texttt{evidence\_pages} & Páginas esperadas como evidência, segundo o MMLongBench-Doc. \\
+\addlinespace
+\texttt{ranked\_pages} & Ranking das páginas recuperadas, incluindo posição, número da página, score e indicação de acerto. \\
+\addlinespace
+\texttt{metrics} & Métricas de recuperação por pergunta, incluindo First Hit Rank, MRR, Hit@k e Recall@k. \\
+\addlinespace
+\texttt{document\_artifacts} & Informações de renderização, cache, quantidade de páginas e tempos de processamento do PDF. \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\subsection{Resultados gerais}
+\label{subsec:colvision-resultados-gerais}
+
+No experimento completo, o ColQwen3.5 avaliou de forma bem sucedida os 30 PDFs, correspondendo a 1.135 páginas renderizadas e as mesmas 172 perguntas respondíveis. Não houve falha de execução. O modelo alcançou MRR de 81,49\% e Hit@20 de 97,09\%, indicando que pelo menos uma página correta foi encontrada entre as 20 primeiras posições em 97,09\% das perguntas.
+
+\begin{table}[htbp]
+\centering
+\caption{Resultados globais do pipeline visual com ColQwen3.5.}
+\label{tab:resultados-gerais-colvision}
+\small
+\begin{tabular}{p{6.6cm}r}
+\toprule
+\textbf{Métrica} & \textbf{Valor} \\
+\midrule
+PDFs avaliados & 30 \\
+Páginas renderizadas & 1.135 \\
+Perguntas avaliadas & 172 \\
+Falhas de execução & 0 \\
+First Hit Rank médio & 2.3905 \\
+MRR & 81,49\% \\
+\addlinespace
+Hit@1 & 74,42\% \\
+Hit@3 & 87,21\% \\
+Hit@5 & 90,12\% \\
+Hit@10 & 94,19\% \\
+Hit@20 & 97,09\% \\
+\addlinespace
+Evidence Page Recall@1 & 57,48\% \\
+Evidence Page Recall@3 & 74,83\% \\
+Evidence Page Recall@5 & 81,28\% \\
+Evidence Page Recall@10 & 90,61\% \\
+Evidence Page Recall@20 & 95,45\% \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+O desempenho elevado em Hit@1 mostra que, em grande parte das perguntas, a primeira página retornada já coincide com a resposta correta. A diferença entre Hit@20 e Recall@20 indica, entretanto, que em perguntas com múltiplas páginas de evidência o modelo ainda pode recuperar apenas parte do conjunto esperado, o que pode significar que relações entre páginas estão sendo perdidas.
+
+\subsection{Tempo de processamento}
+\label{subsec:colvision-tempo-processamento}
+
+O custo do pipeline visual se concentra na renderização das páginas e na geração dos embeddings visuais. Depois que essas representações são armazenadas em cache, a etapa de consulta é curta.
+
+\begin{table}[htbp]
+\centering
+\caption{Tempo de processamento do pipeline visual com ColQwen3.5.}
+\label{tab:tempo-colvision}
+\small
+\begin{tabular}{p{7.6cm}p{4.8cm}}
+\toprule
+\textbf{Etapa ou métrica} & \textbf{Valor} \\
+\midrule
+Renderização total das páginas & 1 min e 21,16 s \\
+Geração total de embeddings & 13 min e 38,42 s \\
+Consulta das perguntas & 53,27 s \\
+\addlinespace
+Indexação total & 15 min e 0,15 s \\
+Tempo total medido & 15 min e 53,42 s \\
+\addlinespace
+Média de consulta por pergunta & 0,31 s \\
+Mediana de consulta por pergunta & 0,30 s \\
+Total de páginas processadas & 1.135 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\subsection{Resultados detalhados por PDF}
+\label{subsec:colvision-resultados-pdf}
+
+A análise por PDF permite identificar documentos em que a recuperação visual teve desempenho estável e documentos em que a primeira evidência correta apareceu mais tarde no ranking. Nas Tabelas:~\ref{tab:resultados-colvision-hit-pdf} e~\ref{tab:resultados-colvision-recall-pdf}, é possível observar tal resultado.
+
+\begin{table}[htbp]
+\centering
+\caption{Resultados por PDF: FHM e Hit@k do pipeline visual com ColQwen3.5.}
+\label{tab:resultados-colvision-hit-pdf}
+\scriptsize
+\resizebox{\textwidth}{!}{
+\begin{tabular}{r r r r r r r r r}
+\toprule
+\textbf{PDF} & \textbf{Qs} & \textbf{Falhas} & \textbf{FHM} & \textbf{H@1} & \textbf{H@3} & \textbf{H@5} & \textbf{H@10} & \textbf{H@20} \\
+\midrule
+01 & 7 & 0 & 1.1429 & 85,71\% & 100,00\% & 100,00\% & 100,00\% & 100,00\% \\
+02 & 4 & 0 & 1.2500 & 75,00\% & 100,00\% & 100,00\% & 100,00\% & 100,00\% \\
+03 & 7 & 0 & 1.0000 & 100,00\% & 100,00\% & 100,00\% & 100,00\% & 100,00\% \\
+04 & 7 & 0 & 1.0000 & 100,00\% & 100,00\% & 100,00\% & 100,00\% & 100,00\% \\
+05 & 6 & 0 & 18.8000 & 16,67\% & 16,67\% & 16,67\% & 50,00\% & 50,00\% \\
+06 & 7 & 0 & 1.5714 & 57,14\% & 100,00\% & 100,00\% & 100,00\% & 100,00\% \\
+07 & 7 & 0 & 1.1429 & 85,71\% & 100,00\% & 100,00\% & 100,00\% & 100,00\% \\
+08 & 8 & 0 & 1.0000 & 100,00\% & 100,00\% & 100,00\% & 100,00\% & 100,00\% \\
+09 & 6 & 0 & 1.5000 & 66,67\% & 100,00\% & 100,00\% & 100,00\% & 100,00\% \\
+10 & 6 & 0 & 1.0000 & 100,00\% & 100,00\% & 100,00\% & 100,00\% & 100,00\% \\
+11 & 6 & 0 & 1.1667 & 83,33\% & 100,00\% & 100,00\% & 100,00\% & 100,00\% \\
+12 & 5 & 0 & 3.6000 & 80,00\% & 80,00\% & 80,00\% & 80,00\% & 100,00\% \\
+13 & 4 & 0 & 2.2500 & 50,00\% & 75,00\% & 100,00\% & 100,00\% & 100,00\% \\
+14 & 4 & 0 & 1.0000 & 100,00\% & 100,00\% & 100,00\% & 100,00\% & 100,00\% \\
+15 & 5 & 0 & 1.4000 & 80,00\% & 100,00\% & 100,00\% & 100,00\% & 100,00\% \\
+16 & 5 & 0 & 1.0000 & 100,00\% & 100,00\% & 100,00\% & 100,00\% & 100,00\% \\
+17 & 5 & 0 & 1.2000 & 80,00\% & 100,00\% & 100,00\% & 100,00\% & 100,00\% \\
+18 & 6 & 0 & 1.1667 & 83,33\% & 100,00\% & 100,00\% & 100,00\% & 100,00\% \\
+19 & 4 & 0 & 1.2500 & 75,00\% & 100,00\% & 100,00\% & 100,00\% & 100,00\% \\
+20 & 4 & 0 & 3.2500 & 50,00\% & 50,00\% & 75,00\% & 100,00\% & 100,00\% \\
+21 & 6 & 0 & 3.6667 & 66,67\% & 66,67\% & 66,67\% & 83,33\% & 100,00\% \\
+22 & 4 & 0 & 3.6667 & 50,00\% & 50,00\% & 50,00\% & 75,00\% & 75,00\% \\
+23 & 5 & 0 & 2.6000 & 80,00\% & 80,00\% & 80,00\% & 100,00\% & 100,00\% \\
+24 & 4 & 0 & 1.0000 & 100,00\% & 100,00\% & 100,00\% & 100,00\% & 100,00\% \\
+25 & 7 & 0 & 3.4286 & 57,14\% & 85,71\% & 85,71\% & 85,71\% & 100,00\% \\
+26 & 6 & 0 & 4.3333 & 50,00\% & 66,67\% & 83,33\% & 83,33\% & 100,00\% \\
+27 & 11 & 0 & 3.6364 & 45,45\% & 63,64\% & 81,82\% & 90,91\% & 100,00\% \\
+28 & 5 & 0 & 1.0000 & 80,00\% & 80,00\% & 80,00\% & 80,00\% & 80,00\% \\
+29 & 5 & 0 & 1.2000 & 80,00\% & 100,00\% & 100,00\% & 100,00\% & 100,00\% \\
+30 & 6 & 0 & 1.6667 & 66,67\% & 100,00\% & 100,00\% & 100,00\% & 100,00\% \\
+\bottomrule
+\end{tabular}
+}
+\end{table}
+
+\begin{table}[htbp]
+\centering
+\caption{Resultados por PDF: MRR e Evidence Page Recall@k do pipeline visual com ColQwen3.5.}
+\label{tab:resultados-colvision-recall-pdf}
+\scriptsize
+\resizebox{\textwidth}{!}{
+\begin{tabular}{r r r r r r r r r}
+\toprule
+\textbf{PDF} & \textbf{Qs} & \textbf{Falhas} & \textbf{MRR} & \textbf{R@1} & \textbf{R@3} & \textbf{R@5} & \textbf{R@10} & \textbf{R@20} \\
+\midrule
+01 & 7 & 0 & 92,86\% & 57,14\% & 88,10\% & 97,62\% & 100,00\% & 100,00\% \\
+02 & 4 & 0 & 87,50\% & 28,57\% & 85,71\% & 92,86\% & 100,00\% & 100,00\% \\
+03 & 7 & 0 & 100,00\% & 100,00\% & 100,00\% & 100,00\% & 100,00\% & 100,00\% \\
+04 & 7 & 0 & 100,00\% & 74,64\% & 79,64\% & 86,07\% & 94,29\% & 100,00\% \\
+05 & 6 & 0 & 21,62\% & 16,67\% & 16,67\% & 16,67\% & 50,00\% & 50,00\% \\
+06 & 7 & 0 & 76,19\% & 45,71\% & 67,91\% & 77,25\% & 91,32\% & 98,57\% \\
+07 & 7 & 0 & 92,86\% & 55,36\% & 76,79\% & 83,93\% & 100,00\% & 100,00\% \\
+08 & 8 & 0 & 100,00\% & 68,75\% & 93,75\% & 100,00\% & 100,00\% & 100,00\% \\
+09 & 6 & 0 & 80,56\% & 41,67\% & 83,33\% & 91,67\% & 100,00\% & 100,00\% \\
+10 & 6 & 0 & 100,00\% & 72,22\% & 91,67\% & 100,00\% & 100,00\% & 100,00\% \\
+11 & 6 & 0 & 91,67\% & 66,67\% & 83,33\% & 91,67\% & 100,00\% & 100,00\% \\
+12 & 5 & 0 & 81,43\% & 56,67\% & 63,33\% & 70,00\% & 80,00\% & 90,00\% \\
+13 & 4 & 0 & 67,50\% & 37,50\% & 75,00\% & 100,00\% & 100,00\% & 100,00\% \\
+14 & 4 & 0 & 100,00\% & 87,50\% & 100,00\% & 100,00\% & 100,00\% & 100,00\% \\
+15 & 5 & 0 & 86,67\% & 56,67\% & 86,67\% & 93,33\% & 93,33\% & 100,00\% \\
+16 & 5 & 0 & 100,00\% & 75,00\% & 95,00\% & 100,00\% & 100,00\% & 100,00\% \\
+17 & 5 & 0 & 90,00\% & 53,33\% & 63,33\% & 73,33\% & 86,67\% & 100,00\% \\
+18 & 6 & 0 & 91,67\% & 66,67\% & 83,33\% & 87,50\% & 100,00\% & 100,00\% \\
+19 & 4 & 0 & 87,50\% & 75,00\% & 100,00\% & 100,00\% & 100,00\% & 100,00\% \\
+20 & 4 & 0 & 59,82\% & 50,00\% & 50,00\% & 57,14\% & 96,43\% & 100,00\% \\
+21 & 6 & 0 & 70,83\% & 36,11\% & 55,56\% & 61,11\% & 80,56\% & 100,00\% \\
+22 & 4 & 0 & 52,78\% & 50,00\% & 50,00\% & 50,00\% & 75,00\% & 75,00\% \\
+23 & 5 & 0 & 82,22\% & 66,67\% & 66,67\% & 73,33\% & 85,00\% & 90,00\% \\
+24 & 4 & 0 & 100,00\% & 100,00\% & 100,00\% & 100,00\% & 100,00\% & 100,00\% \\
+25 & 7 & 0 & 70,00\% & 47,62\% & 69,05\% & 69,05\% & 69,05\% & 89,29\% \\
+26 & 6 & 0 & 63,48\% & 50,00\% & 58,33\% & 75,00\% & 83,33\% & 93,33\% \\
+27 & 11 & 0 & 57,77\% & 39,39\% & 56,06\% & 67,42\% & 85,61\% & 94,70\% \\
+28 & 5 & 0 & 80,00\% & 50,00\% & 60,00\% & 60,00\% & 60,00\% & 80,00\% \\
+29 & 5 & 0 & 90,00\% & 56,67\% & 93,33\% & 93,33\% & 100,00\% & 100,00\% \\
+30 & 6 & 0 & 77,78\% & 58,33\% & 69,44\% & 80,56\% & 94,44\% & 100,00\% \\
+\bottomrule
+\end{tabular}
+}
+\end{table}
+
+\begin{table}[htbp]
+\centering
+\caption{Tempo de processamento por PDF do pipeline visual com ColQwen3.5.}
+\label{tab:tempo-colvision-pdf}
+\scriptsize
+\resizebox{\textwidth}{!}{
+\begin{tabular}{r r r r r r r}
+\toprule
+\textbf{PDF} & \textbf{Qs} & \textbf{Páginas} & \textbf{Render.} & \textbf{Emb.} & \textbf{Index.} & \textbf{Query} \\
+\midrule
+01 & 7 & 23 & 0,02 s & 0,04 s & 0,06 s & 2,78 s \\
+02 & 4 & 23 & 0,01 s & 0,02 s & 0,03 s & 1,21 s \\
+03 & 7 & 15 & 0,01 s & 0,02 s & 0,03 s & 2,11 s \\
+04 & 7 & 20 & 2,00 s & 15,59 s & 17,61 s & 2,17 s \\
+05 & 6 & 112 & 11,53 s & 93,08 s & 104,66 s & 1,82 s \\
+06 & 7 & 41 & 4,37 s & 34,77 s & 39,16 s & 2,14 s \\
+07 & 7 & 63 & 6,95 s & 50,73 s & 57,71 s & 2,14 s \\
+08 & 8 & 34 & 2,17 s & 25,50 s & 27,69 s & 2,58 s \\
+09 & 6 & 24 & 1,40 s & 18,25 s & 19,66 s & 1,89 s \\
+10 & 6 & 23 & 1,29 s & 17,64 s & 18,94 s & 1,86 s \\
+11 & 6 & 21 & 1,39 s & 16,13 s & 17,54 s & 1,84 s \\
+12 & 5 & 42 & 2,02 s & 31,95 s & 33,99 s & 1,51 s \\
+13 & 4 & 45 & 2,26 s & 34,14 s & 36,42 s & 1,19 s \\
+14 & 4 & 27 & 1,30 s & 20,45 s & 21,77 s & 1,18 s \\
+15 & 5 & 27 & 4,10 s & 21,22 s & 25,34 s & 1,53 s \\
+16 & 5 & 46 & 4,94 s & 35,14 s & 40,11 s & 1,54 s \\
+17 & 5 & 40 & 1,95 s & 30,51 s & 32,47 s & 1,50 s \\
+18 & 6 & 21 & 1,01 s & 15,99 s & 17,02 s & 1,79 s \\
+19 & 4 & 17 & 1,39 s & 12,78 s & 14,18 s & 1,18 s \\
+20 & 4 & 17 & 0,87 s & 12,98 s & 13,86 s & 1,20 s \\
+21 & 6 & 20 & 1,37 s & 15,28 s & 16,66 s & 1,79 s \\
+22 & 4 & 20 & 2,46 s & 15,19 s & 17,66 s & 1,22 s \\
+23 & 5 & 35 & 2,66 s & 28,09 s & 30,77 s & 1,55 s \\
+24 & 4 & 27 & 2,63 s & 20,30 s & 22,95 s & 1,23 s \\
+25 & 7 & 44 & 3,70 s & 33,34 s & 37,07 s & 2,14 s \\
+26 & 6 & 45 & 4,77 s & 36,42 s & 41,21 s & 1,86 s \\
+27 & 11 & 117 & 6,31 s & 89,42 s & 95,78 s & 3,33 s \\
+28 & 5 & 30 & 1,87 s & 23,19 s & 25,08 s & 1,57 s \\
+29 & 5 & 40 & 3,12 s & 30,23 s & 33,38 s & 1,57 s \\
+30 & 6 & 76 & 1,29 s & 40,03 s & 41,34 s & 1,85 s \\
+\bottomrule
+\end{tabular}
+}
+\end{table}
+
+\subsection{Análise dos casos de sucesso}
+\label{subsec:colvision-casos-sucesso}
+
+Os casos de sucesso mais importantes são aqueles em que o baseline textual não encontrou a página correta entre os 20 primeiros resultados, mas o pipeline visual recuperou a evidência. No cruzamento com o baseline textual, foram identificadas 28 perguntas nessa condição. A Tabela~\ref{tab:sucessos-colvision} apresenta exemplos representativos.
+
+\begin{table}[htbp]
+\centering
+\caption{Exemplos de perguntas em que o ColQwen3.5 recuperou evidências não encontradas pelo baseline textual.}
+\label{tab:sucessos-colvision}
+\scriptsize
+\resizebox{\textwidth}{!}{
+\begin{tabular}{r p{5.0cm} p{2.2cm} p{2.0cm} p{2.0cm}}
+\toprule
+\textbf{PDF} & \textbf{Pergunta resumida} & \textbf{Evidência} & \textbf{Textual} & \textbf{ColQwen3.5} \\
+\midrule
+03 & Tempo gasto com família e amigos em 2010 em um gráfico. & Página 14 & Sem H@20 & Rank 1 \\
+\addlinespace
+03 & Faixa representada pela cor vermelha em um gráfico/mapa. & Página 10 & Sem H@20 & Rank 1 \\
+\addlinespace
+03 & Continente com maior número de participantes registrados em curso avançado. & Página 13 & Sem H@20 & Rank 1 \\
+\addlinespace
+06 & Comparação entre índice de IPOs da Europa e dos Estados Unidos. & Página 11 & Sem H@20 & Rank 1 \\
+\addlinespace
+07 & Elemento intermediário no fluxograma ``Analytics Value Chain''. & Página 13 & Sem H@20 & Rank 1 \\
+\addlinespace
+25 & Cor de Kailali no mapa da página 12. & Página 12 & Sem H@20 & Rank 1 \\
+\bottomrule
+\end{tabular}
+}
+\end{table}
+
+Esses exemplos mostram a principal vantagem da estratégia visual: quando a evidência aparece em gráficos, mapas, diagramas ou outros elementos do layout geral, a página renderizada preserva sinais que podem ser perdidos na extração textual.
+
+\subsection{Análise dos casos de baixo desempenho}
+\label{subsec:colvision-baixo-desempenho}
+
+Apesar do desempenho geral elevado, o ColQwen3.5 ainda apresentou falhas. Em 5 perguntas, nenhuma página de evidência apareceu entre os 20 primeiros resultados. Em outras 5 perguntas, a primeira página correta apareceu apenas entre os ranks 11 e 20. A~\ref{tab:baixo-desempenho-colvision} resume esses casos.
+
+\begin{table}[htbp]
+\centering
+\caption{Resumo dos casos de baixo desempenho do pipeline visual com ColQwen3.5.}
+\label{tab:baixo-desempenho-colvision}
+\small
+\begin{tabular}{p{9.0cm}r}
+\toprule
+\textbf{Critério analisado} & \textbf{Quantidade} \\
+\midrule
+Total de perguntas avaliadas & 172 \\
+Primeiro acerto até o rank 10 & 162 \\
+Primeiro acerto entre os ranks 11 e 20 & 5 \\
+Sem nenhum acerto entre as 20 primeiras páginas & 5 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\begin{table}[htbp]
+\centering
+\caption{PDFs mais problemáticos para o pipeline visual com ColQwen3.5.}
+\label{tab:pdfs-problematicos-colvision}
+\small
+\begin{tabular}{r r r r r r}
+\toprule
+\textbf{PDF} & \textbf{Sem H@20} & \textbf{H@11--20} & \textbf{Perguntas} & \textbf{MRR} & \textbf{R@20} \\
+\midrule
+05 & 3 & 0 & 6 & 21,62\% & 50,00\% \\
+22 & 1 & 0 & 4 & 52,78\% & 75,00\% \\
+28 & 1 & 0 & 5 & 80,00\% & 80,00\% \\
+12 & 0 & 1 & 5 & 81,43\% & 90,00\% \\
+21 & 0 & 1 & 6 & 70,83\% & 100,00\% \\
+25 & 0 & 1 & 7 & 70,00\% & 89,29\% \\
+26 & 0 & 1 & 6 & 63,48\% & 93,33\% \\
+27 & 0 & 1 & 11 & 57,77\% & 94,70\% \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+Seus erros se concentram em páginas onde a pergunta é, portanto, respondida em uma seção de extrema especificidade dentro da página. Um exemplo  ocorre no PDF 52b3137455e7ca4df65021a200aef724.pdf, em uma pergunta que solicitava a quantidade de imagens de localizações da Holanda utilizadas como exemplo no slide. As páginas anotadas como evidência eram 24, 53 e 56, porém o ColQwen3.5 recuperou a primeira página correta apenas na posição 24 do ranking. As primeiras posições foram ocupadas por outras páginas do mesmo documento com aparência visual semelhante, ou seja, incluindo páginas com mapas, imagens ou composições gráficas próximas, mas não da Holanda. Esse caso sugere que, embora o modelo consiga representar a estrutura visual geral das páginas, ele pode ter dificuldade em diferenciar páginas muito parecidas quando a resposta depende da identificação de exemplos visuais específicos, o que pode acontecer pelo fato de ser um modelo local e razoavelmente leve.
+
+\subsection{Comparação entre modelos visuais}
+\label{subsec:colvision-comparacao-modelos}
+
+Após a conclusão da execução do \texttt{colqwen3.5-4.5B-v3}, foi constatada a possibilidade operacional de comparar todos os modelos visuais avaliados no mesmo recorte experimental. Portanto, como argumento para comprovar a escolha inicial do modelo \texttt{colqwen3.5-4.5B-v3}, segue abaixo a tabela comparativa do desempenho dos principais modelos de visão disponíveis no github relacionado ao paper ColPali\cite{COLPALI_GITHUB} .
+
+\begin{table}[htbp]
+\centering
+\caption{Comparação global entre modelos visuais: FHM e Hit@k.}
+\label{tab:comparacao-colvision-hit}
+\scriptsize
+\resizebox{\textwidth}{!}{
+\begin{tabular}{l r r r r r r}
+\toprule
+\textbf{Modelo} & \textbf{FHM} & \textbf{H@1} & \textbf{H@3} & \textbf{H@5} & \textbf{H@10} & \textbf{H@20} \\
+\midrule
+ColQwen3.5 & 2.3905 & 74,42\% & 87,21\% & 90,12\% & 94,19\% & 97,09\% \\
+ColQwen2.5 v0.2 & 3.2840 & 69,19\% & 80,81\% & 86,05\% & 93,60\% & 95,93\% \\
+ColSmol 500M & 3.2781 & 64,53\% & 81,40\% & 87,79\% & 92,44\% & 94,77\% \\
+ColSmol 256M & 3.6686 & 60,47\% & 78,49\% & 82,56\% & 88,95\% & 94,77\% \\
+ColPali v1.1 & 4.1302 & 58,72\% & 79,07\% & 84,88\% & 91,86\% & 95,35\% \\
+\bottomrule
+\end{tabular}
+}
+\end{table}
+
+O ColQwen3.5 apresentou o melhor resultado geral, com maior MRR, maior Hit@1 e maior Hit@20. O ColQwen2.5 v0.2 ficou em segundo lugar na maior parte das métricas, indicando que a família ColQwen manteve melhor ordenação inicial das páginas. O ColSmol 256M, apesar de ser o menor modelo avaliado, alcançou Hit@20 de 94,77\%, igual ao ColSmol 500M nesse ponto, mas com menor MRR e menor Hit@1, o que indica que suas páginas corretas tendem a aparecer mais tarde no ranking.
+
+\begin{table}[htbp]
+\centering
+\caption{Comparação global entre modelos visuais: MRR e Evidence Page Recall@k.}
+\label{tab:comparacao-colvision-recall}
+\scriptsize
+\resizebox{\textwidth}{!}{
+\begin{tabular}{l r r r r r r}
+\toprule
+\textbf{Modelo} & \textbf{MRR} & \textbf{R@1} & \textbf{R@3} & \textbf{R@5} & \textbf{R@10} & \textbf{R@20} \\
+\midrule
+ColQwen3.5 & 81,49\% & 57,48\% & 74,83\% & 81,28\% & 90,61\% & 95,45\% \\
+ColQwen2.5 v0.2 & 76,75\% & 53,62\% & 68,43\% & 75,74\% & 86,51\% & 94,37\% \\
+ColSmol 500M & 74,43\% & 50,03\% & 69,03\% & 77,19\% & 85,58\% & 92,53\% \\
+ColSmol 256M & 70,96\% & 47,77\% & 66,20\% & 71,94\% & 80,58\% & 90,54\% \\
+ColPali v1.1 & 70,05\% & 45,32\% & 65,44\% & 73,56\% & 85,96\% & 93,45\% \\
+\bottomrule
+\end{tabular}
+}
+\end{table}
+
+A análise de Recall@k confirma a diferença entre encontrar ao menos uma página correta e cobrir todo o conjunto de evidências. O ColSmol 256M manteve boa capacidade de localizar alguma evidência até o rank 20, mas recuperou uma fração menor das páginas esperadas em perguntas com múltiplas evidências, atingindo Recall@20 de 90,54\%.
+
+\begin{table}[htbp]
+\centering
+\caption{Comparação de tempo entre modelos visuais.}
+\label{tab:comparacao-colvision-tempo}
+\scriptsize
+\resizebox{\textwidth}{!}{
+\begin{tabular}{l r r r r r}
+\toprule
+\textbf{Modelo} & \textbf{Render.} & \textbf{Emb.} & \textbf{Index.} & \textbf{Query total} & \textbf{Query média} \\
+\midrule
+ColQwen3.5 & 1 min e 21,16 s & 13 min e 38,42 s & 15 min e 0,15 s & 53,27 s & 0,31 s \\
+ColQwen2.5 v0.2 & 54,32 s & 52 min e 16,32 s & 53 min e 11,52 s & 18,79 s & 0,11 s \\
+ColSmol 500M & 1 min e 4,99 s & 31 min e 17,38 s & 32 min e 23,09 s & 8,05 s & 0,05 s \\
+ColSmol 256M & 1 min e 1,68 s & 25 min e 38,02 s & 26 min e 40,33 s & 6,45 s & 0,04 s \\
+ColPali v1.1 & 55,22 s & 24 min e 52,18 s & 25 min e 48,13 s & 12,10 s & 0,07 s \\
+\bottomrule
+\end{tabular}
+}
+\end{table}
+
+O ColSmol 256M foi o modelo com menor tempo total de consulta, somando 6,45 s para as 172 perguntas. Seu tempo de indexação também foi inferior ao do ColSmol 500M, o que reforça seu papel como alternativa mais leve. Entretanto, essa redução de custo veio acompanhada de pior ordenação inicial, especialmente visível na queda de MRR e de Hit@1.
+
+\begin{table}[htbp]
+\centering
+\caption{Casos de baixo desempenho por modelo visual.}
+\label{tab:comparacao-colvision-baixo-desempenho}
+\small
+\begin{tabular}{l r r r}
+\toprule
+\textbf{Modelo} & \textbf{Acerto até rank 10} & \textbf{Acerto entre ranks 11 e 20} & \textbf{Sem H@20} \\
+\midrule
+ColQwen3.5 & 162 & 5 & 5 \\
+ColQwen2.5 v0.2 & 161 & 4 & 7 \\
+ColSmol 500M & 159 & 4 & 9 \\
+ColSmol 256M & 153 & 10 & 9 \\
+ColPali v1.1 & 158 & 6 & 8 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+No ColSmol 256M, 153 das 172 perguntas tiveram a primeira evidência correta recuperada até o rank 10, 10 perguntas tiveram o primeiro acerto apenas entre os ranks 11 e 20, e 9 perguntas não tiveram acerto até o rank 20. Esse comportamento mostra que o modelo menor preserva boa cobertura em rankings mais longos, mas é menos consistente em colocar a página correta nas primeiras posições.
+
+\subsection{Discussão}
+\label{subsec:colvision-discussao}
+
+Os resultados do ColQwen3.5 indicam que a recuperação visual é particularmente forte quando a evidência depende da aparência da página, como gráficos, mapas, diagramas, tabelas renderizadas e relações espaciais de layout. Em comparação com o baseline textual, a abordagem evita perdas causadas por extração incompleta de texto ou por falhas na representação textual de elementos visuais.
+
+A principal limitação da estratégia visual é a menor interpretabilidade do resultado. Enquanto o RAG-Anything permite inspecionar se um chunk veio de texto, imagem, tabela ou equação, o ColQwen3.5 retorna páginas inteiras ranqueadas. Assim, o modelo localiza a página correta com alta frequência, mas não explicita qual região da página foi responsável pelo acerto.
+
+Portanto, o pipeline visual funciona como uma estratégia forte para localização de evidências por página, especialmente em documentos ricos em elementos visuais. Entre os modelos avaliados, o ColQwen3.5 apresentou o melhor equilíbrio entre ordenação inicial e cobertura final, enquanto o ColSmol 256M ofereceu a execução mais leve, mas com maior perda de precisão nas primeiras posições do ranking.
+
+
 \section{Resultados da recuperação híbrida com RAG-Anything}
 \label{sec:resultados-raganything}
 
@@ -70,7 +962,7 @@ O arquivo \texttt{ollama-qwen-bge-multimodal-attempt-retrieval-pages-readable.js
 \subsection{Resultados gerais}
 \label{subsec:raganything-resultados-gerais}
 
-No experimento completo foram avaliados 30 PDFs e 172 perguntas respondíveis do MMLongBench-Doc, sem falhas de execução. O pipeline alcançou MRR geral de 0,6793 e Hit@20 de 0,9128, indicando que em aproximadamente 91,28\% das perguntas pelo menos uma página de evidência foi recuperada entre os 20 primeiros chunks.
+No experimento completo foram avaliados 30 PDFs e 172 perguntas respondíveis do MMLongBench-Doc, sem falhas de execução. O pipeline alcançou MRR geral de 67,93\% e Hit@20 de 91,28\%, indicando que em aproximadamente 91,28\% das perguntas pelo menos uma página de evidência foi recuperada entre os 20 primeiros chunks.
 
 \begin{table}[htbp]
 \centering
@@ -85,19 +977,19 @@ PDFs avaliados & 30 \\
 Perguntas avaliadas & 172 \\
 Falhas de execução & 0 \\
 First Hit Rank médio & 2,4013 \\
-MRR & 0,6793 \\
+MRR & 67,93\% \\
 \addlinespace
-Hit@1 & 0,5698 \\
-Hit@3 & 0,7674 \\
-Hit@5 & 0,8140 \\
-Hit@10 & 0,8779 \\
-Hit@20 & 0,9128 \\
+Hit@1 & 56,98\% \\
+Hit@3 & 76,74\% \\
+Hit@5 & 81,40\% \\
+Hit@10 & 87,79\% \\
+Hit@20 & 91,28\% \\
 \addlinespace
-Evidence Page Recall@1 & 0,4590 \\
-Evidence Page Recall@3 & 0,6544 \\
-Evidence Page Recall@5 & 0,7147 \\
-Evidence Page Recall@10 & 0,7946 \\
-Evidence Page Recall@20 & 0,8645 \\
+Evidence Page Recall@1 & 45,90\% \\
+Evidence Page Recall@3 & 65,44\% \\
+Evidence Page Recall@5 & 71,47\% \\
+Evidence Page Recall@10 & 79,46\% \\
+Evidence Page Recall@20 & 86,45\% \\
 \bottomrule
 \end{tabular}
 \end{table}
@@ -118,28 +1010,28 @@ Além da configuração base, foi avaliada uma etapa de reranking posterior à r
 \toprule
 \textbf{Métrica} & \textbf{Sem reranking} & \textbf{Com reranking} & \textbf{Variação} \\
 \midrule
-MRR & 0,6793 & 0,6982 & +0,0190 \\
+MRR & 67,93\% & 69,82\% & +1,90 p.p. \\
 First Hit Rank médio & 2,4013 & 2,2930 & -0,1083 \\
 \addlinespace
-Hit@1 & 0,5698 & 0,6047 & +0,0349 \\
-Hit@3 & 0,7674 & 0,7616 & -0,0058 \\
-Hit@5 & 0,8140 & 0,8256 & +0,0116 \\
-Hit@10 & 0,8779 & 0,8837 & +0,0058 \\
-Hit@20 & 0,9128 & 0,9128 & 0,0000 \\
+Hit@1 & 56,98\% & 60,47\% & +3,49 p.p. \\
+Hit@3 & 76,74\% & 76,16\% & -0,58 p.p. \\
+Hit@5 & 81,40\% & 82,56\% & +1,16 p.p. \\
+Hit@10 & 87,79\% & 88,37\% & +0,58 p.p. \\
+Hit@20 & 91,28\% & 91,28\% & 0,00 p.p. \\
 \addlinespace
-Evidence Page Recall@1 & 0,4590 & 0,4917 & +0,0328 \\
-Evidence Page Recall@3 & 0,6544 & 0,6554 & +0,0011 \\
-Evidence Page Recall@5 & 0,7147 & 0,7182 & +0,0035 \\
-Evidence Page Recall@10 & 0,7946 & 0,8140 & +0,0194 \\
-Evidence Page Recall@20 & 0,8645 & 0,8645 & 0,0000 \\
+Evidence Page Recall@1 & 45,90\% & 49,17\% & +3,28 p.p. \\
+Evidence Page Recall@3 & 65,44\% & 65,54\% & +0,11 p.p. \\
+Evidence Page Recall@5 & 71,47\% & 71,82\% & +0,35 p.p. \\
+Evidence Page Recall@10 & 79,46\% & 81,40\% & +1,94 p.p. \\
+Evidence Page Recall@20 & 86,45\% & 86,45\% & 0,00 p.p. \\
 \addlinespace
-Tempo total de consulta & 192,37 s & 6.874,10 s & +6.681,73 s \\
+Tempo total de consulta & 3 min e 12,37 s & 1 h, 54 min e 34,10 s & +1 h, 51 min e 21,73 s \\
 Tempo médio por pergunta & 1,12 s & 39,97 s & +38,85 s \\
 \bottomrule
 \end{tabular}
 \end{table}
 
-O reranking melhorou principalmente a precisão no topo do ranking. O Hit@1 subiu de 0,5698 para 0,6047, enquanto o MRR passou de 0,6793 para 0,6982. A cobertura em profundidade, por outro lado, permaneceu praticamente inalterada: Hit@20 e Evidence Page Recall@20 ficaram iguais, pois o reranker apenas reordena os candidatos já recuperados, sem introduzir novas páginas no conjunto de 20 resultados. Em nível de pergunta, 40 casos tiveram o primeiro acerto antecipado, 32 foram rebaixados e 100 permaneceram com o mesmo primeiro acerto.
+O reranking melhorou principalmente a precisão no topo do ranking. O Hit@1 subiu de 56,98\% para 60,47\%, enquanto o MRR passou de 67,93\% para 69,82\%. A cobertura em profundidade, por outro lado, permaneceu praticamente inalterada: Hit@20 e Evidence Page Recall@20 ficaram iguais, pois o reranker apenas reordena os candidatos já recuperados, sem introduzir novas páginas no conjunto de 20 resultados. Em nível de pergunta, 40 casos tiveram o primeiro acerto antecipado, 32 foram rebaixados e 100 permaneceram com o mesmo primeiro acerto.
 
 Essa diferença mostra que o reranking é mais útil como mecanismo de refinamento do ranking do que como solução para falhas de cobertura. Quando a página correta já está entre os candidatos, o reranker pode promovê-la para posições mais altas; quando ela não foi recuperada inicialmente, o reranking não consegue corrigir a ausência. O custo computacional também aumenta substancialmente, já que cada pergunta passa a exigir a comparação entre a consulta e os chunks candidatos por um modelo adicional.
 
@@ -157,23 +1049,17 @@ O tempo de processamento do RAG-Anything deve ser analisado separadamente para a
 \toprule
 \textbf{Etapa ou métrica} & \textbf{Valor} \\
 \midrule
-Processamento textual total (segundos) & 100.689,10 s \\
-Processamento textual total (formatado) & 27h 58min 09s \\
+Processamento textual total & 27 h, 58 min e 9,10 s \\
 \addlinespace
-Processamento multimodal total (segundos) & 105.952,04 s \\
-Processamento multimodal total (formatado) & 29h 25min 52s \\
+Processamento multimodal total & 29 h, 25 min e 52,04 s \\
 \addlinespace
-Processamento total do índice híbrido (segundos) & 206.641,14 s \\
-Processamento total do índice híbrido (formatado) & 57h 24min 01s \\
+Processamento total do índice híbrido & 57 h, 24 min e 1,14 s \\
 \addlinespace
-Retrieval das perguntas (segundos) & 192,37 s \\
-Retrieval das perguntas (formatado) & 3min 12s \\
+Retrieval das perguntas & 3 min e 12,37 s \\
 \addlinespace
-Tempo total incluindo retrieval (segundos) & 206.833,51 s \\
-Tempo total incluindo retrieval (formatado) & 57h 27min 13s \\
+Tempo total incluindo retrieval & 57 h, 27 min e 13,51 s \\
 \addlinespace
-Média de processamento por PDF (segundos) & 6.888,04 s \\
-Média de processamento por PDF (formatado) & 1h 54min 48s \\
+Média de processamento por PDF & 1 h, 54 min e 48,04 s \\
 Média de retrieval por pergunta & 1,12 s \\
 Mediana de retrieval por pergunta & 0,68 s \\
 \bottomrule
@@ -197,36 +1083,36 @@ A análise por PDF permite observar como a arquitetura híbrida se comporta em d
 \toprule
 \textbf{PDF} & \textbf{Qs} & \textbf{Falhas} & \textbf{FHM} & \textbf{H@1} & \textbf{H@3} & \textbf{H@5} & \textbf{H@10} & \textbf{H@20} \\
 \midrule
-01 & 7 & 0 & 1.5714 & 0.7143 & 0.8571 & 1.0000 & 1.0000 & 1.0000 \\
-02 & 4 & 0 & 2.7500 & 0.7500 & 0.7500 & 0.7500 & 1.0000 & 1.0000 \\
-03 & 7 & 0 & 1.4286 & 0.8571 & 0.8571 & 1.0000 & 1.0000 & 1.0000 \\
-04 & 7 & 0 & 2.5714 & 0.4286 & 0.7143 & 0.8571 & 1.0000 & 1.0000 \\
-05 & 6 & 0 & 4.2500 & 0.1667 & 0.5000 & 0.5000 & 0.6667 & 0.6667 \\
-06 & 7 & 0 & 1.1667 & 0.7143 & 0.8571 & 0.8571 & 0.8571 & 0.8571 \\
-07 & 7 & 0 & 1.1429 & 0.8571 & 1.0000 & 1.0000 & 1.0000 & 1.0000 \\
-08 & 8 & 0 & 1.5000 & 0.7500 & 1.0000 & 1.0000 & 1.0000 & 1.0000 \\
-09 & 6 & 0 & 1.1667 & 0.8333 & 1.0000 & 1.0000 & 1.0000 & 1.0000 \\
-10 & 6 & 0 & 2.0000 & 0.1667 & 0.8333 & 0.8333 & 0.8333 & 0.8333 \\
-11 & 6 & 0 & 3.5000 & 0.5000 & 0.6667 & 0.6667 & 1.0000 & 1.0000 \\
-12 & 5 & 0 & 5.0000 & 0.4000 & 0.6000 & 0.8000 & 0.8000 & 1.0000 \\
-13 & 4 & 0 & 4.2500 & 0.2500 & 0.5000 & 0.5000 & 1.0000 & 1.0000 \\
-14 & 4 & 0 & 1.5000 & 0.7500 & 1.0000 & 1.0000 & 1.0000 & 1.0000 \\
-15 & 5 & 0 & 1.0000 & 1.0000 & 1.0000 & 1.0000 & 1.0000 & 1.0000 \\
-16 & 5 & 0 & 1.7500 & 0.6000 & 0.6000 & 0.8000 & 0.8000 & 0.8000 \\
-17 & 5 & 0 & 1.4000 & 0.8000 & 1.0000 & 1.0000 & 1.0000 & 1.0000 \\
-18 & 6 & 0 & 1.3333 & 0.8333 & 1.0000 & 1.0000 & 1.0000 & 1.0000 \\
-19 & 4 & 0 & 2.7500 & 0.2500 & 0.7500 & 0.7500 & 1.0000 & 1.0000 \\
-20 & 4 & 0 & 2.2500 & 0.5000 & 0.7500 & 1.0000 & 1.0000 & 1.0000 \\
-21 & 6 & 0 & 1.2000 & 0.6667 & 0.8333 & 0.8333 & 0.8333 & 0.8333 \\
-22 & 4 & 0 & 1.5000 & 0.2500 & 0.5000 & 0.5000 & 0.5000 & 0.5000 \\
-23 & 5 & 0 & 1.0000 & 0.6000 & 0.6000 & 0.6000 & 0.6000 & 0.6000 \\
-24 & 4 & 0 & 4.3333 & 0.5000 & 0.5000 & 0.5000 & 0.5000 & 0.7500 \\
-25 & 7 & 0 & 1.3333 & 0.5714 & 0.8571 & 0.8571 & 0.8571 & 0.8571 \\
-26 & 6 & 0 & 1.8333 & 0.8333 & 0.8333 & 0.8333 & 1.0000 & 1.0000 \\
-27 & 11 & 0 & 6.4000 & 0.0909 & 0.4545 & 0.5455 & 0.6364 & 0.9091 \\
-28 & 5 & 0 & 3.2500 & 0.4000 & 0.4000 & 0.6000 & 0.8000 & 0.8000 \\
-29 & 5 & 0 & 1.2500 & 0.6000 & 0.8000 & 0.8000 & 0.8000 & 0.8000 \\
-30 & 6 & 0 & 4.0000 & 0.5000 & 0.8333 & 0.8333 & 0.8333 & 1.0000 \\
+01 & 7 & 0 & 1.5714 & 71,43\% & 85,71\% & 100,00\% & 100,00\% & 100,00\% \\
+02 & 4 & 0 & 2.7500 & 75,00\% & 75,00\% & 75,00\% & 100,00\% & 100,00\% \\
+03 & 7 & 0 & 1.4286 & 85,71\% & 85,71\% & 100,00\% & 100,00\% & 100,00\% \\
+04 & 7 & 0 & 2.5714 & 42,86\% & 71,43\% & 85,71\% & 100,00\% & 100,00\% \\
+05 & 6 & 0 & 4.2500 & 16,67\% & 50,00\% & 50,00\% & 66,67\% & 66,67\% \\
+06 & 7 & 0 & 1.1667 & 71,43\% & 85,71\% & 85,71\% & 85,71\% & 85,71\% \\
+07 & 7 & 0 & 1.1429 & 85,71\% & 100,00\% & 100,00\% & 100,00\% & 100,00\% \\
+08 & 8 & 0 & 1.5000 & 75,00\% & 100,00\% & 100,00\% & 100,00\% & 100,00\% \\
+09 & 6 & 0 & 1.1667 & 83,33\% & 100,00\% & 100,00\% & 100,00\% & 100,00\% \\
+10 & 6 & 0 & 2.0000 & 16,67\% & 83,33\% & 83,33\% & 83,33\% & 83,33\% \\
+11 & 6 & 0 & 3.5000 & 50,00\% & 66,67\% & 66,67\% & 100,00\% & 100,00\% \\
+12 & 5 & 0 & 5.0000 & 40,00\% & 60,00\% & 80,00\% & 80,00\% & 100,00\% \\
+13 & 4 & 0 & 4.2500 & 25,00\% & 50,00\% & 50,00\% & 100,00\% & 100,00\% \\
+14 & 4 & 0 & 1.5000 & 75,00\% & 100,00\% & 100,00\% & 100,00\% & 100,00\% \\
+15 & 5 & 0 & 1.0000 & 100,00\% & 100,00\% & 100,00\% & 100,00\% & 100,00\% \\
+16 & 5 & 0 & 1.7500 & 60,00\% & 60,00\% & 80,00\% & 80,00\% & 80,00\% \\
+17 & 5 & 0 & 1.4000 & 80,00\% & 100,00\% & 100,00\% & 100,00\% & 100,00\% \\
+18 & 6 & 0 & 1.3333 & 83,33\% & 100,00\% & 100,00\% & 100,00\% & 100,00\% \\
+19 & 4 & 0 & 2.7500 & 25,00\% & 75,00\% & 75,00\% & 100,00\% & 100,00\% \\
+20 & 4 & 0 & 2.2500 & 50,00\% & 75,00\% & 100,00\% & 100,00\% & 100,00\% \\
+21 & 6 & 0 & 1.2000 & 66,67\% & 83,33\% & 83,33\% & 83,33\% & 83,33\% \\
+22 & 4 & 0 & 1.5000 & 25,00\% & 50,00\% & 50,00\% & 50,00\% & 50,00\% \\
+23 & 5 & 0 & 1.0000 & 60,00\% & 60,00\% & 60,00\% & 60,00\% & 60,00\% \\
+24 & 4 & 0 & 4.3333 & 50,00\% & 50,00\% & 50,00\% & 50,00\% & 75,00\% \\
+25 & 7 & 0 & 1.3333 & 57,14\% & 85,71\% & 85,71\% & 85,71\% & 85,71\% \\
+26 & 6 & 0 & 1.8333 & 83,33\% & 83,33\% & 83,33\% & 100,00\% & 100,00\% \\
+27 & 11 & 0 & 6.4000 & 9,09\% & 45,45\% & 54,55\% & 63,64\% & 90,91\% \\
+28 & 5 & 0 & 3.2500 & 40,00\% & 40,00\% & 60,00\% & 80,00\% & 80,00\% \\
+29 & 5 & 0 & 1.2500 & 60,00\% & 80,00\% & 80,00\% & 80,00\% & 80,00\% \\
+30 & 6 & 0 & 4.0000 & 50,00\% & 83,33\% & 83,33\% & 83,33\% & 100,00\% \\
 \bottomrule
 \end{tabular}
 }
@@ -242,36 +1128,36 @@ A análise por PDF permite observar como a arquitetura híbrida se comporta em d
 \toprule
 \textbf{PDF} & \textbf{Qs} & \textbf{Falhas} & \textbf{MRR} & \textbf{R@1} & \textbf{R@3} & \textbf{R@5} & \textbf{R@10} & \textbf{R@20} \\
 \midrule
-01 & 7 & 0 & 0.8214 & 0.5476 & 0.6429 & 0.8571 & 0.9524 & 1.0000 \\
-02 & 4 & 0 & 0.7812 & 0.2857 & 0.6071 & 0.6429 & 0.8036 & 1.0000 \\
-03 & 7 & 0 & 0.8929 & 0.8571 & 0.8571 & 1.0000 & 1.0000 & 1.0000 \\
-04 & 7 & 0 & 0.6276 & 0.4286 & 0.6071 & 0.6393 & 0.8357 & 0.8857 \\
-05 & 6 & 0 & 0.2944 & 0.1667 & 0.5000 & 0.5000 & 0.5556 & 0.5556 \\
-06 & 7 & 0 & 0.7857 & 0.4538 & 0.6363 & 0.6758 & 0.7121 & 0.7956 \\
-07 & 7 & 0 & 0.9286 & 0.5536 & 0.8929 & 0.9286 & 0.9464 & 0.9643 \\
-08 & 8 & 0 & 0.8333 & 0.6250 & 0.8750 & 0.9375 & 1.0000 & 1.0000 \\
-09 & 6 & 0 & 0.9167 & 0.6667 & 0.8333 & 0.8333 & 1.0000 & 1.0000 \\
-10 & 6 & 0 & 0.4722 & 0.1111 & 0.6944 & 0.7778 & 0.7778 & 0.8333 \\
-11 & 6 & 0 & 0.6019 & 0.5000 & 0.6667 & 0.6667 & 0.8333 & 0.9167 \\
-12 & 5 & 0 & 0.5200 & 0.2667 & 0.5000 & 0.7000 & 0.7000 & 0.9000 \\
-13 & 4 & 0 & 0.4479 & 0.2500 & 0.5000 & 0.5000 & 1.0000 & 1.0000 \\
-14 & 4 & 0 & 0.8333 & 0.7500 & 1.0000 & 1.0000 & 1.0000 & 1.0000 \\
-15 & 5 & 0 & 1.0000 & 0.7667 & 0.8667 & 0.8667 & 0.8667 & 0.8667 \\
-16 & 5 & 0 & 0.6500 & 0.4500 & 0.5500 & 0.7500 & 0.7500 & 0.7500 \\
-17 & 5 & 0 & 0.8667 & 0.4667 & 0.5667 & 0.6000 & 0.7000 & 0.8000 \\
-18 & 6 & 0 & 0.8889 & 0.6250 & 0.7500 & 0.8333 & 0.9583 & 1.0000 \\
-19 & 4 & 0 & 0.5417 & 0.2500 & 0.7500 & 0.7500 & 1.0000 & 1.0000 \\
-20 & 4 & 0 & 0.6750 & 0.3750 & 0.7500 & 0.7857 & 0.9286 & 1.0000 \\
-21 & 6 & 0 & 0.7500 & 0.5278 & 0.6389 & 0.6667 & 0.6944 & 0.8333 \\
-22 & 4 & 0 & 0.3750 & 0.2500 & 0.5000 & 0.5000 & 0.5000 & 0.5000 \\
-23 & 5 & 0 & 0.6000 & 0.4500 & 0.5500 & 0.5500 & 0.5500 & 0.6000 \\
-24 & 4 & 0 & 0.5227 & 0.5000 & 0.5000 & 0.5000 & 0.5000 & 0.7500 \\
-25 & 7 & 0 & 0.7143 & 0.5714 & 0.7619 & 0.7619 & 0.8095 & 0.8571 \\
-26 & 6 & 0 & 0.8611 & 0.7500 & 0.7500 & 0.7500 & 0.7833 & 0.8500 \\
-27 & 11 & 0 & 0.2954 & 0.0909 & 0.3485 & 0.4697 & 0.5606 & 0.7727 \\
-28 & 5 & 0 & 0.4733 & 0.3000 & 0.3000 & 0.4000 & 0.6000 & 0.7000 \\
-29 & 5 & 0 & 0.7000 & 0.5000 & 0.6333 & 0.8000 & 0.8000 & 0.8000 \\
-30 & 6 & 0 & 0.6765 & 0.3889 & 0.6111 & 0.6667 & 0.7222 & 0.9444 \\
+01 & 7 & 0 & 82,14\% & 54,76\% & 64,29\% & 85,71\% & 95,24\% & 100,00\% \\
+02 & 4 & 0 & 78,12\% & 28,57\% & 60,71\% & 64,29\% & 80,36\% & 100,00\% \\
+03 & 7 & 0 & 89,29\% & 85,71\% & 85,71\% & 100,00\% & 100,00\% & 100,00\% \\
+04 & 7 & 0 & 62,76\% & 42,86\% & 60,71\% & 63,93\% & 83,57\% & 88,57\% \\
+05 & 6 & 0 & 29,44\% & 16,67\% & 50,00\% & 50,00\% & 55,56\% & 55,56\% \\
+06 & 7 & 0 & 78,57\% & 45,38\% & 63,63\% & 67,58\% & 71,21\% & 79,56\% \\
+07 & 7 & 0 & 92,86\% & 55,36\% & 89,29\% & 92,86\% & 94,64\% & 96,43\% \\
+08 & 8 & 0 & 83,33\% & 62,50\% & 87,50\% & 93,75\% & 100,00\% & 100,00\% \\
+09 & 6 & 0 & 91,67\% & 66,67\% & 83,33\% & 83,33\% & 100,00\% & 100,00\% \\
+10 & 6 & 0 & 47,22\% & 11,11\% & 69,44\% & 77,78\% & 77,78\% & 83,33\% \\
+11 & 6 & 0 & 60,19\% & 50,00\% & 66,67\% & 66,67\% & 83,33\% & 91,67\% \\
+12 & 5 & 0 & 52,00\% & 26,67\% & 50,00\% & 70,00\% & 70,00\% & 90,00\% \\
+13 & 4 & 0 & 44,79\% & 25,00\% & 50,00\% & 50,00\% & 100,00\% & 100,00\% \\
+14 & 4 & 0 & 83,33\% & 75,00\% & 100,00\% & 100,00\% & 100,00\% & 100,00\% \\
+15 & 5 & 0 & 100,00\% & 76,67\% & 86,67\% & 86,67\% & 86,67\% & 86,67\% \\
+16 & 5 & 0 & 65,00\% & 45,00\% & 55,00\% & 75,00\% & 75,00\% & 75,00\% \\
+17 & 5 & 0 & 86,67\% & 46,67\% & 56,67\% & 60,00\% & 70,00\% & 80,00\% \\
+18 & 6 & 0 & 88,89\% & 62,50\% & 75,00\% & 83,33\% & 95,83\% & 100,00\% \\
+19 & 4 & 0 & 54,17\% & 25,00\% & 75,00\% & 75,00\% & 100,00\% & 100,00\% \\
+20 & 4 & 0 & 67,50\% & 37,50\% & 75,00\% & 78,57\% & 92,86\% & 100,00\% \\
+21 & 6 & 0 & 75,00\% & 52,78\% & 63,89\% & 66,67\% & 69,44\% & 83,33\% \\
+22 & 4 & 0 & 37,50\% & 25,00\% & 50,00\% & 50,00\% & 50,00\% & 50,00\% \\
+23 & 5 & 0 & 60,00\% & 45,00\% & 55,00\% & 55,00\% & 55,00\% & 60,00\% \\
+24 & 4 & 0 & 52,27\% & 50,00\% & 50,00\% & 50,00\% & 50,00\% & 75,00\% \\
+25 & 7 & 0 & 71,43\% & 57,14\% & 76,19\% & 76,19\% & 80,95\% & 85,71\% \\
+26 & 6 & 0 & 86,11\% & 75,00\% & 75,00\% & 75,00\% & 78,33\% & 85,00\% \\
+27 & 11 & 0 & 29,54\% & 9,09\% & 34,85\% & 46,97\% & 56,06\% & 77,27\% \\
+28 & 5 & 0 & 47,33\% & 30,00\% & 30,00\% & 40,00\% & 60,00\% & 70,00\% \\
+29 & 5 & 0 & 70,00\% & 50,00\% & 63,33\% & 80,00\% & 80,00\% & 80,00\% \\
+30 & 6 & 0 & 67,65\% & 38,89\% & 61,11\% & 66,67\% & 72,22\% & 94,44\% \\
 \bottomrule
 \end{tabular}
 }
@@ -285,38 +1171,38 @@ A análise por PDF permite observar como a arquitetura híbrida se comporta em d
 \resizebox{\textwidth}{!}{
 \begin{tabular}{r r r r r r r r r}
 \toprule
-\textbf{PDF} & \textbf{Qs} & \textbf{Txt.} & \textbf{MM} & \textbf{Total} & \textbf{Textual (s)} & \textbf{MM (s)} & \textbf{Proc. total (s)} & \textbf{Retrieval (s)} \\
+\textbf{PDF} & \textbf{Qs} & \textbf{Txt.} & \textbf{MM} & \textbf{Total} & \textbf{Textual} & \textbf{MM} & \textbf{Processamento total} & \textbf{Retrieval} \\
 \midrule
-01 & 7 & 60 & 15 & 75 & 1288.81 & 854.33 & 2143.14 & 7.13 \\
-02 & 4 & 36 & 15 & 51 & 607.93 & 955.40 & 1563.33 & 2.60 \\
-03 & 7 & 18 & 16 & 34 & 788.03 & 763.56 & 1551.59 & 4.22 \\
-04 & 7 & 74 & 13 & 87 & 2957.73 & 712.08 & 3669.81 & 4.20 \\
-05 & 6 & 206 & 113 & 319 & 10735.23 & 5290.52 & 16025.75 & 3.81 \\
-06 & 7 & 39 & 50 & 89 & 2157.77 & 2317.49 & 4475.26 & 4.51 \\
-07 & 7 & 20 & 58 & 78 & 1989.41 & 2299.40 & 4288.81 & 4.41 \\
-08 & 8 & 21 & 165 & 186 & 915.20 & 6028.03 & 6943.23 & 5.35 \\
-09 & 6 & 119 & 12 & 131 & 2868.25 & 532.19 & 3400.44 & 3.87 \\
-10 & 6 & 115 & 28 & 143 & 3453.20 & 1134.58 & 4587.78 & 4.00 \\
-11 & 6 & 174 & 10 & 184 & 7292.57 & 634.60 & 7927.17 & 3.83 \\
-12 & 5 & 99 & 48 & 147 & 1997.73 & 1634.60 & 3632.33 & 3.26 \\
-13 & 4 & 89 & 155 & 244 & 2082.67 & 5542.82 & 7625.49 & 2.53 \\
-14 & 4 & 49 & 39 & 88 & 918.08 & 1391.38 & 2309.46 & 2.59 \\
-15 & 5 & 88 & 322 & 410 & 2985.39 & 11655.53 & 14640.92 & 3.29 \\
-16 & 5 & 205 & 580 & 785 & 7369.83 & 21396.37 & 28766.20 & 3.59 \\
-17 & 5 & 109 & 36 & 145 & 2785.93 & 2075.46 & 4861.39 & 3.74 \\
-18 & 6 & 50 & 21 & 71 & 968.37 & 1158.77 & 2127.14 & 4.28 \\
-19 & 4 & 55 & 25 & 80 & 1516.62 & 955.82 & 2472.44 & 2.52 \\
-20 & 4 & 56 & 19 & 75 & 1500.55 & 555.49 & 2056.04 & 2.64 \\
-21 & 6 & 75 & 20 & 95 & 3986.82 & 870.35 & 4857.17 & 16.97 \\
-22 & 4 & 57 & 52 & 109 & 2644.68 & 1855.37 & 4500.05 & 6.84 \\
-23 & 5 & 13 & 35 & 48 & 1364.56 & 1230.82 & 2595.38 & 9.07 \\
-24 & 4 & 5 & 20 & 25 & 254.48 & 651.83 & 906.31 & 6.79 \\
-25 & 7 & 39 & 69 & 108 & 2088.80 & 3711.65 & 5800.45 & 12.52 \\
-26 & 6 & 47 & 201 & 248 & 5392.60 & 8688.87 & 14081.47 & 12.06 \\
-27 & 11 & 400 & 207 & 607 & 13669.75 & 9878.22 & 23547.97 & 20.88 \\
-28 & 5 & 154 & 31 & 185 & 5839.60 & 2013.36 & 7852.96 & 9.77 \\
-29 & 5 & 140 & 99 & 239 & 6076.09 & 4196.00 & 10272.09 & 9.88 \\
-30 & 6 & 90 & 64 & 154 & 2192.42 & 4967.15 & 7159.57 & 11.22 \\
+01 & 7 & 60 & 15 & 75 & 1288,81 s & 854,33 s & 2143,14 s & 7,13 s \\
+02 & 4 & 36 & 15 & 51 & 607,93 s & 955,40 s & 1563,33 s & 2,60 s \\
+03 & 7 & 18 & 16 & 34 & 788,03 s & 763,56 s & 1551,59 s & 4,22 s \\
+04 & 7 & 74 & 13 & 87 & 2957,73 s & 712,08 s & 3669,81 s & 4,20 s \\
+05 & 6 & 206 & 113 & 319 & 10735,23 s & 5290,52 s & 16025,75 s & 3,81 s \\
+06 & 7 & 39 & 50 & 89 & 2157,77 s & 2317,49 s & 4475,26 s & 4,51 s \\
+07 & 7 & 20 & 58 & 78 & 1989,41 s & 2299,40 s & 4288,81 s & 4,41 s \\
+08 & 8 & 21 & 165 & 186 & 915,20 s & 6028,03 s & 6943,23 s & 5,35 s \\
+09 & 6 & 119 & 12 & 131 & 2868,25 s & 532,19 s & 3400,44 s & 3,87 s \\
+10 & 6 & 115 & 28 & 143 & 3453,20 s & 1134,58 s & 4587,78 s & 4,00 s \\
+11 & 6 & 174 & 10 & 184 & 7292,57 s & 634,60 s & 7927,17 s & 3,83 s \\
+12 & 5 & 99 & 48 & 147 & 1997,73 s & 1634,60 s & 3632,33 s & 3,26 s \\
+13 & 4 & 89 & 155 & 244 & 2082,67 s & 5542,82 s & 7625,49 s & 2,53 s \\
+14 & 4 & 49 & 39 & 88 & 918,08 s & 1391,38 s & 2309,46 s & 2,59 s \\
+15 & 5 & 88 & 322 & 410 & 2985,39 s & 11655,53 s & 14640,92 s & 3,29 s \\
+16 & 5 & 205 & 580 & 785 & 7369,83 s & 21396,37 s & 28766,20 s & 3,59 s \\
+17 & 5 & 109 & 36 & 145 & 2785,93 s & 2075,46 s & 4861,39 s & 3,74 s \\
+18 & 6 & 50 & 21 & 71 & 968,37 s & 1158,77 s & 2127,14 s & 4,28 s \\
+19 & 4 & 55 & 25 & 80 & 1516,62 s & 955,82 s & 2472,44 s & 2,52 s \\
+20 & 4 & 56 & 19 & 75 & 1500,55 s & 555,49 s & 2056,04 s & 2,64 s \\
+21 & 6 & 75 & 20 & 95 & 3986,82 s & 870,35 s & 4857,17 s & 16,97 s \\
+22 & 4 & 57 & 52 & 109 & 2644,68 s & 1855,37 s & 4500,05 s & 6,84 s \\
+23 & 5 & 13 & 35 & 48 & 1364,56 s & 1230,82 s & 2595,38 s & 9,07 s \\
+24 & 4 & 5 & 20 & 25 & 254,48 s & 651,83 s & 906,31 s & 6,79 s \\
+25 & 7 & 39 & 69 & 108 & 2088,80 s & 3711,65 s & 5800,45 s & 12,52 s \\
+26 & 6 & 47 & 201 & 248 & 5392,60 s & 8688,87 s & 14081,47 s & 12,06 s \\
+27 & 11 & 400 & 207 & 607 & 13669,75 s & 9878,22 s & 23547,97 s & 20,88 s \\
+28 & 5 & 154 & 31 & 185 & 5839,60 s & 2013,36 s & 7852,96 s & 9,77 s \\
+29 & 5 & 140 & 99 & 239 & 6076,09 s & 4196,00 s & 10272,09 s & 9,88 s \\
+30 & 6 & 90 & 64 & 154 & 2192,42 s & 4967,15 s & 7159,57 s & 11,22 s \\
 \bottomrule
 \end{tabular}
 }
@@ -381,18 +1267,18 @@ Sem nenhum acerto entre os 20 chunks recuperados & 15 \\
 \toprule
 \textbf{PDF} & \textbf{Sem H@20} & \textbf{Perguntas} & \textbf{MRR} & \textbf{R@20} \\
 \midrule
-05 & 2 & 6 & 0.2944 & 0.5556 \\
-22 & 2 & 4 & 0.3750 & 0.5000 \\
-23 & 2 & 5 & 0.6000 & 0.6000 \\
-06 & 1 & 7 & 0.7857 & 0.7956 \\
-10 & 1 & 6 & 0.4722 & 0.8333 \\
-16 & 1 & 5 & 0.6500 & 0.7500 \\
-21 & 1 & 6 & 0.7500 & 0.8333 \\
-24 & 1 & 4 & 0.5227 & 0.7500 \\
-25 & 1 & 7 & 0.7143 & 0.8571 \\
-27 & 1 & 11 & 0.2954 & 0.7727 \\
-28 & 1 & 5 & 0.4733 & 0.7000 \\
-29 & 1 & 5 & 0.7000 & 0.8000 \\
+05 & 2 & 6 & 29,44\% & 55,56\% \\
+22 & 2 & 4 & 37,50\% & 50,00\% \\
+23 & 2 & 5 & 60,00\% & 60,00\% \\
+06 & 1 & 7 & 78,57\% & 79,56\% \\
+10 & 1 & 6 & 47,22\% & 83,33\% \\
+16 & 1 & 5 & 65,00\% & 75,00\% \\
+21 & 1 & 6 & 75,00\% & 83,33\% \\
+24 & 1 & 4 & 52,27\% & 75,00\% \\
+25 & 1 & 7 & 71,43\% & 85,71\% \\
+27 & 1 & 11 & 29,54\% & 77,27\% \\
+28 & 1 & 5 & 47,33\% & 70,00\% \\
+29 & 1 & 5 & 70,00\% & 80,00\% \\
 \bottomrule
 \end{tabular}
 \end{table}
@@ -411,3 +1297,85 @@ Comparado aos modelos ColVision, o RAG-Anything mantém uma estrutura mais inter
 O reranking reforça essa leitura. Ao aplicar o \texttt{BAAI/bge-reranker-v2-m3} sobre os chunks candidatos recuperados pelo RAG-Anything, houve melhora moderada nas métricas de topo, especialmente em MRR e Hit@1, mas sem alteração em Hit@20. Isso indica que parte dos erros estava na ordenação dos candidatos e não necessariamente na ausência da página correta entre os resultados recuperados. Por outro lado, o custo temporal aumentou de forma expressiva, pois cada pergunta passou a exigir a reavaliação dos pares pergunta--chunk por um segundo modelo. Assim, o reranking é útil quando a prioridade é melhorar as primeiras posições do ranking, mas deve ser ponderado em cenários nos quais latência e throughput são relevantes.
 
 Portanto, o pipeline híbrido oferece uma vantagem clara sobre a recuperação puramente textual em perguntas multimodais, mas não elimina todos os problemas associados à interpretação visual. Seus resultados devem ser analisados considerando três fatores principais: a qualidade do parser, a qualidade das descrições multimodais e o custo elevado de processamento para construir o índice híbrido.
+
+\section{\textbf{Resultados}}
+Os resultados podem vir de uma tabela. Procure por LaTeX Table Generator no Google e ele dá um help.
+
+% Please add the following required packages to your document preamble:
+% \usepackage{multirow}
+% \usepackage{graphicx}
+% \usepackage[table,xcdraw]{xcolor}
+% If you use beamer only pass "xcolor=table" option, i.e. \documentclass[xcolor=table]{beamer}
+\begin{table}[]
+\centering
+\caption{Teste.}
+\label{tab:teste}
+\begin{tabular}{lll}
+\hline
+\multirow{2}{*}{\#} & \multirow{2}{*}{\textbf{Sex}} & \multirow{2}{*}{\textbf{Age}} \\
+ &  &  \\
+\textbf{1} & F & \multicolumn{1}{r}{\textless 1 yo} \\
+2 & Joao & 12 \\
+3 & Maira & 32 \\
+4 &  & 
+\end{tabular}
+\end{table}
+
+\subsection{\underline{Valores médios}}
+Os valores...
+
+\subsubsection{Valores obtidos}
+A \ref{tab:measurements} contêm dados reais, mais fora de contexto não servem de nada.
+
+% Please add the following required packages to your document preamble:
+% \usepackage{multirow}
+% \usepackage{graphicx}
+% \usepackage[table,xcdraw]{xcolor}
+% If you use beamer only pass "xcolor=table" option, i.e. \documentclass[xcolor=table]{beamer}
+
+
+
+\begin{table}[]
+\caption{Mean results values.}
+\label{tab:measurements}
+\resizebox{\textwidth}{!}{%
+\begin{tabular}{llllllrrrrr}
+\hline
+ &  &  &  &  &  & \multicolumn{1}{l}{} & \multicolumn{1}{l}{} & \multicolumn{1}{l}{} & \multicolumn{1}{l}{} & \multicolumn{1}{l}{} \\
+\multirow{-2}{*}{\textbf{\#}} & \multirow{-2}{*}{\textbf{Data}} & \multirow{-2}{*}{\textbf{Start (s)}} & \multirow{-2}{*}{\textbf{End (s)}} & \multirow{-2}{*}{\textbf{Cycles}} & \multirow{-2}{*}{\textbf{Filter}} & \multicolumn{1}{l}{\multirow{-2}{*}{\textbf{$t_{I}$ (s)}}} & \multicolumn{1}{l}{\multirow{-2}{*}{\textbf{$t_{E}$ (s)}}} & \multicolumn{1}{l}{\multirow{-2}{*}{\textbf{$t_{PTIF}/t_{I}$ (\%)}}} & \multicolumn{1}{l}{\multirow{-2}{*}{\textbf{$t_{PTEF}/t_{E}$ (\%)}}} & \multicolumn{1}{l}{\multirow{-2}{*}{\textbf{RR (brpm)}}} \\
+\rowcolor[HTML]{EFEFEF} 
+\textbf{1} & 30-10-18 & 102.7 & 105.75 & 5 & Yes & 0.29 & 0.25 & 63.00 & 61.11 & 112.00 \\
+\textbf{2} & 30-10-18 & 500 & 550 & 48 & Yes & 0.5 & 0.52 & 48.16 & 31.62 & 59.29 \\
+\rowcolor[HTML]{EFEFEF} 
+\textbf{3} & 07-11-18 & 30 & 56 & 12 & Yes & 0.69 & 1.46 & 56.70 & 58.68 & 29.29 \\
+\textbf{4} & 06-12-18 & 32.62 & 40.47 & 5 & Yes & 0.69 & 0.89 & 65.73 & 19.97 & 38.41 \\
+\rowcolor[HTML]{EFEFEF} 
+\cellcolor[HTML]{EFEFEF} & 06-12-18 & 207.85 & 234.24 & 10 & Yes & 1.07 & 1.5 & 52.72 & 34.31 & 24.08 \\
+\rowcolor[HTML]{EFEFEF} 
+\multirow{-2}{*}{\cellcolor[HTML]{EFEFEF}\textbf{5}} & 06-12-18 & 156.2 & 203.63 & 19 & No & 1.06 & 1.32 & 65.09 & 31.37 & 25.51 \\
+ & 06-12-18 & 159.7 & 187.38 & 16 & Yes & 0.72 & 1 & 51.83 & 50.51 & 35.17 \\
+\multirow{-2}{*}{\textbf{6}} & 06-12-18 & 48.84 & 79 & 15 & No & 0.86 & 1.16 & 63.80 & 25.50 & 29.84 \\
+\rowcolor[HTML]{EFEFEF} 
+\textbf{7} & 07-12-18 & 91.34 & 124.52 & 21 & Yes & 0.66 & 0.91 & 50.95 & 34.50 & 38.58 \\
+\textbf{8} & 07-12-18 & 157.44 & 202.34 & 20 & Yes & 0.94 & 1.3 & 48.98 & 19.41 & 27.15 \\
+\rowcolor[HTML]{EFEFEF} 
+\textbf{9} & 07-12-18 & 257.25 & 268.3 & 11 & Yes & 0.49 & 0.51 & 62.54 & 43.34 & 60.90 \\
+\textbf{10} & 11-12-18 & 180 & 240 & 22 & Yes & 1.19 & 1.43 & 33.02 & 33.49 & 23.48 \\ \hline
+\end{tabular}%
+}
+\end{table}
+
+\subsubsection{Análise de resultados}
+Aqui tem a análise:
+
+\begin{itemize}
+    \item[] \textbf{Constatação 1} \\
+        ABC...
+    
+    \item[] \textbf{Constatação 2} \\
+        DEF...
+
+    \item[] \textbf{Constatação 3} \\
+        123...
+
+\end{itemize}
